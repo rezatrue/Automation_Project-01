@@ -1,0 +1,7 @@
+08:31:19.459 [TestNG-tests-1] INFO  resources.Base - Header: have user icon
+08:31:19.918 [TestNG-tests-1] INFO  resources.Base - Logo: image present
+08:31:19.964 [TestNG-tests-1] INFO  resources.Base - Logo: linked to Home page
+08:31:20.042 [TestNG-tests-1] INFO  resources.Base - Logo: has tooltip
+08:31:20.221 [TestNG-tests-1] INFO  resources.Base - Search: is not focousable
+08:31:20.446 [TestNG-tests-1] INFO  resources.Base - Search: input is not successful
+08:31:20.466 [TestNG-tests-1] INFO  resources.Base - Search: Button is present

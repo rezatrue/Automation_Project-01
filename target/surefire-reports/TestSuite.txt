@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 62.601 s <<< FAILURE! - in TestSuite
+com.technogearup.E2EProject.HomePage.basePageNavigation[unregistered_user, unregistered_user, User-02](1)  Time elapsed: 8.551 s  <<< FAILURE!
+org.openqa.selenium.ElementClickInterceptedException: 
+element click intercepted: Element <button aria-expanded="false" aria-haspopup="true" id="USER_DROPDOWN_ID" class="_10K5i7NW6qcm-UoCtpB3aK _1pA8z73SZ1olP5KMKFN4_Z _18X7KoiaLuKbuLqg4zE8BH ">...</button> is not clickable at point (1311, 23). Other element would receive the click: <div class="_1UtFUrE2ijAe5ba5uPgcfQ">...</div>
+  (Session info: chrome=89.0.4389.90)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-TSQEDQT', ip: '192.168.0.107', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_172'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 89.0.4389.90, chrome: {chromedriverVersion: 88.0.4324.96 (68dba2d8a0b14..., userDataDir: C:\Users\JAVA_U~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:63105}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5906ddd7a1b1fdae7202492f822f39a3
+	at com.technogearup.E2EProject.HomePage.basePageNavigation(HomePage.java:62)
+
+com.technogearup.E2EProject.HomePage.basePageNavigation[null, null, null](2)  Time elapsed: 1.567 s  <<< FAILURE!
+org.openqa.selenium.ElementClickInterceptedException: 
+element click intercepted: Element <a role="button" tabindex="0" href="https://www.reddit.com/login/?dest=https%3A%2F%2Fwww.reddit.com%2F" class="_3Wg53T10KuuPmyWOMWsY2F _2iuoyPiKHN3kfOoeIQalDT _2tU8R9NTqhvBrhoNAXWWcP HNozj_dKjQZ59ZsfEegz8 _2nelDm85zKKmuD94NequP0">...</a> is not clickable at point (1072, 23). Other element would receive the click: <div class="_1UtFUrE2ijAe5ba5uPgcfQ">...</div>
+  (Session info: chrome=89.0.4389.90)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-TSQEDQT', ip: '192.168.0.107', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_172'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 89.0.4389.90, chrome: {chromedriverVersion: 88.0.4324.96 (68dba2d8a0b14..., userDataDir: C:\Users\JAVA_U~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:63105}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5906ddd7a1b1fdae7202492f822f39a3
+	at com.technogearup.E2EProject.HomePage.basePageNavigation(HomePage.java:41)
+

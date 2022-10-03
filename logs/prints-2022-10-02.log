@@ -1,0 +1,7 @@
+11:03:59.580 [main] INFO  resources.Base - HomePage: Driver is Initialized
+11:04:06.995 [main] INFO  resources.Base - HomePage: Successfully open URL
+11:04:27.357 [main] INFO  resources.Base - HomePage: Closed
+11:15:36.992 [main] INFO  resources.Base - HomePage: Driver is Initialized
+11:15:45.014 [main] INFO  resources.Base - HomePage: Successfully open URL
+12:42:04.046 [main] INFO  resources.Base - HomePage for Header: Driver is Initialized
+12:42:11.976 [main] INFO  resources.Base - HomePage for Header: Successfully open URL

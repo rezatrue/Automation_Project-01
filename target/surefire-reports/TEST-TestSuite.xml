@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="62.601" tests="4" errors="0" skipped="0" failures="2">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="webdriver.chrome.driver" value="res/drivers/chromedriver.exe"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="D:\eclipse-workspace\E2EProject\target\test-classes;D:\eclipse-workspace\E2EProject\target\classes;C:\Users\JAVA_USER\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-java\3.141.59\selenium-java-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-api\3.141.59\selenium-api-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\3.141.59\selenium-chrome-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\3.141.59\selenium-edge-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\3.141.59\selenium-firefox-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\3.141.59\selenium-ie-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-opera-driver\3.141.59\selenium-opera-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\3.141.59\selenium-remote-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\3.141.59\selenium-safari-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-support\3.141.59\selenium-support-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\net\bytebuddy\byte-buddy\1.8.15\byte-buddy-1.8.15.jar;C:\Users\JAVA_USER\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\JAVA_USER\.m2\repository\com\google\guava\guava\25.0-jre\guava-25.0-jre.jar;C:\Users\JAVA_USER\.m2\repository\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar;C:\Users\JAVA_USER\.m2\repository\org\checkerframework\checker-compat-qual\2.0.0\checker-compat-qual-2.0.0.jar;C:\Users\JAVA_USER\.m2\repository\com\google\errorprone\error_prone_annotations\2.1.3\error_prone_annotations-2.1.3.jar;C:\Users\JAVA_USER\.m2\repository\com\google\j2objc\j2objc-annotations\1.1\j2objc-annotations-1.1.jar;C:\Users\JAVA_USER\.m2\repository\org\codehaus\mojo\animal-sniffer-annotations\1.14\animal-sniffer-annotations-1.14.jar;C:\Users\JAVA_USER\.m2\repository\com\squareup\okhttp3\okhttp\3.11.0\okhttp-3.11.0.jar;C:\Users\JAVA_USER\.m2\repository\com\squareup\okio\okio\1.14.0\okio-1.14.0.jar;C:\Users\JAVA_USER\.m2\repository\org\testng\testng\6.14.3\testng-6.14.3.jar;C:\Users\JAVA_USER\.m2\repository\com\beust\jcommander\1.72\jcommander-1.72.jar;C:\Users\JAVA_USER\.m2\repository\org\apache-extras\beanshell\bsh\2.0b6\bsh-2.0b6.jar;C:\Users\JAVA_USER\.m2\repository\org\apache\logging\log4j\log4j-api\2.14.1\log4j-api-2.14.1.jar;C:\Users\JAVA_USER\.m2\repository\org\apache\logging\log4j\log4j-core\2.14.1\log4j-core-2.14.1.jar;C:\Users\JAVA_USER\.m2\repository\commons-io\commons-io\2.6\commons-io-2.6.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="user.timezone" value="Asia/Dhaka"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_172\jre\bin"/>
+    <property name="sun.java.command" value="C:\Users\JAVA_USER\AppData\Local\Temp\surefire8651035052095086676\surefirebooter1055330468704790343.jar C:\Users\JAVA_USER\AppData\Local\Temp\surefire8651035052095086676 2021-03-28T15-57-16_255-jvmRun1 surefire8959519734793551195tmp surefire_01116341504347032854tmp"/>
+    <property name="surefire.test.class.path" value="D:\eclipse-workspace\E2EProject\target\test-classes;D:\eclipse-workspace\E2EProject\target\classes;C:\Users\JAVA_USER\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-java\3.141.59\selenium-java-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-api\3.141.59\selenium-api-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\3.141.59\selenium-chrome-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\3.141.59\selenium-edge-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\3.141.59\selenium-firefox-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\3.141.59\selenium-ie-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-opera-driver\3.141.59\selenium-opera-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\3.141.59\selenium-remote-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\3.141.59\selenium-safari-driver-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\org\seleniumhq\selenium\selenium-support\3.141.59\selenium-support-3.141.59.jar;C:\Users\JAVA_USER\.m2\repository\net\bytebuddy\byte-buddy\1.8.15\byte-buddy-1.8.15.jar;C:\Users\JAVA_USER\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\JAVA_USER\.m2\repository\com\google\guava\guava\25.0-jre\guava-25.0-jre.jar;C:\Users\JAVA_USER\.m2\repository\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar;C:\Users\JAVA_USER\.m2\repository\org\checkerframework\checker-compat-qual\2.0.0\checker-compat-qual-2.0.0.jar;C:\Users\JAVA_USER\.m2\repository\com\google\errorprone\error_prone_annotations\2.1.3\error_prone_annotations-2.1.3.jar;C:\Users\JAVA_USER\.m2\repository\com\google\j2objc\j2objc-annotations\1.1\j2objc-annotations-1.1.jar;C:\Users\JAVA_USER\.m2\repository\org\codehaus\mojo\animal-sniffer-annotations\1.14\animal-sniffer-annotations-1.14.jar;C:\Users\JAVA_USER\.m2\repository\com\squareup\okhttp3\okhttp\3.11.0\okhttp-3.11.0.jar;C:\Users\JAVA_USER\.m2\repository\com\squareup\okio\okio\1.14.0\okio-1.14.0.jar;C:\Users\JAVA_USER\.m2\repository\org\testng\testng\6.14.3\testng-6.14.3.jar;C:\Users\JAVA_USER\.m2\repository\com\beust\jcommander\1.72\jcommander-1.72.jar;C:\Users\JAVA_USER\.m2\repository\org\apache-extras\beanshell\bsh\2.0b6\bsh-2.0b6.jar;C:\Users\JAVA_USER\.m2\repository\org\apache\logging\log4j\log4j-api\2.14.1\log4j-api-2.14.1.jar;C:\Users\JAVA_USER\.m2\repository\org\apache\logging\log4j\log4j-core\2.14.1\log4j-core-2.14.1.jar;C:\Users\JAVA_USER\.m2\repository\commons-io\commons-io\2.6\commons-io-2.6.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\JAVA_USER"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_172\jre"/>
+    <property name="basedir" value="D:\eclipse-workspace\E2EProject"/>
+    <property name="file.separator" value="\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\JAVA_USER\AppData\Local\Temp\surefire8651035052095086676\surefirebooter1055330468704790343.jar"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_172\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_172\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_172\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_172\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_172\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_172\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_172\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_172\jre\classes"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="1.8.0_172-b11"/>
+    <property name="user.name" value="JAVA_USER"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_172\jre\lib\endorsed"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\JAVA_USER\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\JAVA_U~1\AppData\Local\Temp\"/>
+    <property name="java.version" value="1.8.0_172"/>
+    <property name="user.dir" value="D:\eclipse-workspace\E2EProject"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_172\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\xampp\php;C:\WINDOWS\System32\OpenSSH\;C:\sqlite;D:\maven\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;F:\Program Files\Python\Python39;F:\Program Files\Python\Python39\Scripts;C:\strawberry\c\bin;C:\strawberry\perl\bin;C:\Program Files\Java\jdk1.8.0_172\bin;C:\Users\JAVA_USER\AppData\Roaming\Composer\vendor\bin;C:\Users\JAVA_USER\AppData\Local\Microsoft\WindowsApps;F:\development\flutter\bin;F:\development\Android-SDK\tools;F:\development\Android-SDK\platform-tools;F:\Program Files\Microsoft VS Code\bin;;."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="25.172-b11"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_172\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="52.0"/>
+  </properties>
+  <testcase name="basePageNavigation[lgdbmunrekiqcfvyxp, lgdbmunrekiqcfvyxp, User-01](1)" classname="com.technogearup.E2EProject.ValidateNavigationBar" time="4.673">
+    <system-out><![CDATA[15:57:23.996 [TestNG-tests-1] INFO  resources.Base - HomePage: Driver is Initialized
+15:58:01.296 [TestNG-tests-3] INFO  resources.Base - NavigationBar Validation: Opening Login page
+-- User-01 --
+15:58:04.958 [TestNG-tests-3] INFO  resources.Base - NavigationBar Validation: Clicked in Login button
+reddit: the front page of the internet
+15:58:05.214 [TestNG-tests-3] INFO  resources.Base - NavigationBar Validation:  Nav Dispalyed
+]]></system-out>
+    <system-err><![CDATA[Starting ChromeDriver 88.0.4324.96 (68dba2d8a0b149a1d3afac56fa74648032bcf46b-refs/branch-heads/4324@{#1784}) on port 46751
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+Starting ChromeDriver 88.0.4324.96 (68dba2d8a0b149a1d3afac56fa74648032bcf46b-refs/branch-heads/4324@{#1784}) on port 29770
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for CSshurtgoagmreetsDtiirnoignv sCe horr now mkaeesDe rpsiitvnaergrt  eC8dh8 r.os0mu.ec4cD3re2si4sv.ef96ru l (ls6ya8.fdeb
+.a2
+d8a0b149a1d3afac56fa74648032bcf46b-refs/branch-heads/4324@{#1784}) on port 29037
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+CChhrromoemDreiDvreri wavs setrar tewd saucs cesstsafrutledl ys.uc
+cessfully.
+[1616925442.590][WARNING]: This version of ChromeDriver has not been tested with Chrome version 89.
+[1616925442.685][WARNING]: This version of ChromeDriver has not been tested with Chrome version 89.
+[1616925442.785][WARNING]: This version of ChromeDriver has not been tested with Chrome version 89.
+Mar 28, 2021 3:57:23 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+Mar 28, 2021 3:57:23 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+Mar 28, 2021 3:57:24 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+  </testcase>
+  <testcase name="basePageNavigation" classname="com.technogearup.E2EProject.ValidateTitle" time="2.651">
+    <system-out><![CDATA[15:58:08.336 [TestNG-tests-2] INFO  resources.Base - Login Page Title validation: Opening Login page
+15:58:09.667 [TestNG-tests-1] INFO  resources.Base - HomePage: Successfully open URL
+15:58:10.646 [TestNG-tests-1] INFO  resources.Base - HomePage: Opening Login page
+15:58:12.294 [TestNG-tests-2] INFO  resources.Base - Login Page Title validation: Title visible
+]]></system-out>
+  </testcase>
+  <testcase name="basePageNavigation[unregistered_user, unregistered_user, User-02](1)" classname="com.technogearup.E2EProject.HomePage" time="8.551">
+    <failure message="element click intercepted: Element &lt;button aria-expanded=&quot;false&quot; aria-haspopup=&quot;true&quot; id=&quot;USER_DROPDOWN_ID&quot; class=&quot;_10K5i7NW6qcm-UoCtpB3aK _1pA8z73SZ1olP5KMKFN4_Z _18X7KoiaLuKbuLqg4zE8BH &quot;&gt;...&lt;/button&gt; is not clickable at point (1311, 23). Other element would receive the click: &lt;div class=&quot;_1UtFUrE2ijAe5ba5uPgcfQ&quot;&gt;...&lt;/div&gt;&#10;  (Session info: chrome=89.0.4389.90)&#10;Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;&#10;System info: host: &apos;DESKTOP-TSQEDQT&apos;, ip: &apos;192.168.0.107&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_172&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 89.0.4389.90, chrome: {chromedriverVersion: 88.0.4324.96 (68dba2d8a0b14..., userDataDir: C:\Users\JAVA_U~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:63105}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 5906ddd7a1b1fdae7202492f822f39a3" type="org.openqa.selenium.ElementClickInterceptedException"><![CDATA[org.openqa.selenium.ElementClickInterceptedException: 
+element click intercepted: Element <button aria-expanded="false" aria-haspopup="true" id="USER_DROPDOWN_ID" class="_10K5i7NW6qcm-UoCtpB3aK _1pA8z73SZ1olP5KMKFN4_Z _18X7KoiaLuKbuLqg4zE8BH ">...</button> is not clickable at point (1311, 23). Other element would receive the click: <div class="_1UtFUrE2ijAe5ba5uPgcfQ">...</div>
+  (Session info: chrome=89.0.4389.90)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-TSQEDQT', ip: '192.168.0.107', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_172'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 89.0.4389.90, chrome: {chromedriverVersion: 88.0.4324.96 (68dba2d8a0b14..., userDataDir: C:\Users\JAVA_U~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:63105}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5906ddd7a1b1fdae7202492f822f39a3
+	at com.technogearup.E2EProject.HomePage.basePageNavigation(HomePage.java:62)
+]]></failure>
+    <system-out><![CDATA[-- User-02 --
+15:58:13.021 [TestNG-tests-1] INFO  resources.Base - HomePage: User Name User-02
+reddit: the front page of the internet
+15:58:14.410 [TestNG-tests-1] INFO  resources.Base - HomePage: Clicked in Login button
+]]></system-out>
+  </testcase>
+  <testcase name="basePageNavigation[null, null, null](2)" classname="com.technogearup.E2EProject.HomePage" time="1.567">
+    <failure message="element click intercepted: Element &lt;a role=&quot;button&quot; tabindex=&quot;0&quot; href=&quot;https://www.reddit.com/login/?dest=https%3A%2F%2Fwww.reddit.com%2F&quot; class=&quot;_3Wg53T10KuuPmyWOMWsY2F _2iuoyPiKHN3kfOoeIQalDT _2tU8R9NTqhvBrhoNAXWWcP HNozj_dKjQZ59ZsfEegz8 _2nelDm85zKKmuD94NequP0&quot;&gt;...&lt;/a&gt; is not clickable at point (1072, 23). Other element would receive the click: &lt;div class=&quot;_1UtFUrE2ijAe5ba5uPgcfQ&quot;&gt;...&lt;/div&gt;&#10;  (Session info: chrome=89.0.4389.90)&#10;Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;&#10;System info: host: &apos;DESKTOP-TSQEDQT&apos;, ip: &apos;192.168.0.107&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_172&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 89.0.4389.90, chrome: {chromedriverVersion: 88.0.4324.96 (68dba2d8a0b14..., userDataDir: C:\Users\JAVA_U~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:63105}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 5906ddd7a1b1fdae7202492f822f39a3" type="org.openqa.selenium.ElementClickInterceptedException"><![CDATA[org.openqa.selenium.ElementClickInterceptedException: 
+element click intercepted: Element <a role="button" tabindex="0" href="https://www.reddit.com/login/?dest=https%3A%2F%2Fwww.reddit.com%2F" class="_3Wg53T10KuuPmyWOMWsY2F _2iuoyPiKHN3kfOoeIQalDT _2tU8R9NTqhvBrhoNAXWWcP HNozj_dKjQZ59ZsfEegz8 _2nelDm85zKKmuD94NequP0">...</a> is not clickable at point (1072, 23). Other element would receive the click: <div class="_1UtFUrE2ijAe5ba5uPgcfQ">...</div>
+  (Session info: chrome=89.0.4389.90)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-TSQEDQT', ip: '192.168.0.107', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_172'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 89.0.4389.90, chrome: {chromedriverVersion: 88.0.4324.96 (68dba2d8a0b14..., userDataDir: C:\Users\JAVA_U~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:63105}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5906ddd7a1b1fdae7202492f822f39a3
+	at com.technogearup.E2EProject.HomePage.basePageNavigation(HomePage.java:41)
+]]></failure>
+  </testcase>
+</testsuite>
