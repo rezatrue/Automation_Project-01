@@ -1,0 +1,7 @@
+10:51:51.802 [TestNG-tests-1] INFO  resources.Base - Header: has a Logo
+10:51:51.903 [TestNG-tests-1] INFO  resources.Base - Header: has search option
+10:51:51.987 [TestNG-tests-1] INFO  resources.Base - Header: have user icon
+10:51:52.069 [TestNG-tests-1] INFO  resources.Base - Logo: image present
+10:51:52.160 [TestNG-tests-1] INFO  resources.Base - Logo: linked to Home page
+10:51:52.229 [TestNG-tests-1] INFO  resources.Base - Logo: has tooltip
+10:51:52.716 [TestNG-tests-1] INFO  resources.Base - Search: is focousable

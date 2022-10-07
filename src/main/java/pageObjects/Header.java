@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import io.reactivex.rxjava3.functions.Consumer;
+
 public class Header {
 
 	private WebDriver driver;

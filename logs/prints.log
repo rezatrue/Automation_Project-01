@@ -1,2 +1,4 @@
-08:31:21.828 [TestNG-tests-1] INFO  resources.Base - Search: option is not working
-08:31:37.095 [TestNG-tests-1] INFO  resources.Base - HomePage: Closed
+10:51:52.976 [TestNG-tests-1] INFO  resources.Base - Search: input successful
+10:51:53.049 [TestNG-tests-1] INFO  resources.Base - Search: Button is present
+10:51:54.083 [TestNG-tests-1] INFO  resources.Base - Search:  option is working
+10:51:54.343 [TestNG-tests-1] INFO  resources.Base - HomePage: Closed

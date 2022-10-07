@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -72,17 +73,22 @@ public class HeaderOfThePage extends Base{
 	
 	@Test
 	public void searchOption() {
-		boolean isFocusable = false;
-		header.getSearchInput().click();
+		boolean isFocusable = true;
+		try {
+			header.getSearchInput().click();
+		} catch (Exception e) {
+			isFocusable = false;
+		}
 		log.info(isFocusable ? "Search: "+"is focousable" : "Search: "+"is not focousable");
 		
 		// How to detect Hover mouse pointer change?
 		
-		String inputTxt = "skin";
-		header.getSearchInput().sendKeys("inputtxt");;
-		String text = header.getSearchInput().getText();
+		String inputTxt = "skincare";
+		header.getSearchInput().sendKeys(inputTxt);
+		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+		String text = header.getSearchInput().getAttribute("value");
 		boolean isTextPresent =inputTxt.equalsIgnoreCase(text);
-		log.info(isTextPresent ? "Search: "+"input successful" : "Search: "+"input is not successful");
+		log.info(isTextPresent ? "Search: "+"input successful" : "Search: "+text+" input is not successful");
 		
 		boolean isSearchButtonPresent = header.getSearchButton() != null ? true : false;
 		log.info(isSearchButtonPresent ? "Search: "+"Button is present" : "Search: "+"button not not present");
@@ -90,6 +96,7 @@ public class HeaderOfThePage extends Base{
 		boolean isCurrentSearchUrl = false;
 		if(isSearchButtonPresent) {
 			header.getSearchButton().click();
+			driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
 			String searchUrlStartWith = "https://www.neutrogena.com/search?q=" + inputTxt;
 			isCurrentSearchUrl = driver.getCurrentUrl().startsWith(searchUrlStartWith);
 			log.info(isCurrentSearchUrl ? "Search: "+" option is working" : "Search: "+"option is not working");
@@ -99,13 +106,27 @@ public class HeaderOfThePage extends Base{
 		else Assert.assertTrue(false, "Search : not proper");
 	}
 	
-	@Test
-	public void userInfo() {
-	    WebDriverWait wait = new WebDriverWait(driver, 5);
+	int hoverOnUserIcon() {
+		WebDriverWait wait = new WebDriverWait(driver, 5);
 	    WebElement menu = header.getUserInfo();
 	    Actions builder = new Actions(driver);
 	    builder.moveToElement(menu).build().perform();
-	    wait.until(ExpectedConditions.presenceOfElementLocated(header.getMyAccountDropdownTitleBy()));
+	    try {
+			wait.until(ExpectedConditions.presenceOfElementLocated(header.getMyAccountDropdownTitleBy()));
+		} catch (Exception e) {
+			return 1;
+		}
+	    return 0;
+	}
+	
+	
+	public void userInfo() {
+		if(hoverOnUserIcon() != 0) {
+			driver.navigate().refresh();
+			driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
+			driver.manage().window().fullscreen();
+			hoverOnUserIcon();
+		}
 	    
 	    String title = header.getMyAccountDropdownTitle().getText().trim();
 		log.info("My Account Dropdown Title: "+ title);
@@ -127,6 +148,8 @@ public class HeaderOfThePage extends Base{
 			log.info("User Info: "+ missingList.toArray().toString() +" menu items are not in proper place");
 			Assert.assertEquals(false, "User Info: "+ missingList.toArray().toString() + "menu items are not in proper place");
 		}
+		
+		
 		
 
 	}

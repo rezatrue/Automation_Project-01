@@ -9,7 +9,6 @@
       <class name="com.technogearup.E2EProject.HeaderOfThePage">
         <methods>
           <include name="closeBrowser"/>
-          <include name="userInfo"/>
           <include name="launcBrowser"/>
           <include name="searchOption"/>
         </methods>
