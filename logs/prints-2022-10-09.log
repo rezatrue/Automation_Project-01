@@ -1,0 +1,8 @@
+22:31:06.021 [main] INFO  resources.Base - HomePage for Header: Successfully open URL
+22:31:06.659 [main] INFO  resources.Base - Header: has a Logo
+22:31:06.699 [main] INFO  resources.Base - Header: has search option
+22:31:06.744 [main] INFO  resources.Base - Header: have user icon
+22:31:06.835 [main] INFO  resources.Base - Logo: image present
+22:31:06.882 [main] INFO  resources.Base - Logo: linked to Home page
+22:31:06.933 [main] INFO  resources.Base - Logo: has tooltip
+22:31:07.502 [main] INFO  resources.Base - Search: is focousable

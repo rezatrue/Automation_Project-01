@@ -1,4 +1,1 @@
-10:51:52.976 [TestNG-tests-1] INFO  resources.Base - Search: input successful
-10:51:53.049 [TestNG-tests-1] INFO  resources.Base - Search: Button is present
-10:51:54.083 [TestNG-tests-1] INFO  resources.Base - Search:  option is working
-10:51:54.343 [TestNG-tests-1] INFO  resources.Base - HomePage: Closed
+08:38:46.557 [main] INFO  resources.Base - HomePage: Closed

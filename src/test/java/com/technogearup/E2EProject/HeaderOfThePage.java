@@ -6,6 +6,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -32,7 +36,7 @@ public class HeaderOfThePage extends Base{
 		log.info("HomePage for Header: "+"Driver is Initialized");
 		driver.get(prop.getProperty("url"));
 		log.info("HomePage for Header: "+"Successfully open URL");
-		driver.manage().window().fullscreen();
+		driver.manage().window().maximize();
 		header = new Header(driver);
 	}
 	
@@ -107,51 +111,118 @@ public class HeaderOfThePage extends Base{
 	}
 	
 	int hoverOnUserIcon() {
+		driver.manage().window().maximize();
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 	    WebElement menu = header.getUserInfo();
 	    Actions builder = new Actions(driver);
 	    builder.moveToElement(menu).build().perform();
+	    boolean requirePageRefresh = true;
 	    try {
-			wait.until(ExpectedConditions.presenceOfElementLocated(header.getMyAccountDropdownTitleBy()));
-		} catch (Exception e) {
-			return 1;
+			wait.until(ExpectedConditions.visibilityOf(header.getInterceptedElement()));
+			System.out.println("InterceptedElement visible");
+	    } catch (Exception e) {
+	    	requirePageRefresh = false;
+	    	System.out.println("No InterceptedElement present");
 		}
+	    if(requirePageRefresh) {
+	    	if(ExpectedConditions.visibilityOf(header.getInterceptedElement()) != null) {
+		    	closePopup();
+		    }
+		    driver.navigate().refresh();
+		    driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+		    menu = header.getUserInfo();
+		    builder = new Actions(driver);
+	    	wait.until(ExpectedConditions.elementToBeClickable(menu));
+	    	builder.moveToElement(menu).build().perform();
+		    
+	    }
+	    
 	    return 0;
 	}
 	
+	private void closePopup() {
+
+			// Shadow root closed
+			Actions builder = new Actions(driver);
+			
+			builder.moveToElement(header.getPopupShadowHost()).build().perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			builder.sendKeys(Keys.TAB).perform();
+			
+			builder.sendKeys(Keys.ENTER).perform();
+
+	}
 	
+	@Test
 	public void userInfo() {
-		if(hoverOnUserIcon() != 0) {
-			driver.navigate().refresh();
-			driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
-			driver.manage().window().fullscreen();
-			hoverOnUserIcon();
-		}
-	    
+		hoverOnUserIcon();		
+		
 	    String title = header.getMyAccountDropdownTitle().getText().trim();
 		log.info("My Account Dropdown Title: "+ title);
 		Assert.assertEquals(title, "My Account");
 		
-		LinkedList<String> missingList = new LinkedList<String>();
-		String[]  menuItems = (String[]) header.getMyAccountDropdownItems().toArray();
-		String[]  givenMenuItems = {"Login","Register","Care Club"};
-		for(int i=0; i <= givenMenuItems.length; i++) {
-			if(givenMenuItems[i] != menuItems[i]) {
-				missingList.add(givenMenuItems[i]);
+		LinkedList<String> missingListItems = new LinkedList<String>();
+		LinkedList<String> missingListLinks = new LinkedList<String>();
+		List<WebElement>  menuItems = header.getMyAccountDropdownItems();
+		String[]  givenMenuItemTxts = {"Login","Register","Care Club"};
+		String[]  givenMenuItemLinks = {"https://www.neutrogena.com/account","https://www.neutrogena.com/register","https://www.neutrogena.com/care-club.html"};
+		for(int i = 0; i < menuItems.size(); i++) {
+			WebElement we = menuItems.get(i);
+			if(!we.getText().trim().equalsIgnoreCase(givenMenuItemTxts[i])) {
+				missingListItems.add(we.getText());
+			}
+			if(!we.getAttribute("href").equalsIgnoreCase(givenMenuItemLinks[i])) {
+				missingListLinks.add(we.getAttribute("href"));
+			}
+		}
+		int x = 0;
+		if((x = missingListItems.size()) == 0) {
+			log.info("User Info: "+ "All menu items present");
+			Assert.assertEquals(x, 0, "User Info: "+ "All menu items present");
+		}else {
+			log.info("User Info: "+ missingListItems.toString() +" menu items are not in proper place");
+			Assert.assertEquals(x, 0, "User Info: "+ missingListItems.toString() + "menu items are not in proper place");
+		}
+		int y = 0;
+		if((y = missingListLinks.size()) == 0) {
+			log.info("User Info: "+ "All menu item links are present");
+			Assert.assertEquals(y, 0, "User Info: "+ "All menu item links are present");
+		}else {
+			log.info("User Info: "+ missingListLinks.toString() +" menu item links are not in proper place");
+			Assert.assertEquals(y, 0, "User Info: "+ missingListLinks.toString() + "menu item links are not in proper place");
+		}
+		
+		
+		// ... click on menu items..
+		boolean linkError = false;
+		for(int i = 0; i < menuItems.size(); i++) {
+			hoverOnUserIcon();
+			header.getMyAccountDropdownItem(givenMenuItemTxts[i]).click();
+			driver.getCurrentUrl().contentEquals(givenMenuItemLinks[i]);
+
+			if(driver.getCurrentUrl().contentEquals(givenMenuItemLinks[i])) {
+				log.info("User Info: "+ givenMenuItemLinks[i] + " link wroks fine");
+			}else {
+				linkError = true;
+				log.info("User Info: "+ givenMenuItemLinks[i] + " link does not wrok properly");
 			}
 		}
 		
-		if(missingList.size() == 0) {
-			log.info("User Info: "+ "All menu items present");
-			Assert.assertEquals(true, "User Info: "+ "All menu items present");
-		}else {
-			log.info("User Info: "+ missingList.toArray().toString() +" menu items are not in proper place");
-			Assert.assertEquals(false, "User Info: "+ missingList.toArray().toString() + "menu items are not in proper place");
-		}
-		
-		
-		
+		Assert.assertEquals(false, linkError, "User Info: menu item links are not redirected to proper page");
 
+		
 	}
 	
 }

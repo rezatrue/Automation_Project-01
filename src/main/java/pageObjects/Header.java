@@ -24,10 +24,12 @@ public class Header {
 	By searchInputBy = By.xpath("//form[@name='simpleSearch']//input[preceding-sibling::label[contains(text(),'Search')]][1]");
 	By searchButtonBy = By.xpath("//form[@name='simpleSearch']//button[preceding-sibling::label[contains(text(),'Search')]]");
 
-	By userInfoBy = By.xpath("//div[@class='user-info'][parent::div[contains(@class,'header-guts-wrapper')]]");
+	By userInfoBy = By.xpath("//div[contains(@class,'user-info')][parent::div[contains(@class,'header-guts-wrapper')]]");
 	
 	By myAccountDropdownItemsBy = By.xpath("//div[@class='user-info active']/div[@class='user-panel']/div[@class='user-links']/a");
 	By myAccountDropdownTitleBy = By.xpath("//div[@class='user-info active']/div[@class='user-panel']/h3");
+
+	String myAccountDropdownItem = "//div[@class='user-info active']/div[@class='user-panel']/div[@class='user-links']/a";
 
 	
 	public WebElement getLogo(){
@@ -69,4 +71,28 @@ public class Header {
 	public List<WebElement> getMyAccountDropdownItems(){
 		return driver.findElements(myAccountDropdownItemsBy);
 	}
+	
+	public WebElement getMyAccountDropdownItem(String item){
+		return driver.findElement(By.xpath(myAccountDropdownItem +"[contains(text(),'"+ item +"')]"));
+	}
+	
+	By popupClosebuttonBy = By.xpath("//div[@role='dialog'][3]/div[contains(@id,'yie-inner-overlay')]/div/button");
+
+	public WebElement getPopupClosebutton(){
+		return driver.findElement(popupClosebuttonBy);
+	}
+
+	//By popupShadowHostBy = By.xpath("//div[@role='dialog'][3]/div[contains(@id,'yie-inner-overlay')]/div[contains(@id,'yie-overlay-wrapper')]/yld-tag-host-campaign");
+	By popupShadowHostBy = By.xpath("//div[@id='yie-overlay-wrapper-ad57273e-8fd0-5f0a-8b7d-8c013363ff68']/yld-tag-host-campaign");
+	//By popupShadowHostBy = By.xpath("//div[@id='yie-overlay-wrapper-2f8eb48f-7117-530f-8254-6b2c73b24378']/yld-tag-host-campaign");
+
+	public WebElement getPopupShadowHost(){
+		return driver.findElement(popupShadowHostBy);
+	}
+	
+	By interceptedElementBy = By.xpath("//div[@id='yie-backdrop-ad57273e-8fd0-5f0a-8b7d-8c013363ff68']/parent::div");
+	public WebElement getInterceptedElement(){
+		return driver.findElement(interceptedElementBy);
+	}
+	
 }

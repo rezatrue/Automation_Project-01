@@ -1,0 +1,5 @@
+08:38:03.043 [main] INFO  resources.Base - User Info: All menu items present
+08:38:03.047 [main] INFO  resources.Base - User Info: All menu item links are present
+08:38:17.203 [main] INFO  resources.Base - User Info: https://www.neutrogena.com/account link does not wrok properly
+08:38:31.413 [main] INFO  resources.Base - User Info: https://www.neutrogena.com/register link wroks fine
+08:38:46.348 [main] INFO  resources.Base - User Info: https://www.neutrogena.com/care-club.html link wroks fine
