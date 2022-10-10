@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.SearchContext;
@@ -46,7 +47,7 @@ public class HeaderOfThePage extends Base{
 		log.info("HomePage: "+"Closed");
 	}
 	
-	@Test
+	//@Test
 	public void headerContent() {
 		
 		boolean isImagePresent = header.getLogo() != null ? true : false;
@@ -60,7 +61,7 @@ public class HeaderOfThePage extends Base{
 		
 	}
 	
-	@Test
+	//@Test
 	public void logo() {
 		
 		boolean isImagePresent = header.getLogoImage() != null ? true : false;
@@ -75,7 +76,7 @@ public class HeaderOfThePage extends Base{
 	}
 	
 	
-	@Test
+	//@Test
 	public void searchOption() {
 		boolean isFocusable = true;
 		try {
@@ -165,7 +166,7 @@ public class HeaderOfThePage extends Base{
 
 	}
 	
-	@Test
+	//@Test
 	public void userInfo() {
 		hoverOnUserIcon();		
 		
@@ -222,7 +223,71 @@ public class HeaderOfThePage extends Base{
 		
 		Assert.assertEquals(false, linkError, "User Info: menu item links are not redirected to proper page");
 
+	}
+	
+	@Test
+	public void navigation() {
+		
+		LinkedList<String> missingNavItems = new LinkedList<String>();
+		LinkedList<String> missingNavLinks = new LinkedList<String>();
+		List<WebElement>  navItems = header.getNavAnchors();
+		String[]  givenNavItemTxts = {"Holiday","What's New","Skin Care","Sun","Makeup", "Hair Care", "SKIN360", "Skin Advice"};
+		String[]  givenNavItemLinks = {"https://www.neutrogena.com/holiday-shop","https://www.neutrogena.com/#",
+				"https://www.neutrogena.com/skin", "https://www.neutrogena.com/sun", "https://www.neutrogena.com/makeup",
+				"https://www.neutrogena.com/haircare", "https://www.neutrogena.com/skin360/try-now.html", "https://www.neutrogena.com/skin-advice"};
+		for(int i = 0; i < navItems.size(); i++) {
+			WebElement we = navItems.get(i);
+			if(!we.getText().trim().equalsIgnoreCase(givenNavItemTxts[i])) {
+				missingNavItems.add(we.getText().trim());
+			}
+			if(!we.getAttribute("href").equalsIgnoreCase(givenNavItemLinks[i])) {
+				missingNavLinks.add(we.getAttribute("href"));
+			}
+		}
+		int x = 0;
+		if((x = missingNavItems.size()) == 0) {
+			log.info("Nav: "+ "All nav items present");
+			Assert.assertEquals(x, 0, "Nav: "+ "All nav items present");
+		}else {
+			log.info("Nav: "+ missingNavItems.toString() +" nav items are not in proper place");
+			Assert.assertEquals(x, 0, "Nav: "+ missingNavItems.toString() + "nav items are not in proper place");
+		}
+		int y = 0;
+		if((y = missingNavLinks.size()) == 0) {
+			log.info("Nav: "+ "All nav item links are present");
+			Assert.assertEquals(y, 0, "Nav: "+ "All nav item links are present");
+		}else {
+			log.info("Nav: "+ missingNavLinks.toString() +" nav item links are not in proper place");
+			Assert.assertEquals(y, 0, "Nav: "+ missingNavLinks.toString() + "nav item links are not in proper place");
+		}
+		
+		// ... Click on the Nav items
+		LinkedList<String> wrongRedirectionList = new LinkedList<String>();
+		for(int i = 0; i < givenNavItemTxts.length; i++) {
+			WebElement we = header.getNav(givenNavItemTxts[i]);
+			try {
+				we.click();
+			} catch (ElementClickInterceptedException e) {
+				closePopup();
+				we.click();
+			}
+			String url = driver.getCurrentUrl();
+			if(!givenNavItemLinks[i].equalsIgnoreCase(url)) {
+				wrongRedirectionList.add(givenNavItemTxts[i]);
+			}
+			if(!url.startsWith("https://www.neutrogena.com")) driver.get("https://www.neutrogena.com");
+		}
+		int wr = 0;
+		if(( wr = wrongRedirectionList.size()) == 0) {
+			log.info("Nav: "+ " items properly redircted");
+			Assert.assertEquals(wr, 0, "Nav: "+ " items properly redircted");
+		}else {
+			log.info("Nav: "+ wrongRedirectionList.toString() +" items don't redircte properly");
+			Assert.assertEquals(wr, 0, "Nav: "+ wrongRedirectionList.toString() + "items don't redircte properly");
+		}
 		
 	}
+	
+
 	
 }

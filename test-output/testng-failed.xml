@@ -5,8 +5,8 @@
     <classes>
       <class name="com.technogearup.E2EProject.HeaderOfThePage">
         <methods>
+          <include name="navigation"/>
           <include name="closeBrowser"/>
-          <include name="userInfo"/>
           <include name="launcBrowser"/>
         </methods>
       </class> <!-- com.technogearup.E2EProject.HeaderOfThePage -->

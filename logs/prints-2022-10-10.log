@@ -1,5 +1,7 @@
-08:38:03.043 [main] INFO  resources.Base - User Info: All menu items present
-08:38:03.047 [main] INFO  resources.Base - User Info: All menu item links are present
-08:38:17.203 [main] INFO  resources.Base - User Info: https://www.neutrogena.com/account link does not wrok properly
-08:38:31.413 [main] INFO  resources.Base - User Info: https://www.neutrogena.com/register link wroks fine
-08:38:46.348 [main] INFO  resources.Base - User Info: https://www.neutrogena.com/care-club.html link wroks fine
+10:28:53.872 [main] INFO  resources.Base - HomePage for Header: Successfully open URL
+10:28:54.848 [main] INFO  resources.Base - Nav: All nav items present
+10:28:54.851 [main] INFO  resources.Base - Nav: All nav item links are present
+10:29:34.525 [main] INFO  resources.Base - HomePage: Closed
+10:34:09.444 [main] INFO  resources.Base - HomePage for Header: Driver is Initialized
+10:34:17.988 [main] INFO  resources.Base - HomePage for Header: Successfully open URL
+10:34:19.364 [main] INFO  resources.Base - Nav: All nav items present

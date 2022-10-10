@@ -95,4 +95,17 @@ public class Header {
 		return driver.findElement(interceptedElementBy);
 	}
 	
+	
+	// .............................Navigation .....................................
+	
+	String navAnchorsxPath = "//nav[@id='navigation']/ul[@class='menu-category level-1']/li/a";
+
+	public List<WebElement> getNavAnchors(){
+		return driver.findElements(By.xpath(navAnchorsxPath));
+	}
+	
+	public WebElement getNav(String txt){
+		return driver.findElement(By.xpath(navAnchorsxPath+"[contains(text(),\""+ txt +"\")]"));
+	}
+	
 }
