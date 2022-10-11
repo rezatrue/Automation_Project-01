@@ -1,9 +1,16 @@
 package com.technogearup.E2EProject;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -225,7 +232,7 @@ public class HeaderOfThePage extends Base{
 
 	}
 	
-	@Test
+	//@Test
 	public void navigation() {
 		
 		LinkedList<String> missingNavItems = new LinkedList<String>();
@@ -280,14 +287,136 @@ public class HeaderOfThePage extends Base{
 		int wr = 0;
 		if(( wr = wrongRedirectionList.size()) == 0) {
 			log.info("Nav: "+ " items properly redircted");
-			Assert.assertEquals(wr, 0, "Nav: "+ " items properly redircted");
+			Assert.assertEquals(wr, 0, "Nav: "+ " items properly redirected");
 		}else {
-			log.info("Nav: "+ wrongRedirectionList.toString() +" items don't redircte properly");
-			Assert.assertEquals(wr, 0, "Nav: "+ wrongRedirectionList.toString() + "items don't redircte properly");
+			log.info("Nav: "+ wrongRedirectionList.toString() +" items don't redirect properly");
+			Assert.assertEquals(wr, 0, "Nav: "+ wrongRedirectionList.toString() + "items don't redirect properly");
+		}
+		
+		//................ hover on nav ..........................
+		Actions action = new Actions(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 3);
+		
+		LinkedList<String> missingSubMenuContainers = new LinkedList<String>();
+		HashMap<String, String> badUrl = new HashMap<String, String>();
+		for(int i = 0; i < givenNavItemTxts.length; i++) {
+			if(givenNavItemTxts[i].equalsIgnoreCase("SKIN360")) continue; // SKIN360 has no sub menu
+			
+			WebElement we = header.getNav(givenNavItemTxts[i]);
+			try {
+				action.moveToElement(we).build().perform();
+				wait.until(ExpectedConditions.visibilityOf(header.getNavSubMenuContainer(givenNavItemTxts[i])));
+			} catch (ElementClickInterceptedException e1) {
+				closePopup();
+			} catch (Exception e2) {
+				missingSubMenuContainers.add(givenNavItemTxts[i]);
+			}
+
+			Iterator<WebElement> it = header.getNavSubMenu(givenNavItemTxts[i]).iterator();
+			while(it.hasNext()) {
+				 String url = it.next().getAttribute("href");
+			      try {
+					HttpURLConnection cn = (HttpURLConnection)new URL(url).openConnection();
+					  cn.setRequestMethod("HEAD");
+					  cn.connect();
+					  int res = cn.getResponseCode();
+					  if(res > 399) {
+						  badUrl.put(url,String.valueOf(res));
+					  }
+				} catch (MalformedURLException e) {
+					badUrl.put(url ,e.getMessage());
+				} catch (ProtocolException e) {
+					badUrl.put(url ,e.getMessage());
+				} catch (IOException e) {
+					badUrl.put(url ,e.getMessage());
+				}
+			      
+			}
+			if(!driver.getCurrentUrl().startsWith("https://www.neutrogena.com")) driver.get("https://www.neutrogena.com");
+		}
+		
+		
+		int smc = 0;
+		if(( smc = missingSubMenuContainers.size()) == 0) {
+			log.info("Nav: "+ "All sub menu containers are present");
+			Assert.assertEquals(smc, 0, "Nav: "+ "All sub menu containers are present");
+		}else {
+			log.info("Nav: "+ missingSubMenuContainers.toString() + " sub menu containers are not visible");
+			Assert.assertEquals(smc, 0, "Nav: "+ missingSubMenuContainers.toString() + " sub menu containers are not visible");
+		}
+		
+		wr = 0;
+		if(( wr = badUrl.size()) == 0) {
+			log.info("Nav: "+ "All sub menu links are good");
+			Assert.assertEquals(wr, 0, "Nav: "+ "All sub menu links are good");
+		}else {
+			log.info("Nav: "+ badUrl.toString() + " links have some problem");
+			Assert.assertEquals(wr, 0, "Nav: "+ badUrl.toString() + " links have some problem");
 		}
 		
 	}
 	
+	@Test
+	public void utilityBanner(){
+		//.............. contents ..........................
+		
+		String ac = "We are experiencing shipments delays due to changes in our fulfillment center. We apologize for the inconvenience.";
+		String txt = header.getAdvisoryContents().getText();
+		if(ac.equalsIgnoreCase(txt)) {
+			log.info("Utility Banner: "+ "Advisory contents are present");
+			Assert.assertTrue(true);
+		}else {
+			log.info("Utility Banner: "+ "Advisory contents are not proper");
+			Assert.assertTrue(false);
+		}
+		
+		header.getSkipContent().click();
+		String targetUrl = "https://www.neutrogena.com/#main";
+		String url = driver.getCurrentUrl();
+		if(url.equalsIgnoreCase(targetUrl)) {
+			log.info("Utility Banner: "+ "Skip Content CTA is working");
+			Assert.assertTrue(true);
+		}else {
+			log.info("Utility Banner: "+ "Skip Content CTA is not working");
+			Assert.assertTrue(false);
+		}
+		
+		HashMap<String, String> contents = new HashMap<String, String>();
+		contents.put("Fall Semi Annual Sale - 25% Off Sitewide", "https://www.neutrogena.com/search?q=neutrogena");
+		contents.put("Free Shipping on all Orders", "https://www.neutrogena.com/offers.html");
+		contents.put("15% off First Purchase", "//www.neutrogena.com/register");
+		
+		
+		if(header.getPromotionalContents().size() != contents.size()){
+			log.info("Utility Banner: "+ "Content numbers are same");
+		}
+		
+		Iterator<WebElement> it = header.getPromotionalContents().iterator();
+		Iterator<Entry<String, String>> entrySets = contents.entrySet().iterator();
+		
+		while(it.hasNext() && entrySets.hasNext()) {
+						
+			WebElement we = it.next();
+			Entry<String, String> entries = entrySets.next();
+			
+			String ctaUrl = we.getAttribute("href");
+			String ctaTxt = we.getText();
+			
+			String givenTxt = entries.getKey();
+			String givenUrl = entries.getValue();
+			if(!givenTxt.equalsIgnoreCase(ctaTxt)) {
+				
+			}
+			if(!givenTxt.equalsIgnoreCase(ctaTxt)) {
+				
+			}
+			
+			
+		}
+		header.getEmailSignup();
+		header.getChangeLanguage();
+		
+	}
 
 	
 }

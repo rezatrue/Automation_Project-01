@@ -108,4 +108,46 @@ public class Header {
 		return driver.findElement(By.xpath(navAnchorsxPath+"[contains(text(),\""+ txt +"\")]"));
 	}
 	
+	//nav[@id='navigation']/ul[@class='menu-category level-1']/li/a[contains(text(),'Makeup')]/parent::li//div[@class='megamenu-wrapper']
+	public WebElement getNavSubMenuContainer(String txt){
+		return driver.findElement(By.xpath(navAnchorsxPath+"[contains(text(),\""+ txt +"\")]/parent::li//div[@class='megamenu-wrapper']"));
+	}
+	//nav[@id='navigation']/ul[@class='menu-category level-1']/li/a[contains(text(),'Skin Advice')]/parent::li//div[contains(@class,'menu-group')]/ul/li/a
+	public List<WebElement> getNavSubMenu(String txt){
+		return driver.findElements(By.xpath(navAnchorsxPath+"[contains(text(),\""+ txt +"\")]/parent::li//div[contains(@class,'menu-group')]/ul/li/a"));
+	}
+	
+	//.................. Utility Banner ...............................................
+	
+	By advisoryContentsBy = By.cssSelector("div[class^='utility-banner'] div[class='advisory-banner'] > span");
+
+	public WebElement getAdvisoryContents(){
+		return driver.findElement(advisoryContentsBy);
+	}
+
+	By skipContentsBy = By.cssSelector("div[class^='utility-banner'] div[class='skip-to-content'] > a");
+
+	public WebElement getSkipContent(){
+		return driver.findElement(skipContentsBy);
+	}	
+
+	By promotionalContentsBy = By.cssSelector("div[class^='utility-banner'] div[class$='header-promotion'] a");
+
+	public List<WebElement> getPromotionalContents(){
+		return driver.findElements(promotionalContentsBy);
+	}
+	
+	By emailSignupBy = By.xpath("//div[contains(@class,'utility-banner')]//button/span[contains(text(),'Email Sign Up')]");
+
+	public WebElement getEmailSignup(){
+		return driver.findElement(emailSignupBy);
+	}
+	
+	
+	By changeLanguageBy = By.cssSelector("div[class^='utility-banner'] ul[class^='menu-utility-user'] >li:nth-child(2) > a");
+
+	public WebElement getChangeLanguage(){
+		return driver.findElement(changeLanguageBy);
+	}
+	
 }

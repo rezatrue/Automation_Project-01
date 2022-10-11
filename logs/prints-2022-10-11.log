@@ -1,0 +1,6 @@
+08:46:57.322 [main] INFO  resources.Base - HomePage for Header: Successfully open URL
+08:46:58.052 [main] INFO  resources.Base - Nav: All nav items present
+08:46:58.056 [main] INFO  resources.Base - Nav: All nav item links are present
+08:47:32.805 [main] INFO  resources.Base - Nav: [Holiday, What's New, SKIN360, Skin Advice] items don't redirect properly
+08:48:10.289 [main] INFO  resources.Base - Nav: All sub menu containers are present
+08:48:10.289 [main] INFO  resources.Base - Nav: All sub menu links are good
