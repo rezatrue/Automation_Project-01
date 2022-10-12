@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-10-11T08:46:47 BDT" name="Default suite" finished-at="2022-10-11T08:48:10 BDT" duration-ms="82745">
+  <suite started-at="2022-10-12T12:17:31 BDT" name="Default suite" finished-at="2022-10-12T12:17:52 BDT" duration-ms="21652">
     <groups>
     </groups>
-    <test started-at="2022-10-11T08:46:47 BDT" name="Default test" finished-at="2022-10-11T08:48:10 BDT" duration-ms="82745">
+    <test started-at="2022-10-12T12:17:31 BDT" name="Default test" finished-at="2022-10-12T12:17:52 BDT" duration-ms="21652">
       <class name="com.technogearup.E2EProject.HeaderOfThePage">
-        <test-method is-config="true" signature="launcBrowser()[pri:0, instance:com.technogearup.E2EProject.HeaderOfThePage@4b3c354a]" started-at="2022-10-11T08:46:47 BDT" name="launcBrowser" finished-at="2022-10-11T08:46:57 BDT" duration-ms="9968" status="PASS">
+        <test-method is-config="true" signature="launcBrowser()[pri:0, instance:com.technogearup.E2EProject.HeaderOfThePage@78fb9a67]" started-at="2022-10-12T12:17:31 BDT" name="launcBrowser" finished-at="2022-10-12T12:17:42 BDT" duration-ms="11120" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launcBrowser -->
-        <test-method signature="navigation()[pri:0, instance:com.technogearup.E2EProject.HeaderOfThePage@4b3c354a]" started-at="2022-10-11T08:46:57 BDT" name="navigation" finished-at="2022-10-11T08:48:10 BDT" duration-ms="72523" status="PASS">
+        <test-method signature="utilityBanner()[pri:0, instance:com.technogearup.E2EProject.HeaderOfThePage@78fb9a67]" started-at="2022-10-12T12:17:42 BDT" name="utilityBanner" finished-at="2022-10-12T12:17:52 BDT" duration-ms="10284" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- navigation -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:com.technogearup.E2EProject.HeaderOfThePage@4b3c354a]" started-at="2022-10-11T08:48:10 BDT" name="closeBrowser" finished-at="2022-10-11T08:48:10 BDT" duration-ms="210" status="PASS">
+        </test-method> <!-- utilityBanner -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:com.technogearup.E2EProject.HeaderOfThePage@78fb9a67]" started-at="2022-10-12T12:17:52 BDT" name="closeBrowser" finished-at="2022-10-12T12:17:52 BDT" duration-ms="203" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->

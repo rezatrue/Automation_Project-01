@@ -1,0 +1,5 @@
+12:17:41.736 [main] INFO  resources.Base - HomePage for Header: Successfully open URL
+12:17:46.223 [main] INFO  resources.Base - Utility Banner: ESPAÑOL is the First language. All fine
+12:17:46.270 [main] INFO  resources.Base - Utility Banner: https://es.neutrogena.com/is the First language. URL is fine
+12:17:52.541 [main] INFO  resources.Base - Utility Banner: ENGLISH is the Second language. All fine.
+12:17:52.567 [main] INFO  resources.Base - Utility Banner: https://es.neutrogena.com/wrong as Second language URL.

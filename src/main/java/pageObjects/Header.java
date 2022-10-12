@@ -150,4 +150,36 @@ public class Header {
 		return driver.findElement(changeLanguageBy);
 	}
 	
+	
+	//..........................home..........................
+	By signupEmailBy = By.xpath("//div[contains(@class,'utility-banner')]//form/div[child::label[text()='Email Address']]/input");
+
+	public WebElement getSignupEmail(){
+		return driver.findElement(signupEmailBy);
+	}
+	
+	By signupBirthMonthBy = By.xpath("//div[contains(@class,'utility-banner')]//form//div[child::div/label[text()='Birthday']]//div[1]/input");
+
+	public WebElement getSignupBirthMonth(){
+		return driver.findElement(signupBirthMonthBy);
+	}
+	
+	String signupMonth = "//section[contains(@id,'mat-data-list-header-birthdate-month')]";
+
+	public WebElement getSignupMonth(String month){
+		return driver.findElement(By.xpath(signupMonth+"/div[contains(.,'"+ month +"')]")); 
+	}
+	
+	By signupBirthYearBy = By.xpath("//div[contains(@class,'utility-banner')]//form//div[child::div/label[text()='Birthday']]//div[2]/input");
+
+	public WebElement getSignupBirthYear(){
+		return driver.findElement(signupBirthYearBy);
+	}
+	
+	String getSignupYear = "//section[contains(@id,'mat-data-list-header-birthdate-year')]";
+
+	public WebElement getSignupYear(String year){
+		return driver.findElement(By.xpath(getSignupYear+"/div[contains(.,'"+ year +"')]")); 
+	}
+	
 }
