@@ -23,6 +23,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -49,7 +50,7 @@ public class HeaderOfThePage extends Base{
 		header = new Header(driver);
 	}
 	
-	@AfterClass
+	//@AfterClass
 	public void closeBrowser() {
 		driver.close();
 		log.info("HomePage: "+"Closed");
@@ -360,7 +361,7 @@ public class HeaderOfThePage extends Base{
 	@Test
 	public void utilityBanner(){
 		//.............. contents ..........................
-		
+		/*
 		String ac = "We are experiencing shipments delays due to changes in our fulfillment center. We apologize for the inconvenience.";
 		String txt = header.getAdvisoryContents().getText();
 		if(ac.equalsIgnoreCase(txt)) {
@@ -420,6 +421,7 @@ public class HeaderOfThePage extends Base{
 				missingUrl.add(ctaUrl);
 			}
 		}
+
 		
 		if(missingContent.size() == 0) {
 			log.info("Utility Banner: "+ "All promotional content header present in proper order");
@@ -438,11 +440,89 @@ public class HeaderOfThePage extends Base{
 		}
 		*/
 		
+		//...............home.....................
+		header.getEmailSignup().click();
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+		header.getSignupEmail().sendKeys("ali@test.com");
+		
+		String month = "December";
+		Actions ac = new Actions(driver);
+		ac.click(header.getSignupBirthMonth()).build().perform();
+		ac.sendKeys(Keys.TAB).perform();
+		
+		ac.sendKeys(Keys.ARROW_DOWN).perform();
+		Boolean monthSelected = false;
+		while(!monthSelected) {
+			if(header.getSignupMonth(month).isDisplayed()) {
+				ac.click(header.getSignupMonth(month)).build().perform();
+				monthSelected = true;
+			}
+			ac.sendKeys(Keys.ARROW_DOWN).perform();
+		}
+		
+		String year = "1998";
+		ac.click(header.getSignupBirthYear()).build().perform();
+		ac.sendKeys(Keys.TAB).perform();
+		
+		ac.sendKeys(Keys.ARROW_DOWN).perform();
+		Boolean yearSelected = false;
+		while(!yearSelected) {
+			if(header.getSignupYear(year).isDisplayed()) {
+				ac.click(header.getSignupYear(year)).build().perform();
+				yearSelected = true;
+			}
+			ac.sendKeys(Keys.ARROW_DOWN).perform();
+		}
+		//for now closing the dropdown will handle capture later
 		header.getEmailSignup().click();
 		
-		//header.getChangeLanguage();
+		String givenLang1 = "Español";
+		String givenLang1Url = "https://es.neutrogena.com/";
+		String language1 = header.getChangeLanguage().getText();
+		if(language1.equalsIgnoreCase(givenLang1)) {
+			log.info("Utility Banner: "+ language1 + " is the First language. All fine");
+			Assert.assertTrue(true);
+		}else {
+			log.info("Utility Banner: "+ language1 + " wrong as First language");
+			Assert.assertTrue(false);
+		}
+		String lang1Url = header.getChangeLanguage().getAttribute("href");
+		if(lang1Url.equalsIgnoreCase(givenLang1Url)) {
+			log.info("Utility Banner: "+ lang1Url + "is the First language. URL is fine");
+			Assert.assertTrue(true);
+		}else {
+			log.info("Utility Banner: "+ lang1Url + "wrong as the First language URL.");
+			Assert.assertTrue(false);
+		}
+		
+		try {
+			header.getChangeLanguage().click();
+		} catch (ElementClickInterceptedException e) {
+			closePopup();
+		}
+		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+		
+		String givenLang2 = "English";
+		String givenLang2Url = "https://neutrogena.com/";
+		String language2 = header.getChangeLanguage().getText();
+		if(language2.equalsIgnoreCase(givenLang2)) {
+			log.info("Utility Banner: "+ language2 + " is the Second language. All fine.");
+			Assert.assertTrue(true);
+		}else {
+			log.info("Utility Banner: "+ language2 + " wrong as Second language.");
+			Assert.assertTrue(false);
+		}
+		String lang2Url = header.getChangeLanguage().getAttribute("href");
+		if(lang2Url.equalsIgnoreCase(givenLang2Url)) {
+			log.info("Utility Banner: "+ lang2Url + "is the Second language. URL is fine.");
+			Assert.assertTrue(true);
+		}else {
+			log.info("Utility Banner: "+ lang2Url + "wrong as Second language URL.");
+			Assert.assertTrue(false);
+		}
+
 		
 	}
-
+	
 	
 }

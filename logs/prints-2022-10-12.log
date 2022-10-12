@@ -1,8 +1,6 @@
-13:12:43.975 [main] INFO  resources.Base - Header: has search option
-13:12:44.009 [main] INFO  resources.Base - Header: have user icon
-13:12:44.078 [main] INFO  resources.Base - Logo: image present
-13:12:44.113 [main] INFO  resources.Base - Logo: linked to Home page
-13:12:44.145 [main] INFO  resources.Base - Logo: has tooltip
-13:12:44.612 [main] INFO  resources.Base - Nav: All nav items present
-13:12:44.613 [main] INFO  resources.Base - Nav: All nav item links are present
-13:13:25.199 [main] INFO  resources.Base - Nav: [Holiday, What's New, SKIN360, Skin Advice] items don't redirect properly
+17:24:48.805 [main] INFO  resources.Base - HomePage for Header: Successfully open URL
+18:50:24.679 [main] INFO  resources.Base - HomePage for Header: Driver is Initialized
+18:50:36.434 [main] INFO  resources.Base - HomePage for Header: Successfully open URL
+18:50:38.606 [main] INFO  resources.Base - Utility Banner: ESPAÑOL is the First language. All fine
+18:50:38.654 [main] INFO  resources.Base - Utility Banner: https://es.neutrogena.com/is the First language. URL is fine
+18:50:40.822 [main] INFO  resources.Base - Utility Banner: English is the Second language. All fine.
