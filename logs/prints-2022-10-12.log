@@ -1,0 +1,8 @@
+13:12:43.975 [main] INFO  resources.Base - Header: has search option
+13:12:44.009 [main] INFO  resources.Base - Header: have user icon
+13:12:44.078 [main] INFO  resources.Base - Logo: image present
+13:12:44.113 [main] INFO  resources.Base - Logo: linked to Home page
+13:12:44.145 [main] INFO  resources.Base - Logo: has tooltip
+13:12:44.612 [main] INFO  resources.Base - Nav: All nav items present
+13:12:44.613 [main] INFO  resources.Base - Nav: All nav item links are present
+13:13:25.199 [main] INFO  resources.Base - Nav: [Holiday, What's New, SKIN360, Skin Advice] items don't redirect properly

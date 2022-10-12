@@ -1,1 +1,7 @@
-08:48:10.500 [main] INFO  resources.Base - HomePage: Closed
+13:13:25.298 [main] INFO  resources.Base - Search: is focousable
+13:13:25.430 [main] INFO  resources.Base - Search: input successful
+13:13:25.476 [main] INFO  resources.Base - Search: Button is present
+13:13:29.366 [main] INFO  resources.Base - Search:  option is working
+13:13:39.683 [main] INFO  resources.Base - Utility Banner: Advisory contents are present
+13:13:39.864 [main] INFO  resources.Base - Utility Banner: Skip Content CTA is working
+13:13:42.390 [main] INFO  resources.Base - HomePage: Closed

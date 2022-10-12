@@ -7,6 +7,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -371,21 +372,26 @@ public class HeaderOfThePage extends Base{
 		}
 		
 		header.getSkipContent().click();
-		String targetUrl = "https://www.neutrogena.com/#main";
-		String url = driver.getCurrentUrl();
-		if(url.equalsIgnoreCase(targetUrl)) {
+		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+
+		if(header.getUtilityBannerWrapper().isDisplayed()) {
 			log.info("Utility Banner: "+ "Skip Content CTA is working");
 			Assert.assertTrue(true);
 		}else {
 			log.info("Utility Banner: "+ "Skip Content CTA is not working");
 			Assert.assertTrue(false);
 		}
+		/* incomplete
+		driver.get("https://www.neutrogena.com");
+		driver.manage().window().maximize();
 		
-		HashMap<String, String> contents = new HashMap<String, String>();
+		LinkedHashMap<String, String> contents = new LinkedHashMap<String, String>();
 		contents.put("Fall Semi Annual Sale - 25% Off Sitewide", "https://www.neutrogena.com/search?q=neutrogena");
 		contents.put("Free Shipping on all Orders", "https://www.neutrogena.com/offers.html");
 		contents.put("15% off First Purchase", "//www.neutrogena.com/register");
 		
+		LinkedList<String> missingContent = new LinkedList<String>();
+		LinkedList<String> missingUrl = new LinkedList<String>();
 		
 		if(header.getPromotionalContents().size() != contents.size()){
 			log.info("Utility Banner: "+ "Content numbers are same");
@@ -399,22 +405,42 @@ public class HeaderOfThePage extends Base{
 			WebElement we = it.next();
 			Entry<String, String> entries = entrySets.next();
 			
-			String ctaUrl = we.getAttribute("href");
 			String ctaTxt = we.getText();
-			
+			String ctaUrl = we.getAttribute("href");
 			String givenTxt = entries.getKey();
 			String givenUrl = entries.getValue();
-			if(!givenTxt.equalsIgnoreCase(ctaTxt)) {
-				
-			}
-			if(!givenTxt.equalsIgnoreCase(ctaTxt)) {
-				
-			}
 			
+			System.out.println(ctaTxt);
+			System.out.println(givenTxt);
 			
+			if(!givenTxt.equalsIgnoreCase(ctaTxt)) {
+				missingContent.add(ctaTxt);
+			}
+			if(!ctaUrl.equalsIgnoreCase(givenUrl)) {
+				missingUrl.add(ctaUrl);
+			}
 		}
-		header.getEmailSignup();
-		header.getChangeLanguage();
+		
+		if(missingContent.size() == 0) {
+			log.info("Utility Banner: "+ "All promotional content header present in proper order");
+			Assert.assertTrue(true);
+		}else {
+			log.info("Utility Banner: "+ missingContent.toString() + "  promotional contents headers are not proper");
+			Assert.assertTrue(false);
+		}
+		
+		if(missingUrl.size() == 0) {
+			log.info("Utility Banner: "+ "All promotional content links are present");
+			Assert.assertTrue(true);
+		}else {
+			log.info("Utility Banner: "+ missingUrl.toString()+ " promotional content links are not proper");
+			Assert.assertTrue(false);
+		}
+		*/
+		
+		header.getEmailSignup().click();
+		
+		//header.getChangeLanguage();
 		
 	}
 

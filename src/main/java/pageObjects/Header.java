@@ -131,8 +131,15 @@ public class Header {
 		return driver.findElement(skipContentsBy);
 	}	
 
-	By promotionalContentsBy = By.cssSelector("div[class^='utility-banner'] div[class$='header-promotion'] a");
+	By utilityBannerWrapperBy = By.cssSelector("div[id='wrapper'] > div > div[class^='utility-banner']");
 
+	public WebElement getUtilityBannerWrapper(){
+		return driver.findElement(utilityBannerWrapperBy);
+	}
+	
+	//By promotionalContentsBy = By.cssSelector("div[class^='utility-banner'] div[class$='header-promotion'] > div > p > a");
+	By promotionalContentsBy = By.xpath("//div[contains(@class,'utility-banner')]//div[contains(@class,'header-promotion')]//a");
+	
 	public List<WebElement> getPromotionalContents(){
 		return driver.findElements(promotionalContentsBy);
 	}
