@@ -151,7 +151,6 @@ public class Header {
 	}
 	
 	
-	//..........................home..........................
 	By signupEmailBy = By.xpath("//div[contains(@class,'utility-banner')]//form/div[child::label[text()='Email Address']]/input");
 
 	public WebElement getSignupEmail(){
@@ -180,6 +179,43 @@ public class Header {
 
 	public WebElement getSignupYear(String year){
 		return driver.findElement(By.xpath(getSignupYear+"/div[contains(.,'"+ year +"')]")); 
+	}
+	
+	//..........................home..........................
+	By signupReCAPTCHAframeBy = By.xpath("//form[@class='email-footer-signup newsletter-signup']//div[@id='headSignUp']//iframe[@title='reCAPTCHA']");
+
+	public WebElement getSignupreCAPTCHAframe(){
+		return driver.findElement(signupReCAPTCHAframeBy);
+	}
+	
+	By signupReCAPTCHAlabelBy = By.xpath("//label[contains(text(),\"I'm not a robot\")]");
+
+	public WebElement getSignupreCAPTCHAlabel(){
+		return driver.findElement(signupReCAPTCHAlabelBy);
+	}
+	
+	By signupAgeConsentYesBy = By.xpath("//div[@class='age-consent-yes']");
+
+	public WebElement getSignupAgeConsentYes(){
+		return driver.findElement(signupAgeConsentYesBy);
+	}
+	
+	By signupAgeConsentNoBy = By.xpath("//div[@class='age-consent-no']/input");
+
+	public WebElement getSignupAgeConsentNo(){
+		return driver.findElement(signupAgeConsentNoBy);
+	}
+	
+	By signupSubmitBy = By.xpath("(//button[@value='submit'])[1]");
+
+	public WebElement getSignupSubmit(){
+		return driver.findElement(signupSubmitBy);
+	}
+	
+	By signupSuccessMessageBy = By.xpath("//div[@class='signup-message']/p");
+
+	public WebElement getSignupSuccessMessage(){
+		return driver.findElement(signupSuccessMessageBy);
 	}
 	
 }

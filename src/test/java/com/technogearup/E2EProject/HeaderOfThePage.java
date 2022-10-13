@@ -49,7 +49,7 @@ public class HeaderOfThePage extends Base{
 		header = new Header(driver);
 	}
 	
-	@AfterClass
+	//@AfterClass
 	public void closeBrowser() {
 		driver.close();
 		log.info("HomePage: "+"Closed");
@@ -415,10 +415,11 @@ public class HeaderOfThePage extends Base{
 			
 		}
 		*/
+		
 		//...............home.....................
 		header.getEmailSignup().click();
 		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
-		header.getSignupEmail().sendKeys("ali@test.com");
+		header.getSignupEmail().sendKeys("alicin85025@tester.com");
 		
 		String month = "December";
 		Actions ac = new Actions(driver);
@@ -435,7 +436,8 @@ public class HeaderOfThePage extends Base{
 			ac.sendKeys(Keys.ARROW_DOWN).perform();
 		}
 		
-		String year = "1998";
+		
+		String year = "1980";
 		ac.click(header.getSignupBirthYear()).build().perform();
 		ac.sendKeys(Keys.TAB).perform();
 		
@@ -448,9 +450,32 @@ public class HeaderOfThePage extends Base{
 			}
 			ac.sendKeys(Keys.ARROW_DOWN).perform();
 		}
-		//for now closing the dropdown will handle capture later
+		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
+		if(header.getSignupAgeConsentYes().isDisplayed()) {
+			header.getSignupAgeConsentYes().click();
+		}
+		
+		
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+		driver.switchTo().frame(header.getSignupreCAPTCHAframe());
+		header.getSignupreCAPTCHAlabel().click();
+		driver.manage().timeouts().implicitlyWait(30000, TimeUnit.MILLISECONDS);
+		driver.switchTo().defaultContent();
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", header.getSignupSubmit());
+		header.getSignupSubmit().click();
+		
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+		if(header.getSignupSuccessMessage().isDisplayed()) {
+			log.info("Utility Banner: "+ " Signup form successfully submitted");
+		}else {
+			log.info("Utility Banner: "+ " Signup Failed");
+		}
 		header.getEmailSignup().click();
 		
+		/*
+		// ------------ language change ----------------------
 		String givenLang1 = "Español";
 		String givenLang1Url = "https://es.neutrogena.com/";
 		String language1 = header.getChangeLanguage().getText();
@@ -495,7 +520,7 @@ public class HeaderOfThePage extends Base{
 			log.info("Utility Banner: "+ lang2Url + "wrong as Second language URL.");
 			Assert.assertTrue(false);
 		}
-		
+		*/
 	}
 	
 	
