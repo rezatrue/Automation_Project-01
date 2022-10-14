@@ -1,6 +1,7 @@
-08:46:57.322 [main] INFO  resources.Base - HomePage for Header: Successfully open URL
-08:46:58.052 [main] INFO  resources.Base - Nav: All nav items present
-08:46:58.056 [main] INFO  resources.Base - Nav: All nav item links are present
-08:47:32.805 [main] INFO  resources.Base - Nav: [Holiday, What's New, SKIN360, Skin Advice] items don't redirect properly
-08:48:10.289 [main] INFO  resources.Base - Nav: All sub menu containers are present
-08:48:10.289 [main] INFO  resources.Base - Nav: All sub menu links are good
+21:13:23.919 [main] INFO  resources.Base - HomePage: Closed
+21:21:59.662 [main] INFO  resources.Base - HomePage for Header: Driver is Initialized
+21:22:06.231 [main] INFO  resources.Base - HomePage for Header: Successfully open URL
+21:22:06.612 [main] INFO  resources.Base - Utility Banner: Advisory contents are present
+21:22:06.748 [main] INFO  resources.Base - Utility Banner: [, ]  promotional contents headers are not proper
+21:22:06.962 [main] INFO  resources.Base - HomePage: Closed
+21:29:05.837 [main] INFO  resources.Base - HomePage for Header: Driver is Initialized

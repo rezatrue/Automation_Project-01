@@ -7,6 +7,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class HeaderOfThePage extends Base{
 		log.info("HomePage: "+"Closed");
 	}
 	
-	//@Test
+	@Test(priority = 1)
 	public void headerContent() {
 		
 		boolean isImagePresent = header.getLogo() != null ? true : false;
@@ -69,7 +70,7 @@ public class HeaderOfThePage extends Base{
 		
 	}
 	
-	//@Test
+	@Test(priority = 2)
 	public void logo() {
 		
 		boolean isImagePresent = header.getLogoImage() != null ? true : false;
@@ -84,7 +85,7 @@ public class HeaderOfThePage extends Base{
 	}
 	
 	
-	//@Test
+	@Test(priority = 3)
 	public void searchOption() {
 		boolean isFocusable = true;
 		try {
@@ -174,7 +175,7 @@ public class HeaderOfThePage extends Base{
 
 	}
 	
-	//@Test
+	@Test(priority = 4)
 	public void userInfo() {
 		hoverOnUserIcon();		
 		
@@ -233,7 +234,7 @@ public class HeaderOfThePage extends Base{
 
 	}
 	
-	//@Test
+	@Test(priority = 5)
 	public void navigation() {
 		
 		LinkedList<String> missingNavItems = new LinkedList<String>();
@@ -357,10 +358,10 @@ public class HeaderOfThePage extends Base{
 		
 	}
 	
-	@Test
+	@Test(priority = 6)
 	public void utilityBanner(){
 		//.............. contents ..........................
-		/*
+		
 		String ac = "We are experiencing shipments delays due to changes in our fulfillment center. We apologize for the inconvenience.";
 		String txt = header.getAdvisoryContents().getText();
 		if(ac.equalsIgnoreCase(txt)) {
@@ -372,21 +373,26 @@ public class HeaderOfThePage extends Base{
 		}
 		
 		header.getSkipContent().click();
-		String targetUrl = "https://www.neutrogena.com/#main";
-		String url = driver.getCurrentUrl();
-		if(url.equalsIgnoreCase(targetUrl)) {
+		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+
+		if(header.getUtilityBannerWrapper().isDisplayed()) {
 			log.info("Utility Banner: "+ "Skip Content CTA is working");
 			Assert.assertTrue(true);
 		}else {
 			log.info("Utility Banner: "+ "Skip Content CTA is not working");
 			Assert.assertTrue(false);
 		}
+		/* incomplete
+		driver.get("https://www.neutrogena.com");
+		driver.manage().window().maximize();
 		
-		HashMap<String, String> contents = new HashMap<String, String>();
+		LinkedHashMap<String, String> contents = new LinkedHashMap<String, String>();
 		contents.put("Fall Semi Annual Sale - 25% Off Sitewide", "https://www.neutrogena.com/search?q=neutrogena");
 		contents.put("Free Shipping on all Orders", "https://www.neutrogena.com/offers.html");
 		contents.put("15% off First Purchase", "//www.neutrogena.com/register");
 		
+		LinkedList<String> missingContent = new LinkedList<String>();
+		LinkedList<String> missingUrl = new LinkedList<String>();
 		
 		if(header.getPromotionalContents().size() != contents.size()){
 			log.info("Utility Banner: "+ "Content numbers are same");
@@ -400,19 +406,37 @@ public class HeaderOfThePage extends Base{
 			WebElement we = it.next();
 			Entry<String, String> entries = entrySets.next();
 			
-			String ctaUrl = we.getAttribute("href");
 			String ctaTxt = we.getText();
-			
+			String ctaUrl = we.getAttribute("href");
 			String givenTxt = entries.getKey();
 			String givenUrl = entries.getValue();
-			if(!givenTxt.equalsIgnoreCase(ctaTxt)) {
-				
-			}
-			if(!givenTxt.equalsIgnoreCase(ctaTxt)) {
-				
-			}
 			
+			System.out.println(ctaTxt);
+			System.out.println(givenTxt);
 			
+			if(!givenTxt.equalsIgnoreCase(ctaTxt)) {
+				missingContent.add(ctaTxt);
+			}
+			if(!ctaUrl.equalsIgnoreCase(givenUrl)) {
+				missingUrl.add(ctaUrl);
+			}
+		}
+
+		
+		if(missingContent.size() == 0) {
+			log.info("Utility Banner: "+ "All promotional content header present in proper order");
+			Assert.assertTrue(true);
+		}else {
+			log.info("Utility Banner: "+ missingContent.toString() + "  promotional contents headers are not proper");
+			Assert.assertTrue(false);
+		}
+		
+		if(missingUrl.size() == 0) {
+			log.info("Utility Banner: "+ "All promotional content links are present");
+			Assert.assertTrue(true);
+		}else {
+			log.info("Utility Banner: "+ missingUrl.toString()+ " promotional content links are not proper");
+			Assert.assertTrue(false);
 		}
 		*/
 		
@@ -422,33 +446,33 @@ public class HeaderOfThePage extends Base{
 		header.getSignupEmail().sendKeys("alicin85025@tester.com");
 		
 		String month = "December";
-		Actions ac = new Actions(driver);
-		ac.click(header.getSignupBirthMonth()).build().perform();
-		ac.sendKeys(Keys.TAB).perform();
+		Actions action = new Actions(driver);
+		action.click(header.getSignupBirthMonth()).build().perform();
+		action.sendKeys(Keys.TAB).perform();
 		
-		ac.sendKeys(Keys.ARROW_DOWN).perform();
+		action.sendKeys(Keys.ARROW_DOWN).perform();
 		Boolean monthSelected = false;
 		while(!monthSelected) {
 			if(header.getSignupMonth(month).isDisplayed()) {
-				ac.click(header.getSignupMonth(month)).build().perform();
+				action.click(header.getSignupMonth(month)).build().perform();
 				monthSelected = true;
 			}
-			ac.sendKeys(Keys.ARROW_DOWN).perform();
+			action.sendKeys(Keys.ARROW_DOWN).perform();
 		}
 		
 		
 		String year = "1980";
-		ac.click(header.getSignupBirthYear()).build().perform();
-		ac.sendKeys(Keys.TAB).perform();
+		action.click(header.getSignupBirthYear()).build().perform();
+		action.sendKeys(Keys.TAB).perform();
 		
-		ac.sendKeys(Keys.ARROW_DOWN).perform();
+		action.sendKeys(Keys.ARROW_DOWN).perform();
 		Boolean yearSelected = false;
 		while(!yearSelected) {
 			if(header.getSignupYear(year).isDisplayed()) {
-				ac.click(header.getSignupYear(year)).build().perform();
+				action.click(header.getSignupYear(year)).build().perform();
 				yearSelected = true;
 			}
-			ac.sendKeys(Keys.ARROW_DOWN).perform();
+			action.sendKeys(Keys.ARROW_DOWN).perform();
 		}
 		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
 		if(header.getSignupAgeConsentYes().isDisplayed()) {
@@ -474,7 +498,7 @@ public class HeaderOfThePage extends Base{
 		}
 		header.getEmailSignup().click();
 		
-		/*
+		
 		// ------------ language change ----------------------
 		String givenLang1 = "Español";
 		String givenLang1Url = "https://es.neutrogena.com/";
@@ -520,7 +544,9 @@ public class HeaderOfThePage extends Base{
 			log.info("Utility Banner: "+ lang2Url + "wrong as Second language URL.");
 			Assert.assertTrue(false);
 		}
-		*/
+
+		
+
 	}
 	
 	

@@ -83,14 +83,15 @@ public class Header {
 	}
 
 	//By popupShadowHostBy = By.xpath("//div[@role='dialog'][3]/div[contains(@id,'yie-inner-overlay')]/div[contains(@id,'yie-overlay-wrapper')]/yld-tag-host-campaign");
-	By popupShadowHostBy = By.xpath("//div[@id='yie-overlay-wrapper-ad57273e-8fd0-5f0a-8b7d-8c013363ff68']/yld-tag-host-campaign");
-	//By popupShadowHostBy = By.xpath("//div[@id='yie-overlay-wrapper-2f8eb48f-7117-530f-8254-6b2c73b24378']/yld-tag-host-campaign");
+	//By popupShadowHostBy = By.xpath("//div[@id='yie-overlay-wrapper-ad57273e-8fd0-5f0a-8b7d-8c013363ff68']/yld-tag-host-campaign");
+	By popupShadowHostBy = By.xpath("(//div[contains(@id,'yie-overlay-wrapper')]/yld-tag-host-campaign)[1]");
 
 	public WebElement getPopupShadowHost(){
 		return driver.findElement(popupShadowHostBy);
 	}
 	
-	By interceptedElementBy = By.xpath("//div[@id='yie-backdrop-ad57273e-8fd0-5f0a-8b7d-8c013363ff68']/parent::div");
+	//By interceptedElementBy = By.xpath("//div[@id='yie-backdrop-ad57273e-8fd0-5f0a-8b7d-8c013363ff68']/parent::div");
+	By interceptedElementBy = By.xpath("(//div[contains(@id,'yie-backdrop')]/parent::div)[1]");
 	public WebElement getInterceptedElement(){
 		return driver.findElement(interceptedElementBy);
 	}
@@ -131,8 +132,15 @@ public class Header {
 		return driver.findElement(skipContentsBy);
 	}	
 
-	By promotionalContentsBy = By.cssSelector("div[class^='utility-banner'] div[class$='header-promotion'] a");
+	By utilityBannerWrapperBy = By.cssSelector("div[id='wrapper'] > div > div[class^='utility-banner']");
 
+	public WebElement getUtilityBannerWrapper(){
+		return driver.findElement(utilityBannerWrapperBy);
+	}
+	
+	//By promotionalContentsBy = By.cssSelector("div[class^='utility-banner'] div[class$='header-promotion'] > div > p > a");
+	By promotionalContentsBy = By.xpath("//div[contains(@class,'utility-banner')]//div[contains(@class,'header-promotion')]//a");
+	
 	public List<WebElement> getPromotionalContents(){
 		return driver.findElements(promotionalContentsBy);
 	}
