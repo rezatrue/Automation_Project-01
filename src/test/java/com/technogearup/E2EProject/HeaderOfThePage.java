@@ -56,7 +56,7 @@ public class HeaderOfThePage extends Base{
 		log.info("HomePage: "+"Closed");
 	}
 	
-	//@Test
+	@Test
 	public void headerContent() {
 		
 		boolean isImagePresent = header.getLogo() != null ? true : false;
@@ -70,7 +70,7 @@ public class HeaderOfThePage extends Base{
 		
 	}
 	
-	//@Test
+	@Test
 	public void logo() {
 		
 		boolean isImagePresent = header.getLogoImage() != null ? true : false;
@@ -85,7 +85,7 @@ public class HeaderOfThePage extends Base{
 	}
 	
 	
-	//@Test
+	@Test
 	public void searchOption() {
 		boolean isFocusable = true;
 		try {
@@ -175,7 +175,7 @@ public class HeaderOfThePage extends Base{
 
 	}
 	
-	//@Test
+	@Test
 	public void userInfo() {
 		hoverOnUserIcon();		
 		
@@ -234,7 +234,7 @@ public class HeaderOfThePage extends Base{
 
 	}
 	
-	//@Test
+	@Test
 	public void navigation() {
 		
 		LinkedList<String> missingNavItems = new LinkedList<String>();
