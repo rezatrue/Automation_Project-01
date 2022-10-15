@@ -1,3 +1,1 @@
-21:50:52.582 [main] INFO  resources.Base - Nav: [https://www.neutrogena.com/search?q=skincare&lang=default#] nav item links are not in proper place
-21:50:52.608 [main] INFO  resources.Base - Utility Banner: Advisory contents are present
-21:50:52.792 [main] INFO  resources.Base - Utility Banner: Skip Content CTA is working
+12:39:49.596 [main] INFO  resources.Base - Utility Banner: https://es.neutrogena.com/wrong as Second language URL.

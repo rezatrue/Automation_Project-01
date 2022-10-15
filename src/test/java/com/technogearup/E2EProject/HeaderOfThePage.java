@@ -22,6 +22,7 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -50,13 +51,19 @@ public class HeaderOfThePage extends Base{
 		header = new Header(driver);
 	}
 	
+	public void refreshUrl(){
+		driver.navigate().refresh();
+		log.info("Page : "+"refresh");
+		if(isInercertedElementVisible()) closePopup();
+	}
+	
 	//@AfterClass
 	public void closeBrowser() {
 		driver.close();
 		log.info("HomePage: "+"Closed");
 	}
 	
-	@Test(priority = 1)
+	//@Test(priority = 1)
 	public void headerContent() {
 		
 		boolean isImagePresent = header.getLogo() != null ? true : false;
@@ -70,7 +77,7 @@ public class HeaderOfThePage extends Base{
 		
 	}
 	
-	@Test(priority = 2)
+	//@Test(priority = 2)
 	public void logo() {
 		
 		boolean isImagePresent = header.getLogoImage() != null ? true : false;
@@ -85,7 +92,7 @@ public class HeaderOfThePage extends Base{
 	}
 	
 	
-	@Test(priority = 3)
+	//@Test(priority = 3)
 	public void searchOption() {
 		boolean isFocusable = true;
 		try {
@@ -120,65 +127,65 @@ public class HeaderOfThePage extends Base{
 		else Assert.assertTrue(false, "Search : not proper");
 	}
 	
-	int hoverOnUserIcon() {
-		driver.manage().window().maximize();
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+	boolean isInercertedElementVisible() {
+		
+	    WebDriverWait wait = new WebDriverWait(driver, 5);
+	    boolean isElementVisible = true;
+	    try {
+			wait.until(ExpectedConditions.visibilityOf(header.getInterceptedElement()));
+			System.out.println("InterceptedElement visible!!");
+	    } catch (Exception e) {
+	    	isElementVisible = false;
+	    	System.out.println("No InterceptedElement present");
+		}	    
+	    return isElementVisible;
+	}
+	
+	private boolean closePopup() {
+
+			// Shadow root closed
+			try {
+				Actions builder = new Actions(driver);
+				builder.moveToElement(header.getPopupShadowHost()).build().perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.TAB).perform();
+				builder.sendKeys(Keys.ENTER).perform();
+			} catch (Exception e) {
+				return false;
+			}
+		    driver.navigate().refresh();
+		    driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
+		    return true;
+	}
+	
+	//@Test(priority = 4)
+	public void userInfo() {
+		refreshUrl();
+		
 	    WebElement menu = header.getUserInfo();
 	    Actions builder = new Actions(driver);
 	    builder.moveToElement(menu).build().perform();
-	    boolean requirePageRefresh = true;
-	    try {
-			wait.until(ExpectedConditions.visibilityOf(header.getInterceptedElement()));
-			System.out.println("InterceptedElement visible");
-	    } catch (Exception e) {
-	    	requirePageRefresh = false;
-	    	System.out.println("No InterceptedElement present");
-		}
-	    if(requirePageRefresh) {
+	    boolean isElementVisible = isInercertedElementVisible();
+	    if(isElementVisible) {
+	    	isElementVisible = !closePopup();
 	    	if(ExpectedConditions.visibilityOf(header.getInterceptedElement()) != null) {
-		    	closePopup();
+	    		isElementVisible = !closePopup();
 		    }
-		    driver.navigate().refresh();
-		    driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
-		    menu = header.getUserInfo();
-		    builder = new Actions(driver);
-	    	wait.until(ExpectedConditions.elementToBeClickable(menu));
 	    	builder.moveToElement(menu).build().perform();
-		    
 	    }
-	    
-	    return 0;
-	}
-	
-	private void closePopup() {
-
-			// Shadow root closed
-			Actions builder = new Actions(driver);
-			
-			builder.moveToElement(header.getPopupShadowHost()).build().perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			builder.sendKeys(Keys.TAB).perform();
-			
-			builder.sendKeys(Keys.ENTER).perform();
-
-	}
-	
-	@Test(priority = 4)
-	public void userInfo() {
-		hoverOnUserIcon();		
-		
+    		    
 	    String title = header.getMyAccountDropdownTitle().getText().trim();
 		log.info("My Account Dropdown Title: "+ title);
 		Assert.assertEquals(title, "My Account");
@@ -218,15 +225,19 @@ public class HeaderOfThePage extends Base{
 		// ... click on menu items..
 		boolean linkError = false;
 		for(int i = 0; i < menuItems.size(); i++) {
-			hoverOnUserIcon();
+			isInercertedElementVisible();
 			header.getMyAccountDropdownItem(givenMenuItemTxts[i]).click();
-			driver.getCurrentUrl().contentEquals(givenMenuItemLinks[i]);
+			String currentUrl = driver.getCurrentUrl();
 
-			if(driver.getCurrentUrl().contentEquals(givenMenuItemLinks[i])) {
+			if(currentUrl.contentEquals(givenMenuItemLinks[i])) {
 				log.info("User Info: "+ givenMenuItemLinks[i] + " link wroks fine");
 			}else {
+				if(currentUrl.startsWith("https://www.neutrogena.com/login")) {
+					log.info("User Info: "+ " User in not loggedin");	
+				}else {
 				linkError = true;
 				log.info("User Info: "+ givenMenuItemLinks[i] + " link does not wrok properly");
+				}
 			}
 		}
 		
@@ -234,7 +245,7 @@ public class HeaderOfThePage extends Base{
 
 	}
 	
-	@Test(priority = 5)
+	//@Test(priority = 5)
 	public void navigation() {
 		
 		LinkedList<String> missingNavItems = new LinkedList<String>();
@@ -253,22 +264,6 @@ public class HeaderOfThePage extends Base{
 				missingNavLinks.add(we.getAttribute("href"));
 			}
 		}
-		int x = 0;
-		if((x = missingNavItems.size()) == 0) {
-			log.info("Nav: "+ "All nav items present");
-			Assert.assertEquals(x, 0, "Nav: "+ "All nav items present");
-		}else {
-			log.info("Nav: "+ missingNavItems.toString() +" nav items are not in proper place");
-			Assert.assertEquals(x, 0, "Nav: "+ missingNavItems.toString() + "nav items are not in proper place");
-		}
-		int y = 0;
-		if((y = missingNavLinks.size()) == 0) {
-			log.info("Nav: "+ "All nav item links are present");
-			Assert.assertEquals(y, 0, "Nav: "+ "All nav item links are present");
-		}else {
-			log.info("Nav: "+ missingNavLinks.toString() +" nav item links are not in proper place");
-			Assert.assertEquals(y, 0, "Nav: "+ missingNavLinks.toString() + "nav item links are not in proper place");
-		}
 		
 		// ... Click on the Nav items
 		LinkedList<String> wrongRedirectionList = new LinkedList<String>();
@@ -285,14 +280,6 @@ public class HeaderOfThePage extends Base{
 				wrongRedirectionList.add(givenNavItemTxts[i]);
 			}
 			if(!url.startsWith("https://www.neutrogena.com")) driver.get("https://www.neutrogena.com");
-		}
-		int wr = 0;
-		if(( wr = wrongRedirectionList.size()) == 0) {
-			log.info("Nav: "+ " items properly redircted");
-			Assert.assertEquals(wr, 0, "Nav: "+ " items properly redirected");
-		}else {
-			log.info("Nav: "+ wrongRedirectionList.toString() +" items don't redirect properly");
-			Assert.assertEquals(wr, 0, "Nav: "+ wrongRedirectionList.toString() + "items don't redirect properly");
 		}
 		
 		//................ hover on nav ..........................
@@ -337,6 +324,33 @@ public class HeaderOfThePage extends Base{
 			if(!driver.getCurrentUrl().startsWith("https://www.neutrogena.com")) driver.get("https://www.neutrogena.com");
 		}
 		
+		//.............. reporting............
+		LinkedList<String> failedList = new LinkedList<String>();
+		int x = 0;
+		if((x = missingNavItems.size()) == 0) {
+			log.info("Nav: "+ "All nav items present");
+			Assert.assertEquals(x, 0, "Nav: "+ "All nav items present");
+		}else {
+			log.info("Nav: "+ missingNavItems.toString() +" nav items are not in proper place");
+			failedList.add(missingNavItems.toString() + "nav items are not in proper place");
+		}
+		int y = 0;
+		if((y = missingNavLinks.size()) == 0) {
+			log.info("Nav: "+ "All nav item links are present");
+			Assert.assertEquals(y, 0, "Nav: "+ "All nav item links are present");
+		}else {
+			log.info("Nav: "+ missingNavLinks.toString() +" nav item links are not in proper place");
+			failedList.add(missingNavLinks.toString() + "nav item links are not in proper place");
+		}
+		
+		int wr = 0;
+		if(( wr = wrongRedirectionList.size()) == 0) {
+			log.info("Nav: "+ " items properly redircted");
+			Assert.assertEquals(wr, 0, "Nav: "+ " items properly redirected");
+		}else {
+			log.info("Nav: "+ wrongRedirectionList.toString() +" items don't redirect properly");
+			failedList.add(wrongRedirectionList.toString() + "items don't redirect properly");
+		}
 		
 		int smc = 0;
 		if(( smc = missingSubMenuContainers.size()) == 0) {
@@ -344,7 +358,7 @@ public class HeaderOfThePage extends Base{
 			Assert.assertEquals(smc, 0, "Nav: "+ "All sub menu containers are present");
 		}else {
 			log.info("Nav: "+ missingSubMenuContainers.toString() + " sub menu containers are not visible");
-			Assert.assertEquals(smc, 0, "Nav: "+ missingSubMenuContainers.toString() + " sub menu containers are not visible");
+			failedList.add(missingSubMenuContainers.toString() + " sub menu containers are not visible");
 		}
 		
 		wr = 0;
@@ -353,7 +367,11 @@ public class HeaderOfThePage extends Base{
 			Assert.assertEquals(wr, 0, "Nav: "+ "All sub menu links are good");
 		}else {
 			log.info("Nav: "+ badUrl.toString() + " links have some problem");
-			Assert.assertEquals(wr, 0, "Nav: "+ badUrl.toString() + " links have some problem");
+			failedList.add(badUrl.toString() + " links have some problem");
+		}
+		
+		if(failedList.size() > 0) {
+			Assert.assertTrue(false, "Nav: have the following issues: "+ failedList.toString());
 		}
 		
 	}
@@ -382,47 +400,52 @@ public class HeaderOfThePage extends Base{
 			log.info("Utility Banner: "+ "Skip Content CTA is not working");
 			Assert.assertTrue(false);
 		}
-		/* incomplete
-		driver.get("https://www.neutrogena.com");
-		driver.manage().window().maximize();
+				
+//		driver.get("https://www.neutrogena.com");
+//		driver.manage().window().maximize();
+		
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		//js.executeScript("arguments[0].scrollIntoView();", header.getAdvisoryContents());
+		js.executeScript("window.scrollTo(0, 2500);");
+		driver.findElement(By.xpath("//button[@class='btn-top-mobile']")).click();
+		//driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+		
+		boolean isElementVisible = isInercertedElementVisible();
+	    if(isElementVisible) { 	isElementVisible = !closePopup(); }
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		
 		LinkedHashMap<String, String> contents = new LinkedHashMap<String, String>();
 		contents.put("Fall Semi Annual Sale - 25% Off Sitewide", "https://www.neutrogena.com/search?q=neutrogena");
 		contents.put("Free Shipping on all Orders", "https://www.neutrogena.com/offers.html");
-		contents.put("15% off First Purchase", "//www.neutrogena.com/register");
+		contents.put("15% off First Purchase", "https://www.neutrogena.com/register");
 		
 		LinkedList<String> missingContent = new LinkedList<String>();
 		LinkedList<String> missingUrl = new LinkedList<String>();
-		
-		if(header.getPromotionalContents().size() != contents.size()){
+		int promotionalContentSize = header.getPromotionalContents().size();
+		if(promotionalContentSize != contents.size()){
 			log.info("Utility Banner: "+ "Content numbers are same");
 		}
 		
-		Iterator<WebElement> it = header.getPromotionalContents().iterator();
 		Iterator<Entry<String, String>> entrySets = contents.entrySet().iterator();
-		
-		while(it.hasNext() && entrySets.hasNext()) {
-						
-			WebElement we = it.next();
-			Entry<String, String> entries = entrySets.next();
-			
-			String ctaTxt = we.getText();
-			String ctaUrl = we.getAttribute("href");
-			String givenTxt = entries.getKey();
-			String givenUrl = entries.getValue();
-			
-			System.out.println(ctaTxt);
-			System.out.println(givenTxt);
-			
+		for(int i = 1; i <= promotionalContentSize; i++) {
+			WebElement element = header.singlePromotionalContent(i);
+			wait.until(ExpectedConditions.visibilityOf(element));
+			String ctaTxt = element.getText();
+			String ctaUrl = element.getAttribute("href");
+			Entry<String, String> entry = entrySets.next();
+			String givenTxt = entry.getKey();
+			String givenUrl = entry.getValue();
 			if(!givenTxt.equalsIgnoreCase(ctaTxt)) {
 				missingContent.add(ctaTxt);
 			}
 			if(!ctaUrl.equalsIgnoreCase(givenUrl)) {
 				missingUrl.add(ctaUrl);
 			}
+			
 		}
 
-		
 		if(missingContent.size() == 0) {
 			log.info("Utility Banner: "+ "All promotional content header present in proper order");
 			Assert.assertTrue(true);
@@ -438,12 +461,13 @@ public class HeaderOfThePage extends Base{
 			log.info("Utility Banner: "+ missingUrl.toString()+ " promotional content links are not proper");
 			Assert.assertTrue(false);
 		}
-		*/
 		
+		
+		/*
 		//...............home.....................
 		header.getEmailSignup().click();
 		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
-		header.getSignupEmail().sendKeys("alicin85025@tester.com");
+		header.getSignupEmail().sendKeys("aliciaRana32@yahoo.com");
 		
 		String month = "December";
 		Actions action = new Actions(driver);
@@ -497,7 +521,7 @@ public class HeaderOfThePage extends Base{
 			log.info("Utility Banner: "+ " Signup Failed");
 		}
 		header.getEmailSignup().click();
-		
+		*/
 		
 		// ------------ language change ----------------------
 		String givenLang1 = "Español";

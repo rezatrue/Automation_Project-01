@@ -145,6 +145,12 @@ public class Header {
 		return driver.findElements(promotionalContentsBy);
 	}
 	
+	String singlePromotionalContent = "//div[contains(@class,'utility-banner')]//div[contains(@class,'header-promotion')]";
+	
+	public WebElement singlePromotionalContent(int number){
+		return driver.findElement(By.xpath(singlePromotionalContent+"/div/p["+number+"][not(@style='display: none;')]/a"));
+	}
+	
 	By emailSignupBy = By.xpath("//div[contains(@class,'utility-banner')]//button/span[contains(text(),'Email Sign Up')]");
 
 	public WebElement getEmailSignup(){
