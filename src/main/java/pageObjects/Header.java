@@ -83,14 +83,15 @@ public class Header {
 	}
 
 	//By popupShadowHostBy = By.xpath("//div[@role='dialog'][3]/div[contains(@id,'yie-inner-overlay')]/div[contains(@id,'yie-overlay-wrapper')]/yld-tag-host-campaign");
-	By popupShadowHostBy = By.xpath("//div[@id='yie-overlay-wrapper-ad57273e-8fd0-5f0a-8b7d-8c013363ff68']/yld-tag-host-campaign");
-	//By popupShadowHostBy = By.xpath("//div[@id='yie-overlay-wrapper-2f8eb48f-7117-530f-8254-6b2c73b24378']/yld-tag-host-campaign");
+	//By popupShadowHostBy = By.xpath("//div[@id='yie-overlay-wrapper-ad57273e-8fd0-5f0a-8b7d-8c013363ff68']/yld-tag-host-campaign");
+	By popupShadowHostBy = By.xpath("(//div[contains(@id,'yie-overlay-wrapper')]/yld-tag-host-campaign)[1]");
 
 	public WebElement getPopupShadowHost(){
 		return driver.findElement(popupShadowHostBy);
 	}
 	
-	By interceptedElementBy = By.xpath("//div[@id='yie-backdrop-ad57273e-8fd0-5f0a-8b7d-8c013363ff68']/parent::div");
+	//By interceptedElementBy = By.xpath("//div[@id='yie-backdrop-ad57273e-8fd0-5f0a-8b7d-8c013363ff68']/parent::div");
+	By interceptedElementBy = By.xpath("(//div[contains(@id,'yie-backdrop')]/parent::div)[1]");
 	public WebElement getInterceptedElement(){
 		return driver.findElement(interceptedElementBy);
 	}
@@ -144,6 +145,12 @@ public class Header {
 		return driver.findElements(promotionalContentsBy);
 	}
 	
+	String singlePromotionalContent = "//div[contains(@class,'utility-banner')]//div[contains(@class,'header-promotion')]";
+	
+	public WebElement singlePromotionalContent(int number){
+		return driver.findElement(By.xpath(singlePromotionalContent+"/div/p["+number+"][not(@style='display: none;')]/a"));
+	}
+	
 	By emailSignupBy = By.xpath("//div[contains(@class,'utility-banner')]//button/span[contains(text(),'Email Sign Up')]");
 
 	public WebElement getEmailSignup(){
@@ -158,7 +165,6 @@ public class Header {
 	}
 	
 	
-	//..........................home..........................
 	By signupEmailBy = By.xpath("//div[contains(@class,'utility-banner')]//form/div[child::label[text()='Email Address']]/input");
 
 	public WebElement getSignupEmail(){
@@ -187,6 +193,43 @@ public class Header {
 
 	public WebElement getSignupYear(String year){
 		return driver.findElement(By.xpath(getSignupYear+"/div[contains(.,'"+ year +"')]")); 
+	}
+	
+	//..........................home..........................
+	By signupReCAPTCHAframeBy = By.xpath("//form[@class='email-footer-signup newsletter-signup']//div[@id='headSignUp']//iframe[@title='reCAPTCHA']");
+
+	public WebElement getSignupreCAPTCHAframe(){
+		return driver.findElement(signupReCAPTCHAframeBy);
+	}
+	
+	By signupReCAPTCHAlabelBy = By.xpath("//label[contains(text(),\"I'm not a robot\")]");
+
+	public WebElement getSignupreCAPTCHAlabel(){
+		return driver.findElement(signupReCAPTCHAlabelBy);
+	}
+	
+	By signupAgeConsentYesBy = By.xpath("//div[@class='age-consent-yes']");
+
+	public WebElement getSignupAgeConsentYes(){
+		return driver.findElement(signupAgeConsentYesBy);
+	}
+	
+	By signupAgeConsentNoBy = By.xpath("//div[@class='age-consent-no']/input");
+
+	public WebElement getSignupAgeConsentNo(){
+		return driver.findElement(signupAgeConsentNoBy);
+	}
+	
+	By signupSubmitBy = By.xpath("(//button[@value='submit'])[1]");
+
+	public WebElement getSignupSubmit(){
+		return driver.findElement(signupSubmitBy);
+	}
+	
+	By signupSuccessMessageBy = By.xpath("//div[@class='signup-message']/p");
+
+	public WebElement getSignupSuccessMessage(){
+		return driver.findElement(signupSuccessMessageBy);
 	}
 	
 }
