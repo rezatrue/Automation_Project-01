@@ -1,10 +1,12 @@
 package com.technogearup.E2EProject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -18,7 +20,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -63,7 +67,7 @@ public class HeaderOfThePage extends Base{
 		log.info("HomePage: "+"Closed");
 	}
 	
-	//@Test(priority = 1)
+	@Test(priority = 1)
 	public void headerContent() {
 		
 		boolean isImagePresent = header.getLogo() != null ? true : false;
@@ -77,7 +81,7 @@ public class HeaderOfThePage extends Base{
 		
 	}
 	
-	//@Test(priority = 2)
+	@Test(priority = 2)
 	public void logo() {
 		
 		boolean isImagePresent = header.getLogoImage() != null ? true : false;
@@ -92,7 +96,7 @@ public class HeaderOfThePage extends Base{
 	}
 	
 	
-	//@Test(priority = 3)
+	@Test(priority = 3)
 	public void searchOption() {
 		boolean isFocusable = true;
 		try {
@@ -170,7 +174,7 @@ public class HeaderOfThePage extends Base{
 		    return true;
 	}
 	
-	//@Test(priority = 4)
+	@Test(priority = 4)
 	public void userInfo() {
 		refreshUrl();
 		
@@ -225,8 +229,21 @@ public class HeaderOfThePage extends Base{
 		// ... click on menu items..
 		boolean linkError = false;
 		for(int i = 0; i < menuItems.size(); i++) {
-			isInercertedElementVisible();
-			header.getMyAccountDropdownItem(givenMenuItemTxts[i]).click();
+			try {
+				builder.moveToElement(menu).build().perform();
+			} catch (Exception e) {
+				// StaleElementReferenceException
+				menu = header.getUserInfo();
+				builder.moveToElement(menu).build().perform();
+			}
+			if(isInercertedElementVisible()) closePopup();
+			
+			try {
+				header.getMyAccountDropdownItem(givenMenuItemTxts[i]).click();
+			} catch (NoSuchElementException e) {
+				builder.moveToElement(menu).build().perform();
+				header.getMyAccountDropdownItem(givenMenuItemTxts[i]).click();
+			}
 			String currentUrl = driver.getCurrentUrl();
 
 			if(currentUrl.contentEquals(givenMenuItemLinks[i])) {
@@ -245,7 +262,27 @@ public class HeaderOfThePage extends Base{
 
 	}
 	
-	//@Test(priority = 5)
+	private boolean isRedirectUrlOf(String url) {
+		boolean isRedirected = false;
+	      try {
+			HttpURLConnection cn = (HttpURLConnection)new URL(url).openConnection();
+			  cn.setRequestMethod("HEAD");
+			  cn.connect();
+			  int res = cn.getResponseCode();
+			  if(res > 199 && res < 399) {
+				  isRedirected = true;
+			  }
+		} catch (MalformedURLException e) {
+			log.info(url +"-- "+ e.getMessage());
+		} catch (ProtocolException e) {
+			log.info(url +"-- "+ e.getMessage());
+		} catch (IOException e) {
+			log.info(url +"-- "+ e.getMessage());
+		}
+		return isRedirected;
+	}
+	
+	@Test(priority = 5)
 	public void navigation() {
 		
 		LinkedList<String> missingNavItems = new LinkedList<String>();
@@ -273,11 +310,14 @@ public class HeaderOfThePage extends Base{
 				we.click();
 			} catch (ElementClickInterceptedException e) {
 				closePopup();
+				we = header.getNav(givenNavItemTxts[i]);
 				we.click();
 			}
 			String url = driver.getCurrentUrl();
+			System.err.println(url);
 			if(!givenNavItemLinks[i].equalsIgnoreCase(url)) {
-				wrongRedirectionList.add(givenNavItemTxts[i]);
+				if(!isRedirectUrlOf(url) && !givenNavItemLinks[i].equalsIgnoreCase("https://www.neutrogena.com/#"))
+					wrongRedirectionList.add(givenNavItemTxts[i]);
 			}
 			if(!url.startsWith("https://www.neutrogena.com")) driver.get("https://www.neutrogena.com");
 		}
@@ -303,23 +343,10 @@ public class HeaderOfThePage extends Base{
 
 			Iterator<WebElement> it = header.getNavSubMenu(givenNavItemTxts[i]).iterator();
 			while(it.hasNext()) {
-				 String url = it.next().getAttribute("href");
-			      try {
-					HttpURLConnection cn = (HttpURLConnection)new URL(url).openConnection();
-					  cn.setRequestMethod("HEAD");
-					  cn.connect();
-					  int res = cn.getResponseCode();
-					  if(res > 399) {
-						  badUrl.put(url,String.valueOf(res));
-					  }
-				} catch (MalformedURLException e) {
-					badUrl.put(url ,e.getMessage());
-				} catch (ProtocolException e) {
-					badUrl.put(url ,e.getMessage());
-				} catch (IOException e) {
-					badUrl.put(url ,e.getMessage());
-				}
-			      
+				WebElement element = it.next();
+				String buttonTxt = element.getText();
+				 String url = element.getAttribute("href");
+				 if(!isRedirectUrlOf(url)) badUrl.put(buttonTxt, url);     
 			}
 			if(!driver.getCurrentUrl().startsWith("https://www.neutrogena.com")) driver.get("https://www.neutrogena.com");
 		}

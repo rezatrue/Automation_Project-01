@@ -5,6 +5,7 @@
     <classes>
       <class name="com.technogearup.E2EProject.HeaderOfThePage">
         <methods>
+          <include name="navigation"/>
           <include name="utilityBanner"/>
           <include name="launcBrowser"/>
         </methods>

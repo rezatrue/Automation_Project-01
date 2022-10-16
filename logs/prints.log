@@ -1,1 +1,5 @@
-12:39:49.596 [main] INFO  resources.Base - Utility Banner: https://es.neutrogena.com/wrong as Second language URL.
+08:22:51.777 [main] INFO  resources.Base - Utility Banner: All promotional content links are present
+08:22:51.805 [main] INFO  resources.Base - Utility Banner: ESPAÑOL is the First language. All fine
+08:22:51.822 [main] INFO  resources.Base - Utility Banner: https://es.neutrogena.com/is the First language. URL is fine
+08:22:56.696 [main] INFO  resources.Base - Utility Banner: ENGLISH is the Second language. All fine.
+08:22:56.714 [main] INFO  resources.Base - Utility Banner: https://es.neutrogena.com/wrong as Second language URL.
