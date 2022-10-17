@@ -1,114 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="6" passed="4" failed="2" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-10-16T08:57:47 BDT" name="Suite" finished-at="2022-10-16T09:00:34 BDT" duration-ms="166543">
+  <suite started-at="2022-10-17T08:35:57 BDT" name="Default suite" finished-at="2022-10-17T08:35:59 BDT" duration-ms="1326">
     <groups>
     </groups>
-    <test started-at="2022-10-16T08:57:47 BDT" name="Test0" finished-at="2022-10-16T09:00:34 BDT" duration-ms="166543">
-      <class name="com.technogearup.E2EProject.HeaderOfThePage">
-        <test-method is-config="true" signature="launcBrowser()[pri:0, instance:com.technogearup.E2EProject.HeaderOfThePage@1af7f54a]" started-at="2022-10-16T08:57:47 BDT" name="launcBrowser" finished-at="2022-10-16T08:57:58 BDT" duration-ms="10582" status="PASS">
+    <test started-at="2022-10-17T08:35:57 BDT" name="Default test" finished-at="2022-10-17T08:35:59 BDT" duration-ms="1326">
+      <class name="com.technogearup.E2EProject.FooterOfThePage">
+        <test-method is-config="true" signature="launcBrowser()[pri:0, instance:com.technogearup.E2EProject.FooterOfThePage@3f446bef]" started-at="2022-10-17T08:35:57 BDT" name="launcBrowser" finished-at="2022-10-17T08:35:57 BDT" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launcBrowser -->
-        <test-method signature="headerContent()[pri:1, instance:com.technogearup.E2EProject.HeaderOfThePage@1af7f54a]" started-at="2022-10-16T08:57:58 BDT" name="headerContent" finished-at="2022-10-16T08:57:58 BDT" duration-ms="107" status="PASS">
+        <test-method signature="companyInfo()[pri:2, instance:com.technogearup.E2EProject.FooterOfThePage@3f446bef]" started-at="2022-10-17T08:35:57 BDT" name="companyInfo" finished-at="2022-10-17T08:35:59 BDT" duration-ms="1270" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- headerContent -->
-        <test-method signature="logo()[pri:2, instance:com.technogearup.E2EProject.HeaderOfThePage@1af7f54a]" started-at="2022-10-16T08:57:58 BDT" name="logo" finished-at="2022-10-16T08:57:58 BDT" duration-ms="544" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- logo -->
-        <test-method signature="searchOption()[pri:3, instance:com.technogearup.E2EProject.HeaderOfThePage@1af7f54a]" started-at="2022-10-16T08:57:58 BDT" name="searchOption" finished-at="2022-10-16T08:58:01 BDT" duration-ms="3027" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchOption -->
-        <test-method signature="userInfo()[pri:4, instance:com.technogearup.E2EProject.HeaderOfThePage@1af7f54a]" started-at="2022-10-16T08:58:01 BDT" name="userInfo" finished-at="2022-10-16T08:58:47 BDT" duration-ms="45833" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- userInfo -->
-        <test-method signature="navigation()[pri:5, instance:com.technogearup.E2EProject.HeaderOfThePage@1af7f54a]" started-at="2022-10-16T08:58:47 BDT" name="navigation" finished-at="2022-10-16T09:00:00 BDT" duration-ms="73090" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[Nav: have the following issues: [[https://www.neutrogena.com/care-club.html#]nav item links are not in proper place] expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Nav: have the following issues: [[https://www.neutrogena.com/care-club.html#]nav item links are not in proper place] expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:99)
-at org.testng.Assert.failNotEquals(Assert.java:1037)
-at org.testng.Assert.assertTrue(Assert.java:45)
-at com.technogearup.E2EProject.HeaderOfThePage.navigation(HeaderOfThePage.java:401)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.access$000(SuiteRunner.java:28)
-at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:418)
-at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
-at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-at java.base/java.lang.Thread.run(Thread.java:833)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- navigation -->
-        <test-method signature="utilityBanner()[pri:6, instance:com.technogearup.E2EProject.HeaderOfThePage@1af7f54a]" started-at="2022-10-16T09:00:01 BDT" name="utilityBanner" finished-at="2022-10-16T09:00:33 BDT" duration-ms="32801" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:99)
-at org.testng.Assert.failNotEquals(Assert.java:1037)
-at org.testng.Assert.assertTrue(Assert.java:45)
-at org.testng.Assert.assertTrue(Assert.java:55)
-at com.technogearup.E2EProject.HeaderOfThePage.utilityBanner(HeaderOfThePage.java:596)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.access$000(SuiteRunner.java:28)
-at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:418)
-at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
-at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-at java.base/java.lang.Thread.run(Thread.java:833)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- utilityBanner -->
-      </class> <!-- com.technogearup.E2EProject.HeaderOfThePage -->
-    </test> <!-- Test0 -->
-  </suite> <!-- Suite -->
+        </test-method> <!-- companyInfo -->
+      </class> <!-- com.technogearup.E2EProject.FooterOfThePage -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

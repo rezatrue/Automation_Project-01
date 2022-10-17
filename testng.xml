@@ -7,6 +7,7 @@
   <test thread-count="5" name="Test0">
     <classes>
       <class name="com.technogearup.E2EProject.HeaderOfThePage"/>
+      <class name="com.technogearup.E2EProject.FooterOfThePage"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

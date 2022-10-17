@@ -1,2 +1,5 @@
-09:00:33.880 [TestNG-tests-1] INFO  resources.Base - Utility Banner: ENGLISH is the Second language. All fine.
-09:00:33.906 [TestNG-tests-1] INFO  resources.Base - Utility Banner: https://es.neutrogena.com/wrong as Second language URL.
+08:35:59.015 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctcola95ftype
+08:35:59.087 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle cthyperlinks6416type
+08:35:59.092 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle cthyperlink0c85type
+08:35:59.101 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stxstringf179type
+08:35:59.111 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stcelltypebf95type
