@@ -1,20 +1,25 @@
 package resources;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class XlsxFileReader {
-
-	public XlsxFileReader() {
-	}
+public class Utilities {
+	public static Logger log = LogManager.getLogger(Utilities.class.getName());
+	
+	public Utilities() {}
 	
 	public LinkedHashMap<String,String> ReadFooterFile(String section) throws IOException {
 		LinkedHashMap<String,String> data = new LinkedHashMap<String, String>();
@@ -37,5 +42,26 @@ public class XlsxFileReader {
         return data;
 	}
 
+	public boolean isRedirectUrlOf(String url) {
+		boolean isRedirected = false;
+		HttpURLConnection cn;
+	      try {
+			cn = (HttpURLConnection)new URL(url).openConnection();
+			  cn.setRequestMethod("HEAD");
+			  cn.connect();
+			  int res = cn.getResponseCode();
+			  if(res > 199 && res < 399) {
+				  isRedirected = true;
+			  }
+			  cn.disconnect();
+		} catch (MalformedURLException e) {
+			log.info(url +"-- "+ e.getMessage());
+		} catch (ProtocolException e) {
+			log.info(url +"-- "+ e.getMessage());
+		} catch (IOException e) {
+			log.info(url +"-- "+ e.getMessage());
+		}
+		return isRedirected;
+	}
 	
 }

@@ -1,5 +1,2 @@
-08:35:59.015 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctcola95ftype
-08:35:59.087 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle cthyperlinks6416type
-08:35:59.092 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle cthyperlink0c85type
-08:35:59.101 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stxstringf179type
-08:35:59.111 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stcelltypebf95type
+11:54:39.646 [main] INFO  resources.Base - Footer->companyInfo: Doc does not have any extra component
+11:54:39.648 [main] INFO  resources.Base - Footer->companyInfo: there is no extra link in the page

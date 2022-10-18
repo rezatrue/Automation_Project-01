@@ -30,11 +30,48 @@ public class Footer {
 //	footerUtility
 	
 	
-	By emailSignUpHeaderBy = By.xpath("//footer/div/div//h4[contains(text(),'Email Sign Up')]");
+	By emailSignUpHeaderBy = By.xpath("//div[contains(@class,'footer-item')]//h4[contains(text(),'Email Sign Up')]");
 	
 	public WebElement getEmailSignUpHeader() {
 		return driver.findElement(emailSignUpHeaderBy);
 	}
+	
+	By companyInfoBy = By.xpath("//div[contains(@class,'footer-item')]//h4/button[contains(text(),'Company Info')]");
+	
+	public WebElement getCompanyInfo() {
+		return driver.findElement(companyInfoBy);
+	}
+	
+	By customerServiceBy = By.xpath("//div[contains(@class,'footer-item')]//h4/button[contains(text(),'Customer Service')]");
+	
+	public WebElement getCustomerService() {
+		return driver.findElement(customerServiceBy);
+	}
+	
+	By onlinePurchasesBy = By.xpath("//div[@class='footer-subcol']/div/h4[contains(text(),'Online Purchases')]");
+	
+	public WebElement getOnlinePurchases() {
+		return driver.findElement(onlinePurchasesBy);
+	}
+	
+	By followUsBy = By.xpath("//div[@class='footer-subcol']/div/h4[contains(text(),'Follow Us')]");
+	
+	public WebElement getFollowUs() {
+		return driver.findElement(followUsBy);
+	}
+	
+	By footerBadgesBy = By.xpath("//div[@class='klarna-footer']");
+	
+	public WebElement getFooterBadges() {
+		return driver.findElement(footerBadgesBy);
+	}
+	
+	By footerUtilityBy = By.xpath("//div[@class='footer-utility']");
+	
+	public WebElement getFooterUtility() {
+		return driver.findElement(footerUtilityBy);
+	}
+	
 	
 	By companyInfosBy = By.xpath("//footer//div[@class='link-section'][child::h4/button[contains(text(),'Company Info')]]/ul/li/a");
 	
