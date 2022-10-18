@@ -1,24 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-10-18T11:54:18 BDT" name="Default suite" finished-at="2022-10-18T11:54:42 BDT" duration-ms="23507">
+  <suite name="Default suite" duration-ms="28734" started-at="2022-10-18T15:55:28Z" finished-at="2022-10-18T15:55:57Z">
     <groups>
     </groups>
-    <test started-at="2022-10-18T11:54:18 BDT" name="Default test" finished-at="2022-10-18T11:54:42 BDT" duration-ms="23507">
+    <test name="Default test" duration-ms="28734" started-at="2022-10-18T15:55:28Z" finished-at="2022-10-18T15:55:57Z">
       <class name="com.technogearup.E2EProject.FooterOfThePage">
-        <test-method is-config="true" signature="launcBrowser()[pri:0, instance:com.technogearup.E2EProject.FooterOfThePage@3f446bef]" started-at="2022-10-18T11:54:18 BDT" name="launcBrowser" finished-at="2022-10-18T11:54:37 BDT" duration-ms="19106" status="PASS">
+        <test-method status="PASS" signature="launcBrowser()[pri:0, instance:com.technogearup.E2EProject.FooterOfThePage@33c911a1]" name="launcBrowser" is-config="true" duration-ms="24458" started-at="2022-10-18T15:55:28Z" finished-at="2022-10-18T15:55:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launcBrowser -->
-        <test-method signature="footerContent()[pri:1, instance:com.technogearup.E2EProject.FooterOfThePage@3f446bef]" started-at="2022-10-18T11:54:37 BDT" name="footerContent" finished-at="2022-10-18T11:54:38 BDT" duration-ms="304" status="PASS">
+        <test-method status="FAIL" signature="onlinePurchases()[pri:4, instance:com.technogearup.E2EProject.FooterOfThePage@33c911a1]" name="onlinePurchases" duration-ms="4263" started-at="2022-10-18T15:55:53Z" finished-at="2022-10-18T15:55:57Z">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Footer->onlinePurchases: [Order Status, https://www.neutrogena.com/on/demandware.store/Sites-Neutrogena-Site/default/Login-OrderStatus, Ordering & Payments, https://www.neutrogena.com/customer-service/ordering/ordering-payment.html, Returns & Exchanges, https://www.neutrogena.com/customer-service/ordering/return-exchange.html, Shipping Information, https://www.neutrogena.com/customer-service/ordering/shipping-info.html, Care Club - Loyalty Program, https://www.neutrogena.com/care-club.html, Klarna Info, https://www.neutrogena.com/on/demandware.store/Sites-Neutrogena-Site/default/KlarnaPayments-InfoPage, Offers : https://www.neutrogena.com/on/demandware.store/Sites-Neutrogena-Site/default/KlarnaPayments-InfoPage] Doc have some extra component expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Footer->onlinePurchases: [Order Status, https://www.neutrogena.com/on/demandware.store/Sites-Neutrogena-Site/default/Login-OrderStatus, Ordering & Payments, https://www.neutrogena.com/customer-service/ordering/ordering-payment.html, Returns & Exchanges, https://www.neutrogena.com/customer-service/ordering/return-exchange.html, Shipping Information, https://www.neutrogena.com/customer-service/ordering/shipping-info.html, Care Club - Loyalty Program, https://www.neutrogena.com/care-club.html, Klarna Info, https://www.neutrogena.com/on/demandware.store/Sites-Neutrogena-Site/default/KlarnaPayments-InfoPage, Offers : https://www.neutrogena.com/on/demandware.store/Sites-Neutrogena-Site/default/KlarnaPayments-InfoPage] Doc have some extra component expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertTrue(Assert.java:44)
+at com.technogearup.E2EProject.FooterOfThePage.onlinePurchases(FooterOfThePage.java:293)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- footerContent -->
-        <test-method signature="companyInfo()[pri:2, instance:com.technogearup.E2EProject.FooterOfThePage@3f446bef]" started-at="2022-10-18T11:54:38 BDT" name="companyInfo" finished-at="2022-10-18T11:54:42 BDT" duration-ms="4048" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- companyInfo -->
+        </test-method> <!-- onlinePurchases -->
       </class> <!-- com.technogearup.E2EProject.FooterOfThePage -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

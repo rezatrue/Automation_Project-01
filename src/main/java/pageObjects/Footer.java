@@ -22,9 +22,9 @@ public class Footer {
 	
 //	emailSignUp
 //	
-//	customerService
+//	
 //	faqs
-//	onlinePurchases
+//	
 //	followUs
 //	footerBadges
 //	footerUtility
@@ -72,11 +72,22 @@ public class Footer {
 		return driver.findElement(footerUtilityBy);
 	}
 	
-	
 	By companyInfosBy = By.xpath("//footer//div[@class='link-section'][child::h4/button[contains(text(),'Company Info')]]/ul/li/a");
 	
 	public List<WebElement> getCompanyInfos() {
 		return driver.findElements(companyInfosBy);
+	}
+	
+	By customerServiceLinksBy = By.xpath("//footer//div[@class='link-section'][child::h4/button[contains(text(),'Customer Service')]]/ul/li/a");
+	
+	public List<WebElement> getCustomerServiceLinks() {
+		return driver.findElements(customerServiceLinksBy);
+	}
+	
+	By onlinePurchasesLinksBy = By.xpath("//footer//div[@class='link-section'][child::h4[contains(text(),'Online Purchases')]]/ul/li/a");
+	
+	public List<WebElement> getOnlinePurchasesLinks() {
+		return driver.findElements(onlinePurchasesLinksBy);
 	}
 	
 }
