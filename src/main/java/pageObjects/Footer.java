@@ -25,7 +25,7 @@ public class Footer {
 //	
 //	faqs
 //	
-//	followUs
+//	
 //	footerBadges
 //	footerUtility
 	
@@ -96,11 +96,17 @@ public class Footer {
 		return driver.findElements(followUsLinksBy);
 	}
 	
-	By socialImageBy = By.xpath("//*[local-name()='svg']/*[local-name()='use']");
+	By socialImageBy = By.xpath("./*[local-name()='svg']/*[local-name()='use']");
+	//By socialImageBy = By.cssSelector("svg > use"); // also work fine
 	
 	public String getsocialImage(WebElement we) {
 		return we.findElement(socialImageBy).getAttribute("xlink:href");
 	}
 	
+	By footerUtilityLinksBy = By.xpath("//div[@class='footer-utility']//ul/li/a");
+	
+	public List<WebElement> getFooterUtilityLinks() {
+		return driver.findElements(footerUtilityLinksBy);
+	}
 	
 }
