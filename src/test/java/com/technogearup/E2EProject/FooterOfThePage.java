@@ -239,7 +239,7 @@ public class FooterOfThePage extends Base{
 				+ "All link rediredted properly");
 	}
 	
-	@Test(priority = 4)
+	//@Test(priority = 4)
 	public void onlinePurchases() {
 		LinkedList<String> missingLinks = new LinkedList<String>();
 		LinkedList<String> extraLinks = new LinkedList<String>();
@@ -249,7 +249,7 @@ public class FooterOfThePage extends Base{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		List<WebElement> list = footer.getCustomerServiceLinks();
+		List<WebElement> list = footer.getOnlinePurchasesLinks();
 		
 		if(linkMap.size() > 0 && list.size() > 0) {
 			Iterator<Entry<String, String>> entries = linkMap.entrySet().iterator();
@@ -260,7 +260,7 @@ public class FooterOfThePage extends Base{
 				WebElement we = it.next();
 				if(!we.getText().equalsIgnoreCase(entry.getKey()))
 					missingLinks.add(entry.getKey());
-				if(!we.getAttribute("href").startsWith(entry.getValue())) // there might have some utm parameters
+				if(!we.getAttribute("href").equalsIgnoreCase(entry.getValue()))
 					missingLinks.add(entry.getValue());
 			}
 			if(entries.hasNext()) {
@@ -300,6 +300,67 @@ public class FooterOfThePage extends Base{
 				+ "All link rediredted properly");
 	}
 	
+	@Test(priority = 5)
+	public void followUs() {
+		LinkedList<String> missingLinks = new LinkedList<String>();
+		LinkedList<String> extraLinks = new LinkedList<String>();
+		LinkedHashMap<String,String> linkMap = new LinkedHashMap<String, String>();
+		try {
+			linkMap = utilities.ReadFooterFile("Follow Us");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		List<WebElement> list = footer.getOnlinePurchasesLinks();
+		
+		if(linkMap.size() > 0 && list.size() > 0) {
+			Iterator<Entry<String, String>> entries = linkMap.entrySet().iterator();
+			Iterator<WebElement> it = list.iterator();
+			
+			while(entries.hasNext() && it.hasNext()) {
+				Entry<String, String> entry = entries.next();
+				WebElement we = it.next();
+				log.info("------->>> "+footer.getsocialImage(we));
+				if(!footer.getsocialImage(we).endsWith(entry.getKey()))
+					missingLinks.add(entry.getKey());
+				if(!we.getAttribute("href").equalsIgnoreCase(entry.getValue()))
+					missingLinks.add(entry.getValue());
+			}
+			if(entries.hasNext()) {
+				while(entries.hasNext()) {
+					Entry<String, String> entry = entries.next();
+					missingLinks.add(entry.getKey() +" : "+ entry.getValue());}
+				log.info("Footer->followUs: "+missingLinks.toString()+" Doc have some extra component");
+			}
+			else log.info("Footer->followUs: Doc does not have any extra component");
+			
+			if(it.hasNext()) {
+				while(it.hasNext()) {
+					WebElement we = it.next();
+					missingLinks.add(footer.getsocialImage(we)+" : "+ we.getAttribute("href"));}
+				log.info("Footer->followUs: "+extraLinks.toString()+" Extra link present in the page");
+			}
+			else log.info("Footer->followUs: there is no extra link in the page");
+		}
+		
+		LinkedList<String> notRedirectedProperly = new LinkedList<String>();
+		Iterator<WebElement> it = list.iterator();
+		while(it.hasNext()) {
+			String url = it.next().getAttribute("href");
+			if(!utilities.isRedirectUrlOf(url)) {
+				notRedirectedProperly.add(url);
+				log.info("Footer->followUs: "+url+" doesn't redirect");
+			}
+		}
+		
+		if(missingLinks.size() > 0) Assert.assertTrue(false,"Footer->followUs: "+missingLinks.toString()+" Doc have some extra component");
+		if(extraLinks.size() > 0) Assert.assertTrue(false, "Footer->followUs: "+extraLinks.toString()+" Extra link present in the page"); 
+		else Assert.assertTrue(true, "Footer->followUs: All component present in the page");
+		
+		if(notRedirectedProperly.size() > 0) Assert.assertTrue(false, "Footer->followUs: " 
+		+ notRedirectedProperly + " didn't redirected properly.");
+		else if(notRedirectedProperly.size() == 0) Assert.assertTrue(true, "Footer->followUs: "
+				+ "All link rediredted properly");
+	}
 	
 	
 }

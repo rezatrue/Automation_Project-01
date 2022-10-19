@@ -1,1 +1,2 @@
-21:55:54.007 [main] INFO  resources.Base - Footer->onlinePurchases: there is no extra link in the page
+12:08:02.319 [main] INFO  resources.Base - Footer->followUs: Doc does not have any extra component
+12:08:02.379 [main] INFO  resources.Base - Footer->followUs: [] Extra link present in the page

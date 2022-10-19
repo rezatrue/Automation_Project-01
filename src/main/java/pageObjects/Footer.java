@@ -89,5 +89,18 @@ public class Footer {
 	public List<WebElement> getOnlinePurchasesLinks() {
 		return driver.findElements(onlinePurchasesLinksBy);
 	}
+
+	By followUsLinksBy = By.xpath("//div[contains(@class,'link-section')][child::h4[contains(text(),'Follow Us')]]/ul/li/a");
+	
+	public List<WebElement> getFollowUsLinks() {
+		return driver.findElements(followUsLinksBy);
+	}
+	
+	By socialImageBy = By.xpath("//*[local-name()='svg']/*[local-name()='use']");
+	
+	public String getsocialImage(WebElement we) {
+		return we.findElement(socialImageBy).getAttribute("xlink:href");
+	}
+	
 	
 }
