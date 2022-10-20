@@ -425,11 +425,9 @@ public class FooterOfThePage extends Base{
 	
 	@Test(priority=7)
 	public void footerBadges() {
-		for(int i=1; i <= 6; i++) {
-			footer.getFooterBadgeSvg(i);
-		}
 		
-		/*
+		LinkedList<String> missingCards = new LinkedList<String>();
+		
 		LinkedHashMap<String,String> linkMap = new LinkedHashMap<String, String>();
 		try {
 			linkMap = utilities.ReadFooterFile("Badge");
@@ -437,12 +435,25 @@ public class FooterOfThePage extends Base{
 			e.printStackTrace();
 		}
 		
+		LinkedList<String> badges = new LinkedList<String>();
+		for(int i=1; i <= linkMap.entrySet().size(); i++) {
+			String bg = footer.getFooterBadgeSvg(i);
+			if(bg.length() > 1)
+			badges.add(bg);
+		}
 		
+		Iterator<Entry<String, String>> entryIt = linkMap.entrySet().iterator();
+		Iterator<String> badgeIt = badges.iterator();
 		
-		Iterator<Entry<String, String>> it = linkMap.entrySet().iterator();
-		while(it.hasNext()) {
-			System.out.println(it.next().getKey());
-		}*/
+		while(entryIt.hasNext() && badgeIt.hasNext()) {
+			String key = entryIt.next().getKey();
+			String badge = badgeIt.next();
+			if(!key.equalsIgnoreCase(badge))
+				missingCards.add(badge);
+		}
+		
+		if(missingCards.size() > 0) Assert.assertTrue(false, "Footer->footerBadges: " + missingCards.toString() + " didn't have all card images");
+		else Assert.assertTrue(true, "Footer->footerBadges: " + " have all the card images ");
 	}
 	
 }
