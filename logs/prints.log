@@ -1,5 +1,2 @@
-20:47:25.765 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stxstringf179type
-20:47:25.769 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stcelltypebf95type
-20:47:26.203 [main] INFO  resources.Base - Footer->footerUtility: Doc does not have any extra component
-20:47:26.203 [main] INFO  resources.Base - Footer->footerUtility: there is no extra link in the page
-20:47:30.655 [main] INFO  resources.Base - Footer->footerUtility: https://privacyportal-cdn.onetrust.com/dsarwebform/96f23ee1-34e3-41d6-8d5a-07f0d554152b/83bc2fd2-1604-4e64-93e5-2670b01de08b.html?WebsiteName=www.neutrogena.com doesn't redirect
+09:08:49.322 [main] INFO  resources.Base - Page for Footer: Successfully open URL
+09:08:59.657 [main] INFO  resources.Base - Page for Footer: Scroll to the bottom of the page

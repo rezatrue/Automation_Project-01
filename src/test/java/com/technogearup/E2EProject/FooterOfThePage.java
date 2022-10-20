@@ -362,7 +362,7 @@ public class FooterOfThePage extends Base{
 	}
 	
 	
-	@Test(priority = 6)
+	//@Test(priority = 6)
 	public void footerUtility() {
 		LinkedList<String> missingLinks = new LinkedList<String>();
 		LinkedList<String> extraLinks = new LinkedList<String>();
@@ -423,6 +423,26 @@ public class FooterOfThePage extends Base{
 				+ "All link rediredted properly");
 	}
 	
-	
+	@Test(priority=7)
+	public void footerBadges() {
+		for(int i=1; i <= 6; i++) {
+			footer.getFooterBadgeSvg(i);
+		}
+		
+		/*
+		LinkedHashMap<String,String> linkMap = new LinkedHashMap<String, String>();
+		try {
+			linkMap = utilities.ReadFooterFile("Badge");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		Iterator<Entry<String, String>> it = linkMap.entrySet().iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next().getKey());
+		}*/
+	}
 	
 }

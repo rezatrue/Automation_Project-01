@@ -3,6 +3,7 @@ package pageObjects;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -27,7 +28,6 @@ public class Footer {
 //	
 //	
 //	footerBadges
-//	footerUtility
 	
 	
 	By emailSignUpHeaderBy = By.xpath("//div[contains(@class,'footer-item')]//h4[contains(text(),'Email Sign Up')]");
@@ -109,4 +109,16 @@ public class Footer {
 		return driver.findElements(footerUtilityLinksBy);
 	}
 	
+	String jsPath = "return document.querySelector('#wrapper > div.footer-wrapper > div.klarna-footer > div > klarna-placement > div').shadowRoot.querySelector('div > div > ul > li.badge:nth-child(arguments[0]) > svg')";
+	
+	public void getFooterBadgeSvg(int num) {
+		JavascriptExecutor js =(JavascriptExecutor)driver;
+		WebElement we = (WebElement) js.executeScript("return document.querySelector('#wrapper > div.footer-wrapper > div.klarna-footer > div > klarna-placement > div').shadowRoot.querySelector('div > div > ul > li.badge:nth-child('"+1+"') > svg')");
+		
+		System.out.println(we.getAttribute("aria-label"));
+		System.out.println(we.getAttribute("aria-label"));
+		System.out.println(we.getAttribute("aria-label"));
+
+
+	}
 }
