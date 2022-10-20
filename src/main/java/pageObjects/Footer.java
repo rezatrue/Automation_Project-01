@@ -111,13 +111,10 @@ public class Footer {
 	
 	String jsPath = "return document.querySelector('#wrapper > div.footer-wrapper > div.klarna-footer > div > klarna-placement > div').shadowRoot.querySelector('div > div > ul > li.badge:nth-child(arguments[0]) > svg')";
 	
-	public void getFooterBadgeSvg(int num) {
+	public String getFooterBadgeSvg(int num) {
 		JavascriptExecutor js =(JavascriptExecutor)driver;
-		WebElement we = (WebElement) js.executeScript("return document.querySelector('#wrapper > div.footer-wrapper > div.klarna-footer > div > klarna-placement > div').shadowRoot.querySelector('div > div > ul > li.badge:nth-child('"+1+"') > svg')");
-		
-		System.out.println(we.getAttribute("aria-label"));
-		System.out.println(we.getAttribute("aria-label"));
-		System.out.println(we.getAttribute("aria-label"));
+		WebElement we = (WebElement) js.executeScript("return document.querySelector(\"#wrapper > div.footer-wrapper > div.klarna-footer > div > klarna-placement > div\").shadowRoot.querySelector(\"div > div > ul > li.badge:nth-child("+num+") > svg\")");
+		return we.getAttribute("aria-label");
 
 
 	}
