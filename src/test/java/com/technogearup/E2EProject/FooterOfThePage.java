@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -60,7 +61,7 @@ public class FooterOfThePage extends Base{
 		log.info("Page for Footer: "+"Scroll to the bottom of the page");
 	}
 	
-	//@AfterClass
+	@AfterClass
 	public void closeBrowser() {
 		driver.close();
 		log.info("Page (footer): "+"Closed");

@@ -61,7 +61,7 @@ public class HeaderOfThePage extends Base{
 		if(isInercertedElementVisible()) closePopup();
 	}
 	
-	//@AfterClass
+	@AfterClass
 	public void closeBrowser() {
 		driver.close();
 		log.info("HomePage: "+"Closed");

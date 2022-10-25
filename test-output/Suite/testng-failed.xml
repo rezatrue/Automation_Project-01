@@ -13,6 +13,13 @@
           <include name="launcBrowser"/>
         </methods>
       </class> <!-- com.technogearup.E2EProject.HeaderOfThePage -->
+      <class name="com.technogearup.E2EProject.FooterOfThePage">
+        <methods>
+          <include name="emailSignUp"/>
+          <include name="followUs"/>
+          <include name="launcBrowser"/>
+        </methods>
+      </class> <!-- com.technogearup.E2EProject.FooterOfThePage -->
     </classes>
   </test> <!-- Test0(failed) -->
 </suite> <!-- Failed suite [Suite] -->
