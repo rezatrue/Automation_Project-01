@@ -21,15 +21,6 @@ public class Footer {
 		return driver.findElement(footerDisclaimerBy);
 	}
 	
-//	emailSignUp
-//	
-//	
-//	faqs
-//	
-//	
-//	footerBadges
-	
-	
 	By emailSignUpHeaderBy = By.xpath("//div[contains(@class,'footer-item')]//h4[contains(text(),'Email Sign Up')]");
 	
 	public WebElement getEmailSignUpHeader() {
@@ -115,7 +106,61 @@ public class Footer {
 		JavascriptExecutor js =(JavascriptExecutor)driver;
 		WebElement we = (WebElement) js.executeScript("return document.querySelector(\"#wrapper > div.footer-wrapper > div.klarna-footer > div > klarna-placement > div\").shadowRoot.querySelector(\"div > div > ul > li.badge:nth-child("+num+") > svg\")");
 		return we.getAttribute("aria-label");
-
-
 	}
+	
+	//By signUpEmailBy = By.xpath("//form[contains(@class,'email-footer-signup')]/div[child::label]/input");
+	By signUpEmailBy = By.xpath("//form[contains(@class,'email-footer-signup')]/div/input[@id='footer-email']");
+	
+	public WebElement getSignUpEmail() {
+		return driver.findElement(signUpEmailBy);
+	}
+		
+	By signupBirthMonthBy = By.xpath("//div[contains(@class,'footer-item')]//form[contains(@class,'email-footer-signup')]//div/input[contains(@placeholder,'Month')]");
+	
+	public WebElement getSignupBirthMonth() {
+		return driver.findElement(signupBirthMonthBy);
+	}
+	
+	String signupMonth = "//section[contains(@id,'mat-data-list-birthdate-month')]";
+
+	public WebElement getSignupMonth(String month){
+		return driver.findElement(By.xpath(signupMonth+"/div[contains(.,'"+ month +"')]")); 
+	}
+	
+	By signupBirthYearBy = By.xpath("//div[contains(@class,'footer-item')]//form[contains(@class,'email-footer-signup')]//div/input[contains(@placeholder,'Year')]");
+
+	public WebElement getSignupBirthYear(){
+		return driver.findElement(signupBirthYearBy);
+	}
+	
+	String getSignupYear = "//section[contains(@id,'mat-data-list-birthdate-year')]";
+
+	public WebElement getSignupYear(String year){
+		return driver.findElement(By.xpath(getSignupYear+"/div[contains(.,'"+ year +"')]")); 
+	}
+	
+	By signupReCAPTCHAframeBy = By.xpath("//div[@id='footSignUp']//iframe[@title='reCAPTCHA']");
+
+	public WebElement getSignupreCAPTCHAframe(){
+		return driver.findElement(signupReCAPTCHAframeBy);
+	}
+	
+	By signupReCAPTCHAlabelBy = By.xpath("//label[contains(text(),\"I'm not a robot\")]");
+
+	public WebElement getSignupreCAPTCHAlabel(){
+		return driver.findElement(signupReCAPTCHAlabelBy);
+	}
+	
+	By signupSubmitBy = By.xpath("(//button[@value='submit'])[2]");
+
+	public WebElement getSignupSubmit(){
+		return driver.findElement(signupSubmitBy);
+	}
+	
+	By signupSuccessMessageBy = By.xpath("//div[@class='signup-message']/p");
+
+	public WebElement getSignupSuccessMessage(){
+		return driver.findElement(signupSuccessMessageBy);
+	}
+	
 }

@@ -1,20 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results ignored="0" total="8" passed="6" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="24175" started-at="2022-10-20T15:54:59Z" finished-at="2022-10-20T15:55:23Z">
+  <suite started-at="2022-10-25T08:14:00 BDT" name="Default suite" finished-at="2022-10-25T08:21:31 BDT" duration-ms="451150">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="24175" started-at="2022-10-20T15:54:59Z" finished-at="2022-10-20T15:55:23Z">
+    <test started-at="2022-10-25T08:14:00 BDT" name="Default test" finished-at="2022-10-25T08:21:31 BDT" duration-ms="451150">
       <class name="com.technogearup.E2EProject.FooterOfThePage">
-        <test-method status="PASS" signature="launcBrowser()[pri:0, instance:com.technogearup.E2EProject.FooterOfThePage@33c911a1]" name="launcBrowser" is-config="true" duration-ms="23257" started-at="2022-10-20T15:54:59Z" finished-at="2022-10-20T15:55:22Z">
+        <test-method is-config="true" signature="launcBrowser()[pri:0, instance:com.technogearup.E2EProject.FooterOfThePage@1252b961]" started-at="2022-10-25T08:14:00 BDT" name="launcBrowser" finished-at="2022-10-25T08:14:20 BDT" duration-ms="20043" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launcBrowser -->
-        <test-method status="PASS" signature="footerBadges()[pri:7, instance:com.technogearup.E2EProject.FooterOfThePage@33c911a1]" name="footerBadges" duration-ms="900" started-at="2022-10-20T15:55:22Z" finished-at="2022-10-20T15:55:23Z">
+        <test-method signature="footerContent()[pri:1, instance:com.technogearup.E2EProject.FooterOfThePage@1252b961]" started-at="2022-10-25T08:14:20 BDT" name="footerContent" finished-at="2022-10-25T08:14:20 BDT" duration-ms="343" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- footerContent -->
+        <test-method signature="companyInfo()[pri:2, instance:com.technogearup.E2EProject.FooterOfThePage@1252b961]" started-at="2022-10-25T08:14:20 BDT" name="companyInfo" finished-at="2022-10-25T08:14:26 BDT" duration-ms="5441" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- companyInfo -->
+        <test-method signature="customerService()[pri:3, instance:com.technogearup.E2EProject.FooterOfThePage@1252b961]" started-at="2022-10-25T08:14:26 BDT" name="customerService" finished-at="2022-10-25T08:14:29 BDT" duration-ms="3213" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- customerService -->
+        <test-method signature="onlinePurchases()[pri:4, instance:com.technogearup.E2EProject.FooterOfThePage@1252b961]" started-at="2022-10-25T08:14:29 BDT" name="onlinePurchases" finished-at="2022-10-25T08:14:32 BDT" duration-ms="3515" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- onlinePurchases -->
+        <test-method signature="followUs()[pri:5, instance:com.technogearup.E2EProject.FooterOfThePage@1252b961]" started-at="2022-10-25T08:14:32 BDT" name="followUs" finished-at="2022-10-25T08:14:36 BDT" duration-ms="3337" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Footer->followUs: [https://www.tiktok.com/@neutrogena_us] didn't redirected properly. expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Footer->followUs: [https://www.tiktok.com/@neutrogena_us] didn't redirected properly. expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:99)
+at org.testng.Assert.failNotEquals(Assert.java:1037)
+at org.testng.Assert.assertTrue(Assert.java:45)
+at com.technogearup.E2EProject.FooterOfThePage.followUs(FooterOfThePage.java:360)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- followUs -->
+        <test-method signature="footerUtility()[pri:6, instance:com.technogearup.E2EProject.FooterOfThePage@1252b961]" started-at="2022-10-25T08:14:36 BDT" name="footerUtility" finished-at="2022-10-25T08:14:39 BDT" duration-ms="3075" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- footerUtility -->
+        <test-method signature="footerBadges()[pri:7, instance:com.technogearup.E2EProject.FooterOfThePage@1252b961]" started-at="2022-10-25T08:14:39 BDT" name="footerBadges" finished-at="2022-10-25T08:14:39 BDT" duration-ms="157" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- footerBadges -->
+        <test-method signature="emailSignUp()[pri:8, instance:com.technogearup.E2EProject.FooterOfThePage@1252b961]" started-at="2022-10-25T08:14:39 BDT" name="emailSignUp" finished-at="2022-10-25T08:21:31 BDT" duration-ms="411948" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='signup-message']/p"}
+  (Session info: chrome=106.0.5249.119)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-AG9QOA8', ip: '192.168.0.107', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.4.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\REZA\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:6948}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 156aee08851d6a52e4cd25475f2b4e98
+*** Element info: {Using=xpath, value=//div[@class='signup-message']/p}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='signup-message']/p"}
+  (Session info: chrome=106.0.5249.119)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-AG9QOA8', ip: '192.168.0.107', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.4.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 106.0.5249.119, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\REZA\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:6948}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 156aee08851d6a52e4cd25475f2b4e98
+*** Element info: {Using=xpath, value=//div[@class='signup-message']/p}
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at pageObjects.Footer.getSignupSuccessMessage(Footer.java:163)
+at com.technogearup.E2EProject.FooterOfThePage.emailSignUp(FooterOfThePage.java:511)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- emailSignUp -->
       </class> <!-- com.technogearup.E2EProject.FooterOfThePage -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

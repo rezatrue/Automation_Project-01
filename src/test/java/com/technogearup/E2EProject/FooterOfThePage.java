@@ -10,8 +10,10 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -64,7 +66,7 @@ public class FooterOfThePage extends Base{
 		log.info("Page (footer): "+"Closed");
 	}
 	
-	//@Test(priority = 1)
+	@Test(priority = 1)
 	public void footerContent() {
 		if(footer.getEmailSignUpHeader().isDisplayed()) {
 			log.info("Footer->Content: "+" Email SignUp section ispresent.");
@@ -117,7 +119,7 @@ public class FooterOfThePage extends Base{
 		
 	}
 
-	//@Test(priority = 2)
+	@Test(priority = 2)
 	public void companyInfo() {
 		LinkedList<String> missingLinks = new LinkedList<String>();
 		LinkedList<String> extraLinks = new LinkedList<String>();
@@ -178,7 +180,7 @@ public class FooterOfThePage extends Base{
 				+ "All link rediredted properly");
 	}
 
-	//@Test(priority = 3)
+	@Test(priority = 3)
 	public void customerService() {
 		LinkedList<String> missingLinks = new LinkedList<String>();
 		LinkedList<String> extraLinks = new LinkedList<String>();
@@ -239,7 +241,7 @@ public class FooterOfThePage extends Base{
 				+ "All link rediredted properly");
 	}
 	
-	//@Test(priority = 4)
+	@Test(priority = 4)
 	public void onlinePurchases() {
 		LinkedList<String> missingLinks = new LinkedList<String>();
 		LinkedList<String> extraLinks = new LinkedList<String>();
@@ -300,7 +302,7 @@ public class FooterOfThePage extends Base{
 				+ "All link rediredted properly");
 	}
 	
-	//@Test(priority = 5)
+	@Test(priority = 5)
 	public void followUs() {
 		LinkedList<String> missingLinks = new LinkedList<String>();
 		LinkedList<String> extraLinks = new LinkedList<String>();
@@ -362,7 +364,7 @@ public class FooterOfThePage extends Base{
 	}
 	
 	
-	//@Test(priority = 6)
+	@Test(priority = 6)
 	public void footerUtility() {
 		LinkedList<String> missingLinks = new LinkedList<String>();
 		LinkedList<String> extraLinks = new LinkedList<String>();
@@ -456,4 +458,63 @@ public class FooterOfThePage extends Base{
 		else Assert.assertTrue(true, "Footer->footerBadges: " + " have all the card images ");
 	}
 	
+	@Test(priority=8)
+	public void emailSignUp() {
+		
+		driver.manage().timeouts().implicitlyWait(1500, TimeUnit.MILLISECONDS);
+		//footer.getSignUpEmail().sendKeys("aliciaRana32@yahoo.com");
+		footer.getSignUpEmail().sendKeys("test142524@test.com");
+		String month = "December";
+		Actions action = new Actions(driver);
+		action.click(footer.getSignupBirthMonth()).build().perform();
+		action.sendKeys(Keys.TAB).perform();
+		
+		action.sendKeys(Keys.ARROW_DOWN).perform();
+		Boolean monthSelected = false;
+		while(!monthSelected) {
+			if(footer.getSignupMonth(month).isDisplayed()) {
+				action.click(footer.getSignupMonth(month)).build().perform();
+				monthSelected = true;
+			}
+			action.sendKeys(Keys.ARROW_DOWN).perform();
+		}
+		
+		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
+		String year = "1980";
+		action.click(footer.getSignupBirthYear()).build().perform();
+		action.sendKeys(Keys.TAB).perform();
+		
+		action.sendKeys(Keys.ARROW_DOWN).perform();
+		Boolean yearSelected = false;
+		while(!yearSelected) {
+			if(footer.getSignupYear(year).isDisplayed()) {
+				action.click(footer.getSignupYear(year)).build().perform();
+				yearSelected = true;
+			}
+			action.sendKeys(Keys.ARROW_DOWN).perform();
+		}
+		
+		
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+		driver.switchTo().frame(footer.getSignupreCAPTCHAframe());
+		footer.getSignupreCAPTCHAlabel().click();
+		
+		driver.manage().timeouts().implicitlyWait(30000, TimeUnit.MILLISECONDS);
+		driver.switchTo().defaultContent();
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", footer.getSignupSubmit());
+		scrollToTheBottomOfThePage(); // some time to view the submit button we need to scroll to the end of the page
+		footer.getSignupSubmit().click();
+		
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+		if(footer.getSignupSuccessMessage().isDisplayed()) {
+			log.info("Footer: "+ " Signup form successfully submitted");
+			Assert.assertTrue(true, "Footer: "+ " Signup form successfully submitted");
+		}else {
+			log.info("Footer: "+ " Signup Failed");
+			Assert.assertTrue(false, "Footer: "+ " Signup Failed");
+		}
+		
+	}
 }
