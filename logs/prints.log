@@ -1,3 +1,5 @@
-08:40:46.118 [TestNG-tests-1] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
-08:40:46.136 [TestNG-tests-1] DEBUG org.apache.poi.ooxml.POIXMLFactory - using default POIXMLDocumentPart for http://schemas.openxmlformats.org/officeDocument/2006/relationships/printerSettings
-08:40:57.887 [TestNG-tests-1] INFO  resources.Base - Page for Footer: Scroll to the bottom of the page
+11:29:23.660 [main] INFO  resources.Base - Driver is Initialized
+11:29:31.209 [main] INFO  resources.Base - Registration Page: Successfully loaded
+11:29:31.918 [main] INFO  resources.Base - Register: All Input label present
+11:29:32.270 [main] INFO  resources.Base - Register: All Required labels are marked properly
+11:29:34.748 [main] INFO  resources.Base - Page (Registration): Closed

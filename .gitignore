@@ -1,3 +1,7 @@
 /logs
+<<<<<<< HEAD
 /target
+=======
+/reports
+>>>>>>> home
 /test-output
