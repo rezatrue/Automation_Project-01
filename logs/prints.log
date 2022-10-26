@@ -1,2 +1,5 @@
-10:35:04.119 [main] INFO  resources.Base - false
-10:35:04.273 [main] INFO  resources.Base - Page (Registration): Closed
+11:29:23.660 [main] INFO  resources.Base - Driver is Initialized
+11:29:31.209 [main] INFO  resources.Base - Registration Page: Successfully loaded
+11:29:31.918 [main] INFO  resources.Base - Register: All Input label present
+11:29:32.270 [main] INFO  resources.Base - Register: All Required labels are marked properly
+11:29:34.748 [main] INFO  resources.Base - Page (Registration): Closed

@@ -5,7 +5,7 @@
     <classes>
       <class name="com.technogearup.E2EProject.RegistrationPage">
         <methods>
-          <include name="registerContent"/>
+          <include name="requiredField"/>
           <include name="closeBrowser"/>
           <include name="launcBrowser"/>
         </methods>
