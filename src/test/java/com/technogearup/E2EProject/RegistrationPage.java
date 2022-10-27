@@ -45,80 +45,45 @@ public class RegistrationPage  extends Base{
 		js.executeScript("arguments[0].scrollIntoView();", element);
 	}
 	
+	private String contentNotFound(String name, WebElement we) {
+		try {
+			scrollToWebElement(we);
+			driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+			if(!we.getText().equalsIgnoreCase(name))
+				return name;
+		} catch (Exception e) {
+			return name;
+		}
+		return null;
+	}
+	
 	@Test(priority=1)
 	public void registerContent() {
 		LinkedList<String> missingContents = new LinkedList<String>();
-		String fn = "FIRST NAME";
-		try {
-			WebElement fnwe = register.getFirstNameLabel();
-			if(!fnwe.getText().equalsIgnoreCase(fn))
-				missingContents.add(fn);
-		} catch (Exception e) {
-			missingContents.add(fn);
-		}
-		String ln = "LAST NAME";
-		try {
-			WebElement lnwe = register.getLastNameLabel();
-			scrollToWebElement(lnwe);
-			if(!lnwe.getText().equalsIgnoreCase(ln))
-				missingContents.add(ln);
-		} catch (Exception e) {
-			missingContents.add(ln);
-		}
-		String mob = "MOBILE";
-		try {
-			WebElement mwe = register.getMobileLabel();
-			scrollToWebElement(mwe);
-			if(!mwe.getText().equalsIgnoreCase(mob))
-				missingContents.add(mob);
-		} catch (Exception e) {
-			missingContents.add(mob);
-		}
-		String dob = "DATE OF BIRTH";
-		try {
-			WebElement dwe = register.getDobLabel();
-			scrollToWebElement(dwe);
-			if(!dwe.getText().equalsIgnoreCase(dob))
-				missingContents.add(dob);
-		} catch (Exception e) {
-			missingContents.add(dob);
-		}
-		String em = "EMAIL";
-		try {
-			WebElement ewe = register.getEmailLabel();
-			scrollToWebElement(ewe);
-			if(!ewe.getText().equalsIgnoreCase(em))
-				missingContents.add(em);
-		} catch (Exception e) {
-			missingContents.add(em);
-		}
-		String pass = "PASSWORD";
-		try {
-			WebElement pwe = register.getPasswordLabel();
-			scrollToWebElement(pwe);
-			if(!pwe.getText().equalsIgnoreCase(pass))
-				missingContents.add(pass);
-		} catch (Exception e) {
-			missingContents.add(pass);
-		}
-		String cpass = "CONFIRM PASSWORD";
-		try {
-			WebElement cpwe = register.getConfirmPasswordLabel();
-			scrollToWebElement(cpwe);
-			if(!cpwe.getText().equalsIgnoreCase(cpass))
-				missingContents.add(cpass);
-		} catch (Exception e) {
-			missingContents.add(cpass);
-		}
-		String addtol = "PLEASE ADD ME TO NEUTROGENA'S EMAIL LIST.";
-		try {
-			WebElement awe = register.getAddtoemaillistLabel();
-			scrollToWebElement(awe);
-			if(!awe.getText().equalsIgnoreCase(addtol))
-				missingContents.add(addtol);
-		} catch (Exception e) {
-			missingContents.add(addtol);
-		}
+		
+		String missing = contentNotFound("FIRST NAME", register.getFirstNameLabel());
+		if(missing != null) missingContents.add(missing);
+		
+		missing = contentNotFound("LAST NAME", register.getLastNameLabel());
+		if(missing != null) missingContents.add(missing);
+		
+		missing = contentNotFound("MOBILE", register.getMobileLabel());
+		if(missing != null) missingContents.add(missing);
+		
+		missing = contentNotFound("DATE OF BIRTH", register.getDobLabel());
+		if(missing != null) missingContents.add(missing);
+		
+		missing = contentNotFound("EMAIL", register.getEmailLabel());
+		if(missing != null) missingContents.add(missing);
+		
+		missing = contentNotFound("PASSWORD", register.getPasswordLabel());
+		if(missing != null) missingContents.add(missing);
+		
+		missing = contentNotFound("CONFIRM PASSWORD", register.getConfirmPasswordLabel());
+		if(missing != null) missingContents.add(missing);
+		
+		missing = contentNotFound("PLEASE ADD ME TO NEUTROGENA'S EMAIL LIST.", register.getAddtoemaillistLabel());
+		if(missing != null) missingContents.add(missing);
 		
 		int x = 0;
 		if((x = missingContents.size()) == 0) {
@@ -131,74 +96,43 @@ public class RegistrationPage  extends Base{
 		
 	}
 	
+	private String notMarkedAsRequired(String name, WebElement we) {
+		try {
+			scrollToWebElement(we);
+			driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+			if(!register.isRequired(we))
+				return name;
+		} catch (Exception e) {
+			return name;
+		}
+		return null;
+	}
+	
 	@Test(priority=2)
-	public void requiredField() {
+	public void requiredFieldLabel() {
 		LinkedList<String> missingRequiredFields = new LinkedList<String>();
-		String fn = "FIRST NAME";
-		try {
-			WebElement fnwe = register.getFirstNameLabel();
-			scrollToWebElement(fnwe);
-			driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
-			if(!register.isRequired(fnwe))
-				missingRequiredFields.add(fn);
-		} catch (Exception e) {
-			missingRequiredFields.add(fn);
-		}
-		String ln = "LAST NAME";
-		try {
-			WebElement lnwe = register.getLastNameLabel();
-			scrollToWebElement(lnwe);
-			if(!register.isRequired(lnwe))
-				missingRequiredFields.add(ln);
-		} catch (Exception e) {
-			missingRequiredFields.add(ln);
-		}
-		String mob = "MOBILE";
-		try {
-			WebElement mwe = register.getMobileLabel();
-			scrollToWebElement(mwe);
-			if(!register.isRequired(mwe))
-				missingRequiredFields.add(mob);
-		} catch (Exception e) {
-			missingRequiredFields.add(mob);
-		}
-		String dob = "DATE OF BIRTH";
-		try {
-			WebElement dwe = register.getDobLabel();
-			scrollToWebElement(dwe);
-			if(!register.isRequired(dwe))
-				missingRequiredFields.add(dob);
-		} catch (Exception e) {
-			missingRequiredFields.add(dob);
-		}
-		String em = "EMAIL";
-		try {
-			WebElement ewe = register.getEmailLabel();
-			scrollToWebElement(ewe);
-			if(!register.isRequired(ewe))
-				missingRequiredFields.add(em);
-		} catch (Exception e) {
-			missingRequiredFields.add(em);
-		}
-		String pass = "PASSWORD";
-		try {
-			WebElement pwe = register.getPasswordLabel();
-			scrollToWebElement(pwe);
-			if(!register.isRequired(pwe))
-				missingRequiredFields.add(pass);
-		} catch (Exception e) {
-			missingRequiredFields.add(pass);
-		}
-		String cpass = "CONFIRM PASSWORD";
-		try {
-			WebElement cpwe = register.getConfirmPasswordLabel();
-			scrollToWebElement(cpwe);
-			if(!register.isRequired(cpwe))
-				missingRequiredFields.add(cpass);
-		} catch (Exception e) {
-			missingRequiredFields.add(cpass);
-		}
 		
+		String missing = notMarkedAsRequired("FIRST NAME", register.getFirstNameLabel());
+		if(missing != null) missingRequiredFields.add(missing);
+		
+		missing = notMarkedAsRequired("LAST NAME", register.getLastNameLabel());
+		if(missing != null) missingRequiredFields.add(missing);
+		
+		missing = notMarkedAsRequired("MOBILE", register.getMobileLabel());
+		if(missing != null) missingRequiredFields.add(missing);
+		
+		missing = notMarkedAsRequired("DATE OF BIRTH", register.getDobLabel());
+		if(missing != null) missingRequiredFields.add(missing);
+		
+		missing = notMarkedAsRequired("EMAIL", register.getEmailLabel());
+		if(missing != null) missingRequiredFields.add(missing);
+		
+		missing = notMarkedAsRequired("PASSWORD", register.getPasswordLabel());
+		if(missing != null) missingRequiredFields.add(missing);
+		
+		missing = notMarkedAsRequired("CONFIRM PASSWORD", register.getConfirmPasswordLabel());
+		if(missing != null) missingRequiredFields.add(missing);
+				
 		int x = 0;
 		if((x = missingRequiredFields.size()) == 0) {
 			log.info("Register: "+ "All Required labels are marked properly");
