@@ -3,8 +3,9 @@ package com.technogearup.E2EProject;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,20 +14,17 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import pageObjects.Footer;
 import pageObjects.Register;
 import resources.Base;
-import resources.Utilities;
+import utilities.ReadExcelFile;
 
 public class RegistrationPage  extends Base{
 	public WebDriver driver;
 	private Register register;
-	private Utilities utilities;
 	
 	@BeforeClass
 	public void launcBrowser() throws IOException {
 		driver = initializerDriver();
-		utilities = new Utilities();
 		log.info("Driver is Initialized");
 		driver.get(prop.getProperty("registration"));
 		log.info("Registration Page: "+"Successfully loaded");
@@ -57,7 +55,7 @@ public class RegistrationPage  extends Base{
 		return null;
 	}
 	
-	@Test(priority=1)
+	//@Test(priority=1)
 	public void registerContent() {
 		LinkedList<String> missingContents = new LinkedList<String>();
 		
@@ -108,7 +106,7 @@ public class RegistrationPage  extends Base{
 		return null;
 	}
 	
-	@Test(priority=2)
+	//@Test(priority=2)
 	public void requiredFieldLabel() {
 		LinkedList<String> missingRequiredFields = new LinkedList<String>();
 		
@@ -144,6 +142,49 @@ public class RegistrationPage  extends Base{
 		
 	}
 	
+	@Test(priority=3, dataProvider="dummyPassword", dataProviderClass = ReadExcelFile.class)
+	public void validatePasswordInputField(String password) {
+		
+		WebElement we = register.getPasswordInputField();
+		scrollToWebElement(we);
+		we.clear();
+		we.sendKeys(password);
+		register.getConfirmPasswordLabel().click();
+		
+		String errorMsg = register.getPasswordErrorMsg();
+		
+		Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*\\)\\(])[0-9A-Za-z\\d!@#$%^&*\\)\\(]{10,}$");
+		Matcher matcher = pattern.matcher(password);
+		boolean patternRes = matcher.matches();
+		
+		if(errorMsg.length() < 1 && patternRes == true) {
+			log.info("Password Input Field validation: PASS "+ password +" matches the criteria");
+			Assert.assertTrue(patternRes, "Password Input Field validation: PASS "+ password +" matches the criteria");
+		}
+		
+		if(errorMsg.length() > 1 && patternRes == false) {
+			log.info("Password Input Field validation: PASS "+ errorMsg +" --> "+password);
+			Assert.assertTrue(!patternRes, "Password Input Field validation: PASS "+ errorMsg +" --> "+password);
+		}
+		
+		if(errorMsg.length() > 1 && patternRes == true) {
+			log.info("Password Input Field validation: FAIL "+ errorMsg +" --> "+password);
+			Assert.assertTrue(!patternRes, "Password Input Field validation: FAIL "+ errorMsg +" --> "+password);
+		}
+		
+		if(errorMsg.length() < 1 && patternRes == false) {
+			log.info("Password Input Field validation: FAIL "+ " there is no error message --> "+password);
+			Assert.assertTrue(patternRes, "Password Input Field validation: FAIL "+ " there is no error message --> "+password);
+		}
+
+	}
 	
+	//@Test(priority = 4, dataProvider = "dummyRegister", dataProviderClass = ReadExcelFile.class)
+	public void validateRegistrationForm(String fn, String ln, String mob, String dobM, String dobY, String email, String pass, String confirmpass, String addToEmailList, String status) {
+		System.out.println("FN: "+ fn +"; LN: "+  ln +"; Moblie: "+   mob +"; Month: "+   dobM +"; Year: "+   dobY +"; Email: "+   email +"; Pass: "+   pass +"; Confirm: "+   confirmpass +"; addToEmailList: "+ addToEmailList +"; status: "+ status);
+		
+		
+	}
+
 	
 }

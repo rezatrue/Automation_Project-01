@@ -87,4 +87,20 @@ public class Register {
 		return driver.findElement(submitButtonBy);
 	}
 	
+	By passwordInputFieldBy = By.xpath("//input[@id='dwfrm_profile_login_password']");
+	
+	public WebElement getPasswordInputField(){
+		return driver.findElement(passwordInputFieldBy);
+	}
+
+	By passwordErrorMsgBy = By.xpath("//input[@id='dwfrm_profile_login_password']/following-sibling::span[@class='error']");
+	
+	public String getPasswordErrorMsg(){
+		try {
+			return driver.findElement(passwordErrorMsgBy).getText();
+		}catch(Exception e) {
+			return "";
+		}
+	}
+	
 }

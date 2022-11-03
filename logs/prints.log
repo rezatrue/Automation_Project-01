@@ -1,6 +1,4 @@
-11:36:52.226 [main] INFO  resources.Base - Page (Registration): Closed
-11:47:37.621 [main] INFO  resources.Base - Driver is Initialized
-11:47:45.461 [main] INFO  resources.Base - Registration Page: Successfully loaded
-11:47:46.209 [main] INFO  resources.Base - Register: All Input label present
-11:47:46.570 [main] INFO  resources.Base - Register: All Required labels are marked properly
-11:47:46.794 [main] INFO  resources.Base - Page (Registration): Closed
+11:47:51.531 [main] INFO  resources.Base - Password Input Field validation: PASS 9#4Alexto3 matches the criteria
+11:47:51.780 [main] INFO  resources.Base - Password Input Field validation: PASS Alexio1*tr matches the criteria
+11:47:52.050 [main] INFO  resources.Base - Password Input Field validation: FAIL Must have at least 1 special character (!@#$%^&*) --> Pt31(youtube
+11:47:52.266 [main] INFO  resources.Base - Page (Registration): Closed
