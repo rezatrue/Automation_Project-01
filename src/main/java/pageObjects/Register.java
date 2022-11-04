@@ -103,4 +103,56 @@ public class Register {
 		}
 	}
 	
+	By errorBy = By.xpath("//*[@class='error']");
+	By errorMYBy = By.xpath("//*[@class='form-caption error']");
+	
+	public boolean isErrorPresentOnForm(){
+		boolean error = false;
+		try {
+			error = driver.findElement(errorBy).isDisplayed();
+		} catch (Exception e) {}
+		if(!error){
+			try {
+				error = driver.findElement(errorMYBy).isDisplayed();
+			} catch (Exception e) {}
+		}
+		return error;
+	}
+	
+	By firstNameInputFieldBy = By.xpath("//input[@id='dwfrm_profile_customer_firstname']");
+	
+	public WebElement getFirstNameInputField(){
+		return driver.findElement(firstNameInputFieldBy);
+	}
+	
+	By lastNameInputFieldBy = By.xpath("//input[@id='dwfrm_profile_customer_lastname']");
+	
+	public WebElement getLastNameInputField(){
+		return driver.findElement(lastNameInputFieldBy);
+	}
+	
+	By mobileInputFieldBy = By.xpath("//input[@id='dwfrm_customeraddress_phone']");
+	
+	public WebElement getMobileInputField(){
+		return driver.findElement(mobileInputFieldBy);
+	}
+	
+	By monthInputFieldBy = By.xpath("//input[@id='dwfrm_profile_customer_dob_month']");
+	
+	public WebElement getMonthInputField(){
+		return driver.findElement(monthInputFieldBy);
+	}
+	
+	By yearInputFieldBy = By.xpath("//input[@id='dwfrm_profile_customer_dob_year']");
+	
+	public WebElement getYearInputField(){
+		return driver.findElement(yearInputFieldBy);
+	}
+	
+	String sectionMonth = "//section[contains(@id,'mat-data-list-dwfrm_profile_customer_dob_month')]";
+	
+	public WebElement getSectionMonth(String month){
+		return driver.findElement(By.xpath(sectionMonth+"/div[contains(.,'"+ month +"')]")); 
+	}
+	
 }

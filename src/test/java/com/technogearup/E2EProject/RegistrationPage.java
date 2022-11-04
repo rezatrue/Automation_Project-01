@@ -7,8 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -32,7 +34,7 @@ public class RegistrationPage  extends Base{
 		register = new Register(driver);
 	}
 	
-	@AfterClass
+	//@AfterClass
 	public void closeBrowser() {
 		driver.close();
 		log.info("Page (Registration): "+"Closed");
@@ -142,18 +144,19 @@ public class RegistrationPage  extends Base{
 		
 	}
 	
-	@Test(priority=3, dataProvider="dummyPassword", dataProviderClass = ReadExcelFile.class)
+	//@Test(priority=3, dataProvider="dummyPassword", dataProviderClass = ReadExcelFile.class)
 	public void validatePasswordInputField(String password) {
 		
 		WebElement we = register.getPasswordInputField();
 		scrollToWebElement(we);
 		we.clear();
 		we.sendKeys(password);
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
 		register.getConfirmPasswordLabel().click();
 		
 		String errorMsg = register.getPasswordErrorMsg();
 		
-		Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*\\)\\(])[0-9A-Za-z\\d!@#$%^&*\\)\\(]{10,}$");
+		Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[0-9A-Za-z\\d!@#$%^&*]{10,}$");
 		Matcher matcher = pattern.matcher(password);
 		boolean patternRes = matcher.matches();
 		
@@ -183,8 +186,30 @@ public class RegistrationPage  extends Base{
 	public void validateRegistrationForm(String fn, String ln, String mob, String dobM, String dobY, String email, String pass, String confirmpass, String addToEmailList, String status) {
 		System.out.println("FN: "+ fn +"; LN: "+  ln +"; Moblie: "+   mob +"; Month: "+   dobM +"; Year: "+   dobY +"; Email: "+   email +"; Pass: "+   pass +"; Confirm: "+   confirmpass +"; addToEmailList: "+ addToEmailList +"; status: "+ status);
 		
-		
 	}
 
+	@Test(priority = 5)
+	public void validateRegistrationForm() {
+		register.getFirstNameInputField().sendKeys("Ali");
+		register.getLastNameInputField().sendKeys("Reza");
+		register.getMobileInputField().sendKeys("(405) 805-7540");
+		scrollToWebElement(register.getMonthInputField());
+		//register.getLastNameInputField().click();
+		
+		String month = "December";
+		Actions action = new Actions(driver);
+		action.click(register.getMonthInputField()).build().perform();
+		action.sendKeys(Keys.TAB).perform();
+		
+		action.sendKeys(Keys.ARROW_DOWN).perform();
+		Boolean monthSelected = false;
+		while(!monthSelected) {
+			if(register.getSectionMonth(month).isDisplayed()) {
+				action.click(register.getSectionMonth(month)).build().perform();
+				monthSelected = true;
+			}
+			action.sendKeys(Keys.ARROW_DOWN).perform();
+		}
+	}
 	
 }
