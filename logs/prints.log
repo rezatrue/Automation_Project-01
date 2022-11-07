@@ -1,7 +1,1 @@
-20:33:42.479 [main] INFO  resources.Base - Registration Page: Successfully loaded
-20:37:09.705 [main] INFO  resources.Base - Driver is Initialized
-20:37:57.615 [main] INFO  resources.Base - Registration Page: Successfully loaded
-21:15:30.545 [main] INFO  resources.Base - Driver is Initialized
-21:15:47.301 [main] INFO  resources.Base - Registration Page: Successfully loaded
-21:19:00.205 [main] INFO  resources.Base - Driver is Initialized
-21:19:10.368 [main] INFO  resources.Base - Registration Page: Successfully loaded
+10:30:53.573 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stcelltypebf95type

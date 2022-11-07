@@ -14,6 +14,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageObjects.Register;
@@ -182,34 +183,89 @@ public class RegistrationPage  extends Base{
 
 	}
 	
-	//@Test(priority = 4, dataProvider = "dummyRegister", dataProviderClass = ReadExcelFile.class)
-	public void validateRegistrationForm(String fn, String ln, String mob, String dobM, String dobY, String email, String pass, String confirmpass, String addToEmailList, String status) {
-		System.out.println("FN: "+ fn +"; LN: "+  ln +"; Moblie: "+   mob +"; Month: "+   dobM +"; Year: "+   dobY +"; Email: "+   email +"; Pass: "+   pass +"; Confirm: "+   confirmpass +"; addToEmailList: "+ addToEmailList +"; status: "+ status);
+	@Test(priority = 4, dataProvider = "dummyRegister", dataProviderClass = ReadExcelFile.class)
+	public void validateRegistrationFormWithInvalidData(String firstName, String lastName, String phone,
+			String dobMonth, String dobYear, String email, String password, String confirmpassword,
+			String addToEmailList, String status) {
+		
+		System.out.println("FN: "+ firstName +"; LN: "+  lastName +"; Moblie: "+   phone 
+				+"; Month: "+   dobMonth +"; Year: "+   dobYear +"; Email: "+   email +"; Pass: "+   password 
+				+"; Confirm: "+   confirmpassword +"; addToEmailList: "+ addToEmailList +"; status: "+ status);
+		
+		subbmitRegistrationForm(firstName, lastName, phone, dobMonth, dobYear, email,
+				password, confirmpassword, (addToEmailList.equalsIgnoreCase("true")? true: false));
+		
+		if(register.isErrorPresentOnForm()){
+			Assert.assertFalse(false, "Form is not submitted");
+		}else {
+			Assert.assertTrue(true, "Form submitted");
+		}
 		
 	}
 
-	@Test(priority = 5)
-	public void validateRegistrationForm() {
-		register.getFirstNameInputField().sendKeys("Ali");
-		register.getLastNameInputField().sendKeys("Reza");
-		register.getMobileInputField().sendKeys("(405) 805-7540");
+	private void subbmitRegistrationForm(String firstName, String lastName, String phone,
+			String dobMonth, String dobYear, String email,
+			String password, String confirmpassword, boolean addToEmailList) {
 		scrollToWebElement(register.getMonthInputField());
-		//register.getLastNameInputField().click();
-		
-		String month = "December";
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+		register.getFirstNameInputField().clear();
+		if(firstName != null) register.getFirstNameInputField().sendKeys(firstName);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		register.getLastNameInputField().clear();
+		if(lastName != null) register.getLastNameInputField().sendKeys(lastName);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		register.getMobileInputField().clear();
+		if(phone != null) register.getMobileInputField().sendKeys(phone);
+		scrollToWebElement(register.getMonthInputField());
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
 		Actions action = new Actions(driver);
-		action.click(register.getMonthInputField()).build().perform();
-		action.sendKeys(Keys.TAB).perform();
-		
-		action.sendKeys(Keys.ARROW_DOWN).perform();
-		Boolean monthSelected = false;
-		while(!monthSelected) {
-			if(register.getSectionMonth(month).isDisplayed()) {
-				action.click(register.getSectionMonth(month)).build().perform();
-				monthSelected = true;
+		register.deselectMonth();
+		if(dobMonth != null) {
+			String month = dobMonth;
+			action.click(register.getMonthInputField()).build().perform();
+			action.sendKeys(Keys.TAB).perform();
+			Boolean monthSelected = false;
+			while(!monthSelected) {
+				if(register.getSectionMonth(month).isDisplayed()) {
+					action.click(register.getSectionMonth(month)).build().perform();
+					break;
+				}
+				driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+				action.sendKeys(Keys.ARROW_DOWN).perform();
 			}
-			action.sendKeys(Keys.ARROW_DOWN).perform();
 		}
+		register.deselectYear();
+		if(dobYear != null) {
+			String year = dobYear;
+			action.click(register.getYearInputField()).build().perform();
+			action.sendKeys(Keys.TAB).perform();
+			System.out.println(dobYear);
+			Boolean yearSelected = false;
+			while(!yearSelected) {
+				if(register.getSectionYear(year).isDisplayed()) {
+					action.click(register.getSectionYear(year)).build().perform();
+					break;
+				}
+				driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+				action.sendKeys(Keys.ARROW_DOWN).perform();
+			}
+		}
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		register.getEmailInputField().clear();
+		if(email != null) register.getEmailInputField().sendKeys(email);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		scrollToWebElement(register.getSubmitButton());
+		register.getPasswordInputField().clear();
+		if(password != null) register.getPasswordInputField().sendKeys(password);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		register.getConfirmPasswordInputField().clear();
+		if(confirmpassword != null) register.getConfirmPasswordInputField().sendKeys(confirmpassword);
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+		if(!addToEmailList) register.getAddtoemaillist().click();
+		register.getSubmitButton().click();
+		driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
+
 	}
+	
 	
 }

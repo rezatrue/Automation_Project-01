@@ -65,25 +65,27 @@ public class ReadExcelFile {
 			XSSFSheet sh = wb.getSheet(sheetName);
 			XSSFRow row = sh.getRow(0);
 			int noOfRows = sh.getPhysicalNumberOfRows();
+			System.out.println("noOfRows :"+noOfRows);
 			int noOfCols = row.getLastCellNum();
 			data = new String[noOfRows - 1][noOfCols-1];
 			for (int i = 1; i < noOfRows; i++) {
 				row = sh.getRow(i);
-				data[i - 1][0] = row.getCell(1).getStringCellValue(); //first name
-				data[i - 1][1] = row.getCell(2).getStringCellValue(); //last name
-				data[i - 1][2] = row.getCell(3).getNumericCellValue()+""; //mobile
-				data[i - 1][3] = row.getCell(4).getStringCellValue(); //month
-				data[i - 1][4] = row.getCell(5).getNumericCellValue()+""; //year
-				data[i - 1][5] = row.getCell(6).getStringCellValue(); //email
-				data[i - 1][6] = row.getCell(7).getStringCellValue(); //pass
-				data[i - 1][7] = row.getCell(8).getStringCellValue(); //confirm
-				data[i - 1][8] = row.getCell(9).getBooleanCellValue()+""; //add to list
-				data[i - 1][9] = row.getCell(10).getBooleanCellValue()+""; //status
+				try{data[i - 1][0] = row.getCell(1).getStringCellValue();}catch(NullPointerException ne) {} //first name
+				try{data[i - 1][1] = row.getCell(2).getStringCellValue();}catch(NullPointerException ne) {}  //last name
+				try{data[i - 1][2] = row.getCell(3).getNumericCellValue()+"";}catch(NullPointerException ne) {}  //mobile
+				try{data[i - 1][3] = row.getCell(4).getStringCellValue();}catch(NullPointerException ne) {}  //month
+				try{data[i - 1][4] = String.valueOf((int)row.getCell(5).getNumericCellValue());}catch(NullPointerException ne) {}  //year
+				try{data[i - 1][5] = row.getCell(6).getStringCellValue();}catch(NullPointerException ne) {}  //email
+				try{data[i - 1][6] = row.getCell(7).getStringCellValue();}catch(NullPointerException ne) {}  //pass
+				try{data[i - 1][7] = row.getCell(8).getStringCellValue();}catch(NullPointerException ne) {}  //confirm
+				try{data[i - 1][8] = row.getCell(9).getBooleanCellValue()+"";}catch(NullPointerException ne) {}  //add to list
+				try{data[i - 1][9] = row.getCell(10).getBooleanCellValue()+"";}catch(NullPointerException ne) {}  //status
 				
 			}
 		} catch (Exception e) {
 			System.out.println("The exception is: " + e.getMessage());
 		}
+		System.out.println(data.length);
 		return data;
 	}
 	

@@ -1,8 +1,10 @@
 package pageObjects;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -81,12 +83,6 @@ public class Register {
 		return driver.findElement(legalInfoNoteBy);
 	}
 	
-	By submitButtonBy = By.xpath("//form[@id='RegistrationForm']//button[@type='submit']");
-	
-	public WebElement getSubmitButton(){
-		return driver.findElement(submitButtonBy);
-	}
-	
 	By passwordInputFieldBy = By.xpath("//input[@id='dwfrm_profile_login_password']");
 	
 	public WebElement getPasswordInputField(){
@@ -153,6 +149,57 @@ public class Register {
 	
 	public WebElement getSectionMonth(String month){
 		return driver.findElement(By.xpath(sectionMonth+"/div[contains(.,'"+ month +"')]")); 
+	}
+	
+	String sectionYear = "//section[contains(@id,'mat-data-list-dwfrm_profile_customer_dob_year')]";
+	
+	public WebElement getSectionYear(String year){
+		return driver.findElement(By.xpath(sectionYear+"/div[contains(.,'"+ year +"')]")); 
+	}
+	
+	By emailInputFieldBy = By.xpath("//input[@id='dwfrm_profile_customer_email']");
+	
+	public WebElement getEmailInputField(){
+		return driver.findElement(emailInputFieldBy);
+	}
+	
+	By confirmPasswordInputFieldBy = By.xpath("//input[@id='dwfrm_profile_login_passwordconfirm']");
+	
+	public WebElement getConfirmPasswordInputField(){
+		return driver.findElement(confirmPasswordInputFieldBy);
+	}
+	
+	By addtoemaillistBy = By.xpath("//label[@for='dwfrm_profile_customer_addtoemaillist']");
+	
+	public WebElement getAddtoemaillist(){
+		return driver.findElement(addtoemaillistBy);
+	}
+
+	//By submitButtonBy = By.xpath("//form[@id='RegistrationForm']//button[@type='submit']");	
+	By submitButtonBy = By.xpath("//button[@name='dwfrm_profile_confirm']");
+	
+	public WebElement getSubmitButton(){
+		return driver.findElement(submitButtonBy);
+	}
+	
+	public void deselectMonth(){
+		try {
+		WebElement element = driver.findElement(By.cssSelector("#mat-data-list-dwfrm_profile_customer_dob_month > div:nth-child(1)"));
+		((JavascriptExecutor)driver).executeScript("arguments[0].removeAttribute('disabled')", element);
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+		getMonthInputField().click();
+		getSectionMonth("Month").click();
+		}catch(Exception e) {System.out.println(e.getMessage());}
+	}
+	
+	public void deselectYear(){
+		try {
+		WebElement element = driver.findElement(By.cssSelector("#mat-data-list-dwfrm_profile_customer_dob_year > div:nth-child(1)"));
+		((JavascriptExecutor)driver).executeScript("arguments[0].removeAttribute('disabled')", element);
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+		getYearInputField().click();
+		getSectionYear("Year").click();
+		}catch(Exception e) {System.out.println(e.getMessage());}
 	}
 	
 }
