@@ -1,7 +1,10 @@
 package com.technogearup.E2EProject;
 
 import java.io.IOException;
+import java.time.Month;
+import java.util.Date;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,21 +14,29 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.PasswordGenerator;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.github.javafaker.Faker;
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
+
 import pageObjects.Register;
 import resources.Base;
+import utilities.EnglishCharacterData1;
 import utilities.ReadExcelFile;
 
 public class RegistrationPage  extends Base{
 	public WebDriver driver;
 	private Register register;
 	
-	@BeforeClass
+	//@BeforeClass
 	public void launcBrowser() throws IOException {
 		driver = initializerDriver();
 		log.info("Driver is Initialized");
@@ -183,7 +194,7 @@ public class RegistrationPage  extends Base{
 
 	}
 	
-	@Test(priority = 4, dataProvider = "dummyRegister", dataProviderClass = ReadExcelFile.class)
+	//@Test(priority = 4, dataProvider = "dummyRegister", dataProviderClass = ReadExcelFile.class)
 	public void validateRegistrationFormWithInvalidData(String firstName, String lastName, String phone,
 			String dobMonth, String dobYear, String email, String password, String confirmpassword,
 			String addToEmailList, String status) {
@@ -267,5 +278,48 @@ public class RegistrationPage  extends Base{
 
 	}
 	
+
+	@Test(priority = 5)
+	public void validateRegistrationFormWithValidData() {
+		
+		Faker faker = new Faker(new Locale("en-US"));
+		String firstName = faker.name().firstName();
+		String lastName = faker.name().lastName();
+		String phone = faker.phoneNumber().subscriberNumber(10);
+		String month = Month.of(faker.date().birthday().getMonth()+1).toString();
+		String dobMonth = (month.charAt(0)+"").toUpperCase() + month.toLowerCase().substring(1);
+		String gmtString = faker.date().birthday(18, 45).toGMTString();
+		String dobYear = gmtString.split(" ")[2];
+		String email = faker.internet().emailAddress();
+		String password = generatePassword();
+		String addToEmailList = "false";
+		
+		System.out.println("FN: "+ firstName +"; LN: "+  lastName +"; Moblie: "+   phone 
+				+"; Month: "+   dobMonth +"; Year: "+   dobYear +"; Email: "+   email +"; Pass: "+   password 
+				+"; Confirm: "+   password +"; addToEmailList: "+ addToEmailList);
+		/*
+		subbmitRegistrationForm(firstName, lastName, phone, dobMonth, dobYear, email,
+				password, password, (addToEmailList.equalsIgnoreCase("true")? true: false));
+		
+		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
+		if(register.isErrorPresentOnForm()){
+			Assert.assertFalse(false, "Form is not submitted");
+		}
+		if(driver.getCurrentUrl().contains("neutrogena.com/account"))
+		{
+			log.info("Registration: " + "Account created" + "user: "+ email + " pass: "+ password);
+			Assert.assertTrue(true, "Account created");
+		}
+		*/
+	}
 	
+	   private String generatePassword() {
+		      CharacterRule alphabets = new CharacterRule(EnglishCharacterData.Alphabetical);
+		      CharacterRule digits = new CharacterRule(EnglishCharacterData.Digit, 1);
+		      CharacterRule special = new CharacterRule(EnglishCharacterData1.Special, 1);
+		      CharacterRule uppercase = new CharacterRule(EnglishCharacterData.UpperCase, 1);
+		      CharacterRule lowercase = new CharacterRule(EnglishCharacterData.LowerCase, 1);
+		      PasswordGenerator passwordGenerator = new PasswordGenerator();
+		      return passwordGenerator.generatePassword(10, alphabets, digits, special, uppercase, lowercase);
+		   }
 }
