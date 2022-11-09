@@ -36,7 +36,7 @@ public class RegistrationPage  extends Base{
 	public WebDriver driver;
 	private Register register;
 	
-	//@BeforeClass
+	@BeforeClass
 	public void launcBrowser() throws IOException {
 		driver = initializerDriver();
 		log.info("Driver is Initialized");
@@ -227,7 +227,6 @@ public class RegistrationPage  extends Base{
 		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
 		register.getMobileInputField().clear();
 		if(phone != null) register.getMobileInputField().sendKeys(phone);
-		scrollToWebElement(register.getMonthInputField());
 		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
 		Actions action = new Actions(driver);
 		register.deselectMonth();
@@ -273,7 +272,7 @@ public class RegistrationPage  extends Base{
 		if(confirmpassword != null) register.getConfirmPasswordInputField().sendKeys(confirmpassword);
 		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
 		if(!addToEmailList) register.getAddtoemaillist().click();
-		register.getSubmitButton().click();
+		//register.getSubmitButton().click();
 		driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
 
 	}
@@ -297,7 +296,7 @@ public class RegistrationPage  extends Base{
 		System.out.println("FN: "+ firstName +"; LN: "+  lastName +"; Moblie: "+   phone 
 				+"; Month: "+   dobMonth +"; Year: "+   dobYear +"; Email: "+   email +"; Pass: "+   password 
 				+"; Confirm: "+   password +"; addToEmailList: "+ addToEmailList);
-		/*
+		//*
 		subbmitRegistrationForm(firstName, lastName, phone, dobMonth, dobYear, email,
 				password, password, (addToEmailList.equalsIgnoreCase("true")? true: false));
 		
@@ -310,7 +309,7 @@ public class RegistrationPage  extends Base{
 			log.info("Registration: " + "Account created" + "user: "+ email + " pass: "+ password);
 			Assert.assertTrue(true, "Account created");
 		}
-		*/
+		//*/
 	}
 	
 	   private String generatePassword() {
