@@ -1,2 +1,3 @@
-07:28:03.884 [main] INFO  resources.Base - Driver is Initialized
-07:28:12.577 [main] INFO  resources.Base - Registration Page: Successfully loaded
+13:57:11.096 [main] DEBUG org.apache.poi.ooxml.POIXMLFactory - using default POIXMLDocumentPart for http://schemas.openxmlformats.org/officeDocument/2006/relationships/printerSettings
+13:57:11.099 [main] DEBUG org.apache.poi.ooxml.POIXMLFactory - using default POIXMLDocumentPart for http://schemas.openxmlformats.org/officeDocument/2006/relationships/printerSettings
+13:58:30.682 [main] INFO  resources.Base - Page (Registration): Closed

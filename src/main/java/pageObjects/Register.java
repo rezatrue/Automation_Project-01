@@ -5,9 +5,13 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Register {
 	private WebDriver driver;
@@ -17,6 +21,18 @@ public class Register {
 	}
 
 	
+	By popupShadowHostBy = By.xpath("(//div[contains(@id,'yie-overlay-wrapper')]/yld-tag-host-campaign)[1]");
+
+	public WebElement getPopupShadowHost(){
+		return driver.findElement(popupShadowHostBy);
+	}
+	
+	By interceptedElementBy = By.xpath("(//div[contains(@id,'yie-backdrop')]/parent::div)[1]");
+	public WebElement getInterceptedElement(){
+		return driver.findElement(interceptedElementBy);
+	}
+	
+
 	By firstNameLabelBy = By.xpath("//form[@id='RegistrationForm']//label[contains(@for,'firstname')]");
 	
 
@@ -133,7 +149,7 @@ public class Register {
 		return driver.findElement(mobileInputFieldBy);
 	}
 	
-	By monthInputFieldBy = By.xpath("//input[@id='dwfrm_profile_customer_dob_month']");
+	public By monthInputFieldBy = By.xpath("//input[@id='dwfrm_profile_customer_dob_month']");
 	
 	public WebElement getMonthInputField(){
 		return driver.findElement(monthInputFieldBy);
@@ -175,8 +191,8 @@ public class Register {
 		return driver.findElement(addtoemaillistBy);
 	}
 
-	//By submitButtonBy = By.xpath("//form[@id='RegistrationForm']//button[@type='submit']");	
-	By submitButtonBy = By.xpath("//button[@name='dwfrm_profile_confirm']");
+	By submitButtonBy = By.xpath("//form[@id='RegistrationForm']//button[@type='submit']");	
+	//By submitButtonBy = By.xpath("//button[@name='dwfrm_profile_confirm']");
 	
 	public WebElement getSubmitButton(){
 		return driver.findElement(submitButtonBy);

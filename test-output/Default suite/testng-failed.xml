@@ -5,7 +5,8 @@
     <classes>
       <class name="com.technogearup.E2EProject.RegistrationPage">
         <methods>
-          <include name="validateRegistrationFormWithValidData"/>
+          <include name="validateRegistrationFormWithInvalidData" invocation-numbers="4 5 6 7 8 9 10"/>
+          <include name="launcBrowser"/>
         </methods>
       </class> <!-- com.technogearup.E2EProject.RegistrationPage -->
     </classes>

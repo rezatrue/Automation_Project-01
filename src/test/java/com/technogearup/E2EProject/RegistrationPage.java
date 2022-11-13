@@ -14,11 +14,15 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.PasswordGenerator;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -30,13 +34,16 @@ import com.github.javafaker.service.RandomService;
 import pageObjects.Register;
 import resources.Base;
 import utilities.EnglishCharacterData1;
+import utilities.PopUpHandler;
 import utilities.ReadExcelFile;
 
 public class RegistrationPage  extends Base{
 	public WebDriver driver;
 	private Register register;
+	private String campaignId ="";
+	private PopUpHandler popUpHandler;
 	
-	@BeforeClass
+	@BeforeTest
 	public void launcBrowser() throws IOException {
 		driver = initializerDriver();
 		log.info("Driver is Initialized");
@@ -44,15 +51,18 @@ public class RegistrationPage  extends Base{
 		log.info("Registration Page: "+"Successfully loaded");
 		driver.manage().window().maximize();
 		register = new Register(driver);
+		campaignId ="fd530658-b727-5384-8e53-a42f3070062b";
+		popUpHandler = new PopUpHandler(driver);
 	}
 	
-	//@AfterClass
+	@AfterTest
 	public void closeBrowser() {
 		driver.close();
 		log.info("Page (Registration): "+"Closed");
 	}
 	
 	private void scrollToWebElement(WebElement element) {
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView();", element);
 	}
@@ -69,7 +79,7 @@ public class RegistrationPage  extends Base{
 		return null;
 	}
 	
-	//@Test(priority=1)
+	@Test(priority=1)
 	public void registerContent() {
 		LinkedList<String> missingContents = new LinkedList<String>();
 		
@@ -120,7 +130,7 @@ public class RegistrationPage  extends Base{
 		return null;
 	}
 	
-	//@Test(priority=2)
+	@Test(priority=2)
 	public void requiredFieldLabel() {
 		LinkedList<String> missingRequiredFields = new LinkedList<String>();
 		
@@ -156,7 +166,7 @@ public class RegistrationPage  extends Base{
 		
 	}
 	
-	//@Test(priority=3, dataProvider="dummyPassword", dataProviderClass = ReadExcelFile.class)
+	@Test(priority=3, dataProvider="dummyPassword", dataProviderClass = ReadExcelFile.class)
 	public void validatePasswordInputField(String password) {
 		
 		WebElement we = register.getPasswordInputField();
@@ -194,7 +204,7 @@ public class RegistrationPage  extends Base{
 
 	}
 	
-	//@Test(priority = 4, dataProvider = "dummyRegister", dataProviderClass = ReadExcelFile.class)
+	@Test(priority = 4, dataProvider = "dummyRegister", dataProviderClass = ReadExcelFile.class)
 	public void validateRegistrationFormWithInvalidData(String firstName, String lastName, String phone,
 			String dobMonth, String dobYear, String email, String password, String confirmpassword,
 			String addToEmailList, String status) {
@@ -217,6 +227,10 @@ public class RegistrationPage  extends Base{
 	private void subbmitRegistrationForm(String firstName, String lastName, String phone,
 			String dobMonth, String dobYear, String email,
 			String password, String confirmpassword, boolean addToEmailList) {
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(register.monthInputFieldBy));
+		if(popUpHandler.isShadowHostVisible()) popUpHandler.closePopup();
+		if(!campaignId.isEmpty()) popUpHandler.closeCampaignPopupIfDisplayed(campaignId);
 		scrollToWebElement(register.getMonthInputField());
 		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
 		register.getFirstNameInputField().clear();
@@ -272,13 +286,13 @@ public class RegistrationPage  extends Base{
 		if(confirmpassword != null) register.getConfirmPasswordInputField().sendKeys(confirmpassword);
 		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
 		if(!addToEmailList) register.getAddtoemaillist().click();
-		//register.getSubmitButton().click();
-		driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
+		register.getSubmitButton().click();
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
 
 	}
 	
 
-	@Test(priority = 5)
+	//@Test(priority = 5) // no need to register fake user all time 
 	public void validateRegistrationFormWithValidData() {
 		
 		Faker faker = new Faker(new Locale("en-US"));
@@ -296,7 +310,7 @@ public class RegistrationPage  extends Base{
 		System.out.println("FN: "+ firstName +"; LN: "+  lastName +"; Moblie: "+   phone 
 				+"; Month: "+   dobMonth +"; Year: "+   dobYear +"; Email: "+   email +"; Pass: "+   password 
 				+"; Confirm: "+   password +"; addToEmailList: "+ addToEmailList);
-		//*
+		
 		subbmitRegistrationForm(firstName, lastName, phone, dobMonth, dobYear, email,
 				password, password, (addToEmailList.equalsIgnoreCase("true")? true: false));
 		
@@ -309,7 +323,7 @@ public class RegistrationPage  extends Base{
 			log.info("Registration: " + "Account created" + "user: "+ email + " pass: "+ password);
 			Assert.assertTrue(true, "Account created");
 		}
-		//*/
+		
 	}
 	
 	   private String generatePassword() {

@@ -506,7 +506,7 @@ public class FooterOfThePage extends Base{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(true);", footer.getSignupSubmit());
 		scrollToTheBottomOfThePage(); // some time to view the submit button we need to scroll to the end of the page
-		footer.getSignupSubmit().click();
+		footer.getSignupSubmit().click(); // For testing we should avoid false email SignUp
 		
 		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
 		if(footer.getSignupSuccessMessage().isDisplayed()) {

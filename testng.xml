@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="tests">
 <listeners>
 	<listener class-name="com.technogearup.E2EProject.Listeners"></listener>
@@ -8,6 +8,7 @@
     <classes>
       <class name="com.technogearup.E2EProject.HeaderOfThePage"/>
       <class name="com.technogearup.E2EProject.FooterOfThePage"/>
+      <class name="com.technogearup.E2EProject.RegistrationPage"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
