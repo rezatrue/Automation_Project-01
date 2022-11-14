@@ -4,7 +4,7 @@
 <listeners>
 	<listener class-name="com.technogearup.E2EProject.Listeners"></listener>
 </listeners>
-  <test thread-count="5" name="Test0">
+  <test thread-count="3" name="Test0">
     <classes>
       <class name="com.technogearup.E2EProject.HeaderOfThePage"/>
       <class name="com.technogearup.E2EProject.FooterOfThePage"/>

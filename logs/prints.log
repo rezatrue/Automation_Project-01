@@ -1,3 +1,1 @@
-13:57:11.096 [main] DEBUG org.apache.poi.ooxml.POIXMLFactory - using default POIXMLDocumentPart for http://schemas.openxmlformats.org/officeDocument/2006/relationships/printerSettings
-13:57:11.099 [main] DEBUG org.apache.poi.ooxml.POIXMLFactory - using default POIXMLDocumentPart for http://schemas.openxmlformats.org/officeDocument/2006/relationships/printerSettings
-13:58:30.682 [main] INFO  resources.Base - Page (Registration): Closed
+10:57:35.444 [TestNG-tests-1] INFO  resources.Base - HomePage: Closed

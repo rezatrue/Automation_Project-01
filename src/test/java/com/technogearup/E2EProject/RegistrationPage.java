@@ -43,7 +43,7 @@ public class RegistrationPage  extends Base{
 	private String campaignId ="";
 	private PopUpHandler popUpHandler;
 	
-	@BeforeTest
+	@BeforeClass
 	public void launcBrowser() throws IOException {
 		driver = initializerDriver();
 		log.info("Driver is Initialized");
@@ -55,7 +55,7 @@ public class RegistrationPage  extends Base{
 		popUpHandler = new PopUpHandler(driver);
 	}
 	
-	@AfterTest
+	@AfterClass
 	public void closeBrowser() {
 		driver.close();
 		log.info("Page (Registration): "+"Closed");

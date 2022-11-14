@@ -2,7 +2,11 @@ package utilities;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -11,13 +15,12 @@ import org.testng.annotations.DataProvider;
 
 public class ReadExcelFile {
 
+	private String fileName = System.getProperty("user.dir") + "/TestData/data.xlsx";
 	public static FileInputStream inputSteam;
 	public static XSSFWorkbook workbook;
 
 	@DataProvider(name = "dummyPassword")
 	public Object[][] excelDP() throws IOException {
-
-		String fileName = System.getProperty("user.dir") + "/TestData/data.xlsx";
 
 		Object[][] arrObj = getDummyPassword(fileName, "passwords");
 		return arrObj;
@@ -49,8 +52,6 @@ public class ReadExcelFile {
 
 	@DataProvider(name = "dummyRegister")
 	public Object[][] excelDR() throws IOException {
-
-		String fileName = System.getProperty("user.dir") + "/TestData/data.xlsx";
 
 		Object[][] arrObj = getDummyRegister(fileName, "register");
 		return arrObj;
@@ -89,5 +90,26 @@ public class ReadExcelFile {
 		return data;
 	}
 	
+	public LinkedHashMap<String,String> readFooterFile(String section) throws IOException {
+		LinkedHashMap<String,String> data = new LinkedHashMap<String, String>();
+		FileInputStream fs = new FileInputStream(fileName);
+		XSSFWorkbook workbook = new XSSFWorkbook(fs);
+		XSSFSheet sheet = workbook.getSheet("footer");
+		Iterator<Row> rowIterator = sheet.iterator();
+        while (rowIterator.hasNext()) 
+        {
+            Row row = rowIterator.next();
+            Iterator<Cell> cellIterator = row.cellIterator();
+             
+            cellIterator.next(); // skipping as first cell is Sl.No.
+            if(cellIterator.next().getStringCellValue().equalsIgnoreCase(section)){
+            	Cell cell1 = cellIterator.next();
+            	Cell cell2 = cellIterator.next();
+            	data.put(cell1.getStringCellValue(), cell2.getStringCellValue());
+            }
+        }
+        return data;
+	}
+
 	
 }

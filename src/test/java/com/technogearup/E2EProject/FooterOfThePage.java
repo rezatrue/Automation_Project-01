@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,28 +13,27 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import pageObjects.Footer;
-import pageObjects.Header;
 import resources.Base;
-import resources.Utilities;
+import utilities.LinkValidation;
+import utilities.ReadExcelFile;
 
 public class FooterOfThePage extends Base{
 	public WebDriver driver;
 	private Footer footer;
-	private Utilities utilities;
+	private ReadExcelFile readExcelFile;
+	private LinkValidation linkValidation;
 	
 	@BeforeClass
 	public void launcBrowser() throws IOException {
 		driver = initializerDriver();
-		utilities = new Utilities();
+		readExcelFile = new ReadExcelFile();
+		linkValidation = new LinkValidation();
 		log.info("Page for Footer: "+"Driver is Initialized");
 		driver.get(prop.getProperty("url"));
 		log.info("Page for Footer: "+"Successfully open URL");
@@ -126,7 +124,7 @@ public class FooterOfThePage extends Base{
 		LinkedList<String> extraLinks = new LinkedList<String>();
 		LinkedHashMap<String,String> linkMap = new LinkedHashMap<String, String>();
 		try {
-			linkMap = utilities.ReadFooterFile("Company Info");
+			linkMap = readExcelFile.readFooterFile("Company Info");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -165,7 +163,7 @@ public class FooterOfThePage extends Base{
 		Iterator<WebElement> it = list.iterator();
 		while(it.hasNext()) {
 			String url = it.next().getAttribute("href");
-			if(!utilities.isRedirectUrlOf(url)) {
+			if(!linkValidation.isRedirectUrlOf(url)) {
 				notRedirectedProperly.add(url);
 				log.info("Footer->companyInfo: "+url+" doesn't redirect");
 			}
@@ -187,7 +185,7 @@ public class FooterOfThePage extends Base{
 		LinkedList<String> extraLinks = new LinkedList<String>();
 		LinkedHashMap<String,String> linkMap = new LinkedHashMap<String, String>();
 		try {
-			linkMap = utilities.ReadFooterFile("Customer Service");
+			linkMap = readExcelFile.readFooterFile("Customer Service");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -226,7 +224,7 @@ public class FooterOfThePage extends Base{
 		Iterator<WebElement> it = list.iterator();
 		while(it.hasNext()) {
 			String url = it.next().getAttribute("href");
-			if(!utilities.isRedirectUrlOf(url)) {
+			if(!linkValidation.isRedirectUrlOf(url)) {
 				notRedirectedProperly.add(url);
 				log.info("Footer->customerService: "+url+" doesn't redirect");
 			}
@@ -248,7 +246,7 @@ public class FooterOfThePage extends Base{
 		LinkedList<String> extraLinks = new LinkedList<String>();
 		LinkedHashMap<String,String> linkMap = new LinkedHashMap<String, String>();
 		try {
-			linkMap = utilities.ReadFooterFile("Online Purchases");
+			linkMap = readExcelFile.readFooterFile("Online Purchases");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -287,7 +285,7 @@ public class FooterOfThePage extends Base{
 		Iterator<WebElement> it = list.iterator();
 		while(it.hasNext()) {
 			String url = it.next().getAttribute("href");
-			if(!utilities.isRedirectUrlOf(url)) {
+			if(!linkValidation.isRedirectUrlOf(url)) {
 				notRedirectedProperly.add(url);
 				log.info("Footer->onlinePurchases: "+url+" doesn't redirect");
 			}
@@ -309,7 +307,7 @@ public class FooterOfThePage extends Base{
 		LinkedList<String> extraLinks = new LinkedList<String>();
 		LinkedHashMap<String,String> linkMap = new LinkedHashMap<String, String>();
 		try {
-			linkMap = utilities.ReadFooterFile("Follow Us");
+			linkMap = readExcelFile.readFooterFile("Follow Us");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -348,7 +346,7 @@ public class FooterOfThePage extends Base{
 		Iterator<WebElement> it = list.iterator();
 		while(it.hasNext()) {
 			String url = it.next().getAttribute("href");
-			if(!utilities.isRedirectUrlOf(url)) {
+			if(!linkValidation.isRedirectUrlOf(url)) {
 				notRedirectedProperly.add(url);
 				log.info("Footer->followUs: "+url+" doesn't redirect");
 			}
@@ -371,7 +369,7 @@ public class FooterOfThePage extends Base{
 		LinkedList<String> extraLinks = new LinkedList<String>();
 		LinkedHashMap<String,String> linkMap = new LinkedHashMap<String, String>();
 		try {
-			linkMap = utilities.ReadFooterFile("Utility");
+			linkMap = readExcelFile.readFooterFile("Utility");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -410,7 +408,7 @@ public class FooterOfThePage extends Base{
 		Iterator<WebElement> it = list.iterator();
 		while(it.hasNext()) {
 			String url = it.next().getAttribute("href");
-			if(!utilities.isRedirectUrlOf(url)) {
+			if(!linkValidation.isRedirectUrlOf(url)) {
 				notRedirectedProperly.add(url);
 				log.info("Footer->footerUtility: "+url+" doesn't redirect");
 			}
@@ -433,7 +431,7 @@ public class FooterOfThePage extends Base{
 		
 		LinkedHashMap<String,String> linkMap = new LinkedHashMap<String, String>();
 		try {
-			linkMap = utilities.ReadFooterFile("Badge");
+			linkMap = readExcelFile.readFooterFile("Badge");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
