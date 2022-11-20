@@ -1,4 +1,8 @@
-D:\eclipse-workspace\E2EProject\src\main\java\pageObjects\LandingPage.java
-D:\eclipse-workspace\E2EProject\src\main\java\pageObjects\LoginPage.java
-D:\eclipse-workspace\E2EProject\src\main\java\resources\Base.java
-D:\eclipse-workspace\E2EProject\src\main\java\com\technogearup\E2EProject\App.java
+C:\Users\REZA\Desktop\Automation\eclipse-workspace\Automation_Project-01-Netrogena\src\main\java\resources\Base.java
+C:\Users\REZA\Desktop\Automation\eclipse-workspace\Automation_Project-01-Netrogena\src\main\java\pageObjects\Header.java
+C:\Users\REZA\Desktop\Automation\eclipse-workspace\Automation_Project-01-Netrogena\src\main\java\resources\Utilities.java
+C:\Users\REZA\Desktop\Automation\eclipse-workspace\Automation_Project-01-Netrogena\src\main\java\pageObjects\Register.java
+C:\Users\REZA\Desktop\Automation\eclipse-workspace\Automation_Project-01-Netrogena\src\main\java\resources\ExtentReporterNG.java
+C:\Users\REZA\Desktop\Automation\eclipse-workspace\Automation_Project-01-Netrogena\src\main\java\utilities\ReadExcelFile.java
+C:\Users\REZA\Desktop\Automation\eclipse-workspace\Automation_Project-01-Netrogena\src\main\java\com\technogearup\E2EProject\App.java
+C:\Users\REZA\Desktop\Automation\eclipse-workspace\Automation_Project-01-Netrogena\src\main\java\pageObjects\Footer.java

@@ -3,13 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.technogearup.E2EProject.RegistrationPage">
+      <class name="com.technogearup.E2EProject.FooterOfThePage">
         <methods>
-          <include name="requiredField"/>
+          <include name="emailSignUp"/>
+          <include name="followUs"/>
           <include name="closeBrowser"/>
+          <include name="footerUtility"/>
           <include name="launcBrowser"/>
         </methods>
-      </class> <!-- com.technogearup.E2EProject.RegistrationPage -->
+      </class> <!-- com.technogearup.E2EProject.FooterOfThePage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

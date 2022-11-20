@@ -1,37 +1,58 @@
 package com.technogearup.E2EProject;
 
 import java.io.IOException;
+import java.time.Month;
+import java.util.Date;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.PasswordGenerator;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import pageObjects.Footer;
+import com.github.javafaker.Faker;
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
+
 import pageObjects.Register;
 import resources.Base;
-import resources.Utilities;
+import utilities.EnglishCharacterData1;
+import utilities.PopUpHandler;
+import utilities.ReadExcelFile;
 
 public class RegistrationPage  extends Base{
 	public WebDriver driver;
 	private Register register;
-	private Utilities utilities;
+	private String campaignId ="";
+	private PopUpHandler popUpHandler;
 	
 	@BeforeClass
 	public void launcBrowser() throws IOException {
 		driver = initializerDriver();
-		utilities = new Utilities();
 		log.info("Driver is Initialized");
 		driver.get(prop.getProperty("registration"));
 		log.info("Registration Page: "+"Successfully loaded");
 		driver.manage().window().maximize();
 		register = new Register(driver);
+		campaignId ="fd530658-b727-5384-8e53-a42f3070062b";
+		popUpHandler = new PopUpHandler(driver);
 	}
 	
 	@AfterClass
@@ -41,6 +62,7 @@ public class RegistrationPage  extends Base{
 	}
 	
 	private void scrollToWebElement(WebElement element) {
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView();", element);
 	}
@@ -144,6 +166,173 @@ public class RegistrationPage  extends Base{
 		
 	}
 	
+	@Test(priority=3, dataProvider="dummyPassword", dataProviderClass = ReadExcelFile.class)
+	public void validatePasswordInputField(String password) {
+		
+		WebElement we = register.getPasswordInputField();
+		scrollToWebElement(we);
+		we.clear();
+		we.sendKeys(password);
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+		register.getConfirmPasswordLabel().click();
+		
+		String errorMsg = register.getPasswordErrorMsg();
+		
+		Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[0-9A-Za-z\\d!@#$%^&*]{10,}$");
+		Matcher matcher = pattern.matcher(password);
+		boolean patternRes = matcher.matches();
+		
+		if(errorMsg.length() < 1 && patternRes == true) {
+			log.info("Password Input Field validation: PASS "+ password +" matches the criteria");
+			Assert.assertTrue(patternRes, "Password Input Field validation: PASS "+ password +" matches the criteria");
+		}
+		
+		if(errorMsg.length() > 1 && patternRes == false) {
+			log.info("Password Input Field validation: PASS "+ errorMsg +" --> "+password);
+			Assert.assertTrue(!patternRes, "Password Input Field validation: PASS "+ errorMsg +" --> "+password);
+		}
+		
+		if(errorMsg.length() > 1 && patternRes == true) {
+			log.info("Password Input Field validation: FAIL "+ errorMsg +" --> "+password);
+			Assert.assertTrue(!patternRes, "Password Input Field validation: FAIL "+ errorMsg +" --> "+password);
+		}
+		
+		if(errorMsg.length() < 1 && patternRes == false) {
+			log.info("Password Input Field validation: FAIL "+ " there is no error message --> "+password);
+			Assert.assertTrue(patternRes, "Password Input Field validation: FAIL "+ " there is no error message --> "+password);
+		}
+
+	}
 	
+	@Test(priority = 4, dataProvider = "dummyRegister", dataProviderClass = ReadExcelFile.class)
+	public void validateRegistrationFormWithInvalidData(String firstName, String lastName, String phone,
+			String dobMonth, String dobYear, String email, String password, String confirmpassword,
+			String addToEmailList, String status) {
+		
+		System.out.println("FN: "+ firstName +"; LN: "+  lastName +"; Moblie: "+   phone 
+				+"; Month: "+   dobMonth +"; Year: "+   dobYear +"; Email: "+   email +"; Pass: "+   password 
+				+"; Confirm: "+   confirmpassword +"; addToEmailList: "+ addToEmailList +"; status: "+ status);
+		
+		subbmitRegistrationForm(firstName, lastName, phone, dobMonth, dobYear, email,
+				password, confirmpassword, (addToEmailList.equalsIgnoreCase("true")? true: false));
+		
+		if(register.isErrorPresentOnForm()){
+			Assert.assertFalse(false, "Form is not submitted");
+		}else {
+			Assert.assertTrue(true, "Form submitted");
+		}
+		
+	}
+
+	private void subbmitRegistrationForm(String firstName, String lastName, String phone,
+			String dobMonth, String dobYear, String email,
+			String password, String confirmpassword, boolean addToEmailList) {
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(register.monthInputFieldBy));
+		if(popUpHandler.isShadowHostVisible()) popUpHandler.closePopup();
+		if(!campaignId.isEmpty()) popUpHandler.closeCampaignPopupIfDisplayed(campaignId);
+		scrollToWebElement(register.getMonthInputField());
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+		register.getFirstNameInputField().clear();
+		if(firstName != null) register.getFirstNameInputField().sendKeys(firstName);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		register.getLastNameInputField().clear();
+		if(lastName != null) register.getLastNameInputField().sendKeys(lastName);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		register.getMobileInputField().clear();
+		if(phone != null) register.getMobileInputField().sendKeys(phone);
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+		Actions action = new Actions(driver);
+		register.deselectMonth();
+		if(dobMonth != null) {
+			String month = dobMonth;
+			action.click(register.getMonthInputField()).build().perform();
+			action.sendKeys(Keys.TAB).perform();
+			Boolean monthSelected = false;
+			while(!monthSelected) {
+				if(register.getSectionMonth(month).isDisplayed()) {
+					action.click(register.getSectionMonth(month)).build().perform();
+					break;
+				}
+				driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+				action.sendKeys(Keys.ARROW_DOWN).perform();
+			}
+		}
+		register.deselectYear();
+		if(dobYear != null) {
+			String year = dobYear;
+			action.click(register.getYearInputField()).build().perform();
+			action.sendKeys(Keys.TAB).perform();
+			System.out.println(dobYear);
+			Boolean yearSelected = false;
+			while(!yearSelected) {
+				if(register.getSectionYear(year).isDisplayed()) {
+					action.click(register.getSectionYear(year)).build().perform();
+					break;
+				}
+				driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+				action.sendKeys(Keys.ARROW_DOWN).perform();
+			}
+		}
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		register.getEmailInputField().clear();
+		if(email != null) register.getEmailInputField().sendKeys(email);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		scrollToWebElement(register.getSubmitButton());
+		register.getPasswordInputField().clear();
+		if(password != null) register.getPasswordInputField().sendKeys(password);
+		driver.manage().timeouts().implicitlyWait(250, TimeUnit.MILLISECONDS);
+		register.getConfirmPasswordInputField().clear();
+		if(confirmpassword != null) register.getConfirmPasswordInputField().sendKeys(confirmpassword);
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+		if(!addToEmailList) register.getAddtoemaillist().click();
+		register.getSubmitButton().click();
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+
+	}
 	
+
+	//@Test(priority = 5) // no need to register fake user all time 
+	public void validateRegistrationFormWithValidData() {
+		
+		Faker faker = new Faker(new Locale("en-US"));
+		String firstName = faker.name().firstName();
+		String lastName = faker.name().lastName();
+		String phone = faker.phoneNumber().subscriberNumber(10);
+		String month = Month.of(faker.date().birthday().getMonth()+1).toString();
+		String dobMonth = (month.charAt(0)+"").toUpperCase() + month.toLowerCase().substring(1);
+		String gmtString = faker.date().birthday(18, 45).toGMTString();
+		String dobYear = gmtString.split(" ")[2];
+		String email = faker.internet().emailAddress();
+		String password = generatePassword();
+		String addToEmailList = "false";
+		
+		System.out.println("FN: "+ firstName +"; LN: "+  lastName +"; Moblie: "+   phone 
+				+"; Month: "+   dobMonth +"; Year: "+   dobYear +"; Email: "+   email +"; Pass: "+   password 
+				+"; Confirm: "+   password +"; addToEmailList: "+ addToEmailList);
+		
+		subbmitRegistrationForm(firstName, lastName, phone, dobMonth, dobYear, email,
+				password, password, (addToEmailList.equalsIgnoreCase("true")? true: false));
+		
+		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
+		if(register.isErrorPresentOnForm()){
+			Assert.assertFalse(false, "Form is not submitted");
+		}
+		if(driver.getCurrentUrl().contains("neutrogena.com/account"))
+		{
+			log.info("Registration: " + "Account created" + "user: "+ email + " pass: "+ password);
+			Assert.assertTrue(true, "Account created");
+		}
+		
+	}
+	
+	   private String generatePassword() {
+		      CharacterRule alphabets = new CharacterRule(EnglishCharacterData.Alphabetical);
+		      CharacterRule digits = new CharacterRule(EnglishCharacterData.Digit, 1);
+		      CharacterRule special = new CharacterRule(EnglishCharacterData1.Special, 1);
+		      CharacterRule uppercase = new CharacterRule(EnglishCharacterData.UpperCase, 1);
+		      CharacterRule lowercase = new CharacterRule(EnglishCharacterData.LowerCase, 1);
+		      PasswordGenerator passwordGenerator = new PasswordGenerator();
+		      return passwordGenerator.generatePassword(10, alphabets, digits, special, uppercase, lowercase);
+		   }
 }

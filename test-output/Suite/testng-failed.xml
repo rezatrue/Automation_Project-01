@@ -6,20 +6,26 @@
   </listeners>
   <test thread-count="5" parallel="tests" name="Test0(failed)">
     <classes>
-      <class name="com.technogearup.E2EProject.HeaderOfThePage">
-        <methods>
-          <include name="navigation"/>
-          <include name="utilityBanner"/>
-          <include name="launcBrowser"/>
-        </methods>
-      </class> <!-- com.technogearup.E2EProject.HeaderOfThePage -->
       <class name="com.technogearup.E2EProject.FooterOfThePage">
         <methods>
           <include name="emailSignUp"/>
           <include name="followUs"/>
+          <include name="closeBrowser"/>
+          <include name="footerUtility"/>
           <include name="launcBrowser"/>
         </methods>
       </class> <!-- com.technogearup.E2EProject.FooterOfThePage -->
+      <class name="com.technogearup.E2EProject.HeaderOfThePage">
+        <methods>
+          <include name="userInfo"/>
+          <include name="navigation"/>
+          <include name="subMenuRedirection"/>
+          <include name="emailSignup"/>
+          <include name="utilityBanner"/>
+          <include name="closeBrowser"/>
+          <include name="launcBrowser"/>
+        </methods>
+      </class> <!-- com.technogearup.E2EProject.HeaderOfThePage -->
     </classes>
   </test> <!-- Test0(failed) -->
 </suite> <!-- Failed suite [Suite] -->

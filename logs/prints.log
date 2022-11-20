@@ -1,6 +1,1 @@
-11:36:52.226 [main] INFO  resources.Base - Page (Registration): Closed
-11:47:37.621 [main] INFO  resources.Base - Driver is Initialized
-11:47:45.461 [main] INFO  resources.Base - Registration Page: Successfully loaded
-11:47:46.209 [main] INFO  resources.Base - Register: All Input label present
-11:47:46.570 [main] INFO  resources.Base - Register: All Required labels are marked properly
-11:47:46.794 [main] INFO  resources.Base - Page (Registration): Closed
+10:57:35.444 [TestNG-tests-1] INFO  resources.Base - HomePage: Closed
